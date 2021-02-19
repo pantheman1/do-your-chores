@@ -14,13 +14,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pantheman1/w15-use-auth-react.git"
+    "url": "git+https://github.com/pantheman1/asana-clone-doyourchores"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pantheman1/w15-use-auth-react/issues"
+    "url": "git+https://github.com/pantheman1/asana-clone-doyourchores"
   },
-  "homepage": "https://github.com/pantheman1/w15-use-auth-react#readme"
+  "homepage": "git+https://github.com/pantheman1/asana-clone-doyourchores"
 }
