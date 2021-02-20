@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './LoginForm.css';
 
 
-function LoginFormPage() {
+function LoginFormPage({ isLoaded }) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const [credential, setCredential] = useState('');
@@ -29,6 +30,11 @@ function LoginFormPage() {
     const handleDemoSubmit = () => {
         dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' }))
     }
+
+    const handleSignup = () => {
+        <Redirect to="/signup" />
+    }
+
 
     return (
         <div className="login-body">
@@ -55,8 +61,14 @@ function LoginFormPage() {
                             required
                         />
                     </label>
+                    {/* <ul>
+                        <li>
+                            {isLoaded && sessionLinks}
+                        </li>
+                    </ul> */}
                     <button type="submit">Log In</button>
                     <button type="button" onClick={handleDemoSubmit}>Demo Login</button>
+                    <button type="button" onClick={handleSignup}>Sign up</button>
                 </form>
             </div>
         </div>

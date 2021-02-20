@@ -26,7 +26,7 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path='/'>
-            <HomePage />
+            <HomePage isLoaded={isLoaded} />
           </Route>
         </Switch>
       )}
