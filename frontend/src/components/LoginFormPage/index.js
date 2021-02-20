@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import './LoginForm.css';
+// const logo = require('../../../public/images/chores-logo.png')
 
 
 function LoginFormPage({ isLoaded }) {
@@ -12,6 +13,7 @@ function LoginFormPage({ isLoaded }) {
     const [credential, setCredential] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
+    const history = useHistory();
 
     if (sessionUser) return (
         <Redirect to="/" />
@@ -32,7 +34,9 @@ function LoginFormPage({ isLoaded }) {
     }
 
     const handleSignup = () => {
-        <Redirect to="/signup" />
+        // <Redirect from="/" to="/signup" />
+        history.push('/signup')
+        console.log("------>>>>")
     }
 
 
@@ -40,6 +44,7 @@ function LoginFormPage({ isLoaded }) {
         <div className="login-body">
             <div className="login-card">
                 <form onSubmit={handleSubmit}>
+                    {/* <img src={require('../../../public/images/chores-logo.png')} /> */}
                     <ul>
                         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                     </ul>
