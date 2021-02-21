@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import './LoginForm.css';
 
 
-function LoginFormPage() {
+function LoginFormPage({ isLoaded }) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const [credential, setCredential] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
+    const history = useHistory();
 
     if (sessionUser) return (
         <Redirect to="/" />
@@ -30,32 +32,55 @@ function LoginFormPage() {
         dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' }))
     }
 
+    const handleSignup = () => {
+        history.push('/signup')
+    }
+
+
     return (
-        <form onSubmit={handleSubmit}>
-            <ul>
-                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-            </ul>
-            <label>
-                Username or Email
-        <input
-                    type="text"
-                    value={credential}
-                    onChange={(e) => setCredential(e.target.value)}
-                    required
-                />
-            </label>
-            <label>
-                Password
-        <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-            </label>
-            <button type="submit">Log In</button>
-            <button type="button" onClick={handleDemoSubmit}>Demo Login</button>
-        </form>
+        <div className="login-body">
+            <div className="login-card">
+                <div className="logo-container">
+                    <div className="logo-text">Do Your <span className="chores">Chores!</span></div>
+                    <div className="login-form">
+                        <form onSubmit={handleSubmit}>
+                            <ul>
+                                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                            </ul>
+                            <div className="username-container">
+                                <label>Username or Email</label>
+                                <input
+                                    className="username-input"
+                                    type="text"
+                                    value={credential}
+                                    onChange={(e) => setCredential(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="password-container">
+                                <label>Password</label>
+                                <input
+                                    className="password-input"
+                                    type="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="login-buttons">
+                                <div className="login-btn">
+                                    <button id="login-btn" type="submit">Log In</button>
+                                </div>
+                                <div className="demo-btn">
+                                    <button id="demo-btn" type="button" onClick={handleDemoSubmit}>Demo Login</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div className="signup-link">Don't have an account? Click here to <NavLink to="/signup">Sign up</NavLink></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 }
 

@@ -16,7 +16,6 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
           <Route path="/login">
@@ -26,7 +25,8 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path='/'>
-            <HomePage />
+            <Navigation isLoaded={isLoaded} />
+            <HomePage isLoaded={isLoaded} />
           </Route>
         </Switch>
       )}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
@@ -13,12 +13,13 @@ function Navigation({ isLoaded }) {
             <ProfileButton user={sessionUser} />
         );
     } else {
-        sessionLinks = (
-            <>
-                <NavLink to="/login">Log In</NavLink>
-                <NavLink to="/signup">Sign Up</NavLink>
-            </>
-        );
+        <Redirect to="/login" />
+        //     sessionLinks = (
+        //         <>
+        //             <NavLink to="/login">Log In</NavLink>
+        //             <NavLink to="/signup">Sign Up</NavLink>
+        //         </>
+        //     );
     }
 
     return (
