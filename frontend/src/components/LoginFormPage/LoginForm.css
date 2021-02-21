@@ -26,3 +26,45 @@ div {
   max-width: 440px;
   padding: 64px 48px 48px;
 }
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.username-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.password-container {
+  display: flex;
+  flex-direction: column;
+}
+
+input.username-container.password-container {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 20px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #cbd4db;
+  border-radius: 6px;
+  padding: 0 12px;
+  box-sizing: border-box;
+  height: 36px;
+  padding-bottom: 4px;
+  padding-top: 4px;
+}
+
+.login-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  height: 36px;
+  line-height: 36px;
+  margin-top: 32px;
+  border-radius: 6px;
+  font-size: 13px;
+}
