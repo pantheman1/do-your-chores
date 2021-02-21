@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { NavLink, useHistory } from 'react-router-dom';
 import './LoginForm.css';
-// const logo = require('../../../public/images/chores-logo.png')
 
 
 function LoginFormPage({ isLoaded }) {
@@ -34,47 +33,42 @@ function LoginFormPage({ isLoaded }) {
     }
 
     const handleSignup = () => {
-        // <Redirect from="/" to="/signup" />
         history.push('/signup')
-        console.log("------>>>>")
     }
 
 
     return (
         <div className="login-body">
             <div className="login-card">
-                <form onSubmit={handleSubmit}>
-                    {/* <img src={require('../../../public/images/chores-logo.png')} /> */}
-                    <ul>
-                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                    </ul>
-                    <label>
-                        Username or Email
+                <div className="logo-container">
+                    <h2 className="logo-text">Do Your <span className="chores">Chores!</span></h2>
+                    <form onSubmit={handleSubmit}>
+                        <ul>
+                            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                        </ul>
+                        <label>
+                            Username or Email
                     <input
-                            type="text"
-                            value={credential}
-                            onChange={(e) => setCredential(e.target.value)}
-                            required
-                        />
-                    </label>
-                    <label>
-                        Password
+                                type="text"
+                                value={credential}
+                                onChange={(e) => setCredential(e.target.value)}
+                                required
+                            />
+                        </label>
+                        <label>
+                            Password
         <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                    </label>
-                    {/* <ul>
-                        <li>
-                            {isLoaded && sessionLinks}
-                        </li>
-                    </ul> */}
-                    <button type="submit">Log In</button>
-                    <button type="button" onClick={handleDemoSubmit}>Demo Login</button>
-                    <button type="button" onClick={handleSignup}>Sign up</button>
-                </form>
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                        </label>
+                        <button type="submit">Log In</button>
+                        <button type="button" onClick={handleDemoSubmit}>Demo Login</button>
+                        <button type="button" onClick={handleSignup}>Sign up</button>
+                    </form>
+                </div>
             </div>
         </div>
     );
