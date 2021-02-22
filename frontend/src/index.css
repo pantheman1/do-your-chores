@@ -3,3 +3,11 @@
 html {
   font-family: "Roboto", sans-serif;
 }
+
+button:hover {
+  box-shadow: 0px 0px 2px;
+}
+
+button:active {
+  transform: translateY(2px);
+}

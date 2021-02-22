@@ -68,12 +68,12 @@ function LoginFormPage({ isLoaded }) {
                                 />
                             </div>
                             <div className="login-buttons">
-                                <div className="login-btn">
-                                    <button id="login-btn" type="submit">Log In</button>
-                                </div>
-                                <div className="demo-btn">
-                                    <button id="demo-btn" type="button" onClick={handleDemoSubmit}>Demo Login</button>
-                                </div>
+                                {/* <div className="login-btn"> */}
+                                <button id="login-btn" type="submit">Log In</button>
+                                {/* </div> */}
+                                {/* <div className="demo-btn"> */}
+                                <button id="demo-btn" type="button" onClick={handleDemoSubmit}>Demo Login</button>
+                                {/* </div> */}
                             </div>
                         </form>
                         <div className="signup-link">Don't have an account? Click here to <NavLink to="/signup">Sign up</NavLink></div>
