@@ -41,11 +41,12 @@ function LoginFormPage({ isLoaded }) {
         <div className="login-body">
             <div className="login-card">
                 <div className="logo-container">
+                    <img className="logo-login-page" src="images/logo.png" />
                     <div className="logo-text">Do Your <span className="chores">Chores!</span></div>
                     <div className="login-form">
                         <form onSubmit={handleSubmit}>
                             <ul>
-                                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                                {errors.map((error, idx) => <li className="error-li" key={idx}>{error}</li>)}
                             </ul>
                             <div className="username-container">
                                 <label>Username or Email</label>

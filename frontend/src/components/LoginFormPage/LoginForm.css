@@ -16,15 +16,20 @@ div {
   min-height: 100vh;
 }
 
-.login-card {
+.logo-login-page {
+  max-height: 170px;
+}
+
+.login-card,
+.signup-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-color: #fff;
   box-shadow: 0 5px 20px 0 rgb(21 27 38 / 8%);
   margin-top: 80px;
-  max-width: 440px;
-  padding: 64px 48px 48px;
+  padding: 46px 46px 56px;
+  border-radius: 8px;
 }
 
 input {
@@ -70,4 +75,14 @@ input {
   justify-content: space-evenly;
   margin-top: 10px;
   margin-bottom: 20px;
+}
+
+/* Error handling li styling */
+.error-li {
+  margin-bottom: 10px;
+  color: red;
+}
+
+.signup-link {
+  margin-top: 40px;
 }
