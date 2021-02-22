@@ -33,55 +33,56 @@ function SignupFormPage() {
         <div className="login-body">
             <div className="login-card">
                 <div className="logo-container">
-                    <img className="logo-login-page" src="images/logo.png" />
-                    <div className="login-form">
-                        <form onSubmit={handleSubmit}>
-                            <ul>
-                                {errors.map((error, idx) => <li className="error-li" key={idx}>{error}</li>)}
-                            </ul>
-                            <div>
-                                <label>Email</label>
-                                <input
-                                    type="text"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            <div className="username-container">
-                                <label>Username</label>
-                                <input
-                                    type="text"
-                                    value={username}
-                                    onChange={(e) => setUsername(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            <div className="password-container signup-password-input">
-                                <label>Password</label>
-                                <input
-                                    type="password"
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            <div className="password-container signup-password-input">
-                                <label>Confirm Password</label>
-                                <input
-                                    type="password"
-                                    value={confirmPassword}
-                                    onChange={(e) => setConfirmPassword(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            <div className="login-buttons">
-                                <button className="login-btn signup-btn" type="submit">Sign Up</button>
-                            </div>
-                        </form>
-                        <div>
-                            <span className="return-to-login">Already have an account? Click here to </span><NavLink className="login-link" to="/login">Login</NavLink>
+                    <img className="logo-signup-page" src="images/boy-with-mop.png" />
+                    <img className="logo-login-page" src="images/do-your-chores.png" />
+                </div>
+                <div className="login-form">
+                    <form onSubmit={handleSubmit}>
+                        <ul>
+                            {errors.map((error, idx) => <li className="error-li" key={idx}>{error}</li>)}
+                        </ul>
+                        <div className="email-container">
+                            <label>Email</label>
+                            <input
+                                type="text"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
                         </div>
+                        <div className="username-container">
+                            <label>Username</label>
+                            <input
+                                type="text"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="password-container signup-password-input">
+                            <label>Password</label>
+                            <input
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="password-container signup-password-input">
+                            <label>Confirm Password</label>
+                            <input
+                                type="password"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="login-buttons">
+                            <button className="login-btn signup-btn" type="submit">Sign Up</button>
+                        </div>
+                    </form>
+                    <div>
+                        <span className="return-to-login">Already have an account? Click here to </span><NavLink className="login-link" to="/login">Login</NavLink>
                     </div>
                 </div>
             </div>
