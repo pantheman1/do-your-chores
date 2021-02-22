@@ -10,10 +10,11 @@ div {
 
 .login-body {
   display: flex;
-  background: #f6f8f9;
+  background: #93c4cd;
   align-items: center;
   flex-direction: column;
   min-height: 100vh;
+  background-image: linear-gradient(359deg, #d5f9ff, transparent);
 }
 
 .logo-login-page {

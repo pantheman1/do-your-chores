@@ -29,11 +29,6 @@ function SignupFormPage() {
         return setErrors(['Confirm Password field must be the same as the Password field']);
     };
 
-    const handleLogin = () => {
-        history.push('/login')
-        // return <Redirect to='/login' />
-    }
-
     return (
         <div className="login-body">
             <div className="login-card">
@@ -44,7 +39,7 @@ function SignupFormPage() {
                             <ul>
                                 {errors.map((error, idx) => <li className="error-li" key={idx}>{error}</li>)}
                             </ul>
-                            {/* <div>
+                            <div>
                                 <label>Email</label>
                                 <input
                                     type="text"
@@ -52,7 +47,7 @@ function SignupFormPage() {
                                     onChange={(e) => setEmail(e.target.value)}
                                     required
                                 />
-                            </div> */}
+                            </div>
                             <div className="username-container">
                                 <label>Username</label>
                                 <input
