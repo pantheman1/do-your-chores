@@ -61,13 +61,14 @@ input {
   flex-direction: column;
 }
 
-#login-btn,
-#demo-btn {
+.login-btn,
+.demo-btn {
   width: 40%;
   font-size: 15px;
   padding: 10px;
   border-radius: 6px;
   border: 1px;
+  background: #79b6c1;
 }
 
 .login-buttons {
@@ -85,4 +86,10 @@ input {
 
 .signup-link {
   margin-top: 40px;
+}
+
+.login-link {
+  font-size: x-large;
+  text-decoration: none;
+  color: #866211;
 }
