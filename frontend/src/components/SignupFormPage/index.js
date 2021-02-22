@@ -29,48 +29,50 @@ function SignupFormPage() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <ul>
-                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-            </ul>
-            <label>
-                Email
-        <input
+        <div>
+            <form onSubmit={handleSubmit}>
+                <ul>
+                    {errors.map((error, idx) => <li className="error-li" key={idx}>{error}</li>)}
+                </ul>
+                <label>
+                    Email
+                </label>
+                <input
                     type="text"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
                 />
-            </label>
-            <label>
-                Username
-        <input
+                <label>
+                    Username
+                </label>
+                <input
                     type="text"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required
                 />
-            </label>
-            <label>
-                Password
-        <input
+                <label>
+                    Password
+                </label>
+                <input
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-            </label>
-            <label>
-                Confirm Password
-        <input
+                <label>
+                    Confirm Password
+                </label>
+                <input
                     type="password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     required
                 />
-            </label>
-            <button type="submit">Sign Up</button>
-        </form>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
     );
 }
 
