@@ -14,12 +14,12 @@ function Navigation({ isLoaded }) {
         );
     } else {
         <Redirect to="/login" />
-        //     sessionLinks = (
-        //         <>
-        //             <NavLink to="/login">Log In</NavLink>
-        //             <NavLink to="/signup">Sign Up</NavLink>
-        //         </>
-        //     );
+        sessionLinks = (
+            <>
+                <NavLink to="/login">Log In</NavLink>
+                <NavLink to="/signup">Sign Up</NavLink>
+            </>
+        );
     }
 
     return (

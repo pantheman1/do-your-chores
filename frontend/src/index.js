@@ -13,7 +13,7 @@ const store = configureStore();
 if (process.env.NODE_ENV !== 'production') {
   restoreCSRF();
 
-  window.csrfFetch = csrfFetch; //IS THIS SUPPOSED TO BE INVOKED????
+  window.csrfFetch = csrfFetch;
   window.store = store;
   window.sessionActions = sessionActions;
 };
