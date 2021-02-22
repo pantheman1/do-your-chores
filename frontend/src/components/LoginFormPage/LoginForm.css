@@ -16,15 +16,32 @@ div {
   min-height: 100vh;
 }
 
-.login-card {
+.logo-login-page {
+  max-height: 170px;
+}
+
+.login-card,
+.signup-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-color: #fff;
   box-shadow: 0 5px 20px 0 rgb(21 27 38 / 8%);
   margin-top: 80px;
-  max-width: 440px;
-  padding: 64px 48px 48px;
+  padding: 46px 46px 56px;
+  border-radius: 8px;
+}
+
+input {
+  font-size: 13px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid #cbd4db;
+  font-weight: 400;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  padding: 8px;
 }
 
 .login-form {
@@ -44,27 +61,28 @@ div {
   flex-direction: column;
 }
 
-input.username-container.password-container {
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 20px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #cbd4db;
+#login-btn,
+#demo-btn {
+  width: 40%;
+  font-size: 15px;
+  padding: 10px;
   border-radius: 6px;
-  padding: 0 12px;
-  box-sizing: border-box;
-  height: 36px;
-  padding-bottom: 4px;
-  padding-top: 4px;
+  border: 1px;
 }
 
 .login-buttons {
   display: flex;
   justify-content: space-evenly;
-  height: 36px;
-  line-height: 36px;
-  margin-top: 32px;
-  border-radius: 6px;
-  font-size: 13px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+/* Error handling li styling */
+.error-li {
+  margin-bottom: 10px;
+  color: red;
+}
+
+.signup-link {
+  margin-top: 40px;
 }
