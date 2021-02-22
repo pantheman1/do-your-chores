@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { NavLink, Redirect, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css';
 
 function SignupFormPage() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user);
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
@@ -29,49 +30,62 @@ function SignupFormPage() {
     };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <ul>
-                    {errors.map((error, idx) => <li className="error-li" key={idx}>{error}</li>)}
-                </ul>
-                <label>
-                    Email
-                </label>
-                <input
-                    type="text"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                />
-                <label>
-                    Username
-                </label>
-                <input
-                    type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                />
-                <label>
-                    Password
-                </label>
-                <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-                <label>
-                    Confirm Password
-                </label>
-                <input
-                    type="password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    required
-                />
-                <button type="submit">Sign Up</button>
-            </form>
+        <div className="login-body">
+            <div className="login-card">
+                <div className="logo-container">
+                    <img className="logo-signup-page" src="images/boy-with-mop.png" />
+                    <img className="logo-login-page" src="images/do-your-chores.png" />
+                </div>
+                <div className="login-form">
+                    <form onSubmit={handleSubmit}>
+                        <ul>
+                            {errors.map((error, idx) => <li className="error-li" key={idx}>{error}</li>)}
+                        </ul>
+                        <div className="email-container">
+                            <label>Email</label>
+                            <input
+                                type="text"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="username-container">
+                            <label>Username</label>
+                            <input
+                                type="text"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="password-container signup-password-input">
+                            <label>Password</label>
+                            <input
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="password-container signup-password-input">
+                            <label>Confirm Password</label>
+                            <input
+                                type="password"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="login-buttons">
+                            <button className="login-btn signup-btn" type="submit">Sign Up</button>
+                        </div>
+                    </form>
+                    <div>
+                        <span className="return-to-login">Already have an account? Click here to </span><NavLink className="login-link" to="/login">Login</NavLink>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

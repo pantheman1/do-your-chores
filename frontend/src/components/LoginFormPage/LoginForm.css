@@ -10,10 +10,11 @@ div {
 
 .login-body {
   display: flex;
-  background: #f6f8f9;
+  background: #93c4cd;
   align-items: center;
   flex-direction: column;
   min-height: 100vh;
+  background-image: linear-gradient(359deg, #d5f9ff, transparent);
 }
 
 .logo-login-page {
@@ -61,13 +62,19 @@ input {
   flex-direction: column;
 }
 
-#login-btn,
-#demo-btn {
+.email-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-btn,
+.demo-btn {
   width: 40%;
   font-size: 15px;
   padding: 10px;
   border-radius: 6px;
   border: 1px;
+  background: #79b6c1;
 }
 
 .login-buttons {
@@ -75,6 +82,7 @@ input {
   justify-content: space-evenly;
   margin-top: 10px;
   margin-bottom: 20px;
+  color: #fff;
 }
 
 /* Error handling li styling */
@@ -85,4 +93,10 @@ input {
 
 .signup-link {
   margin-top: 40px;
+}
+
+.login-link {
+  font-size: x-large;
+  text-decoration: none;
+  color: #866211;
 }

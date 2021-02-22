@@ -1,0 +1,12 @@
+.signup-btn {
+  width: 100%;
+}
+
+.logo-signup-page {
+  max-height: 200px;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+}
