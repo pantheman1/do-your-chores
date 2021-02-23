@@ -27,8 +27,8 @@ module.exports = {
       about_me: {
         type: Sequelize.TEXT
       },
-      photo_url: {
-        type: Sequelize.STRING,
+      favorite_thing_to_clean: {
+        type: Sequelize.STRING(50),
       },
       squad_id: {
         type: Sequelize.INTEGER,

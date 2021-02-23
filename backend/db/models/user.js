@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
     about_me: {
       type: DataTypes.TEXT,
     },
-    photo_url: {
+    favorite_thing_to_clean: {
       type: DataTypes.STRING,
     },
     squad_id: {
