@@ -5,6 +5,9 @@ const bcrypt = require('bcryptjs');
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
+    name: {
+      type: DataTypes.STRING,
+    },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -31,6 +34,18 @@ module.exports = (sequelize, DataTypes) => {
         len: [60, 60]
       },
     },
+    role: {
+      type: DataTypes.STRING,
+    },
+    about_me: {
+      type: DataTypes.TEXT,
+    },
+    photo_url: {
+      type: DataTypes.STRING,
+    },
+    squad_id: {
+      type: DataTypes.INTEGER,
+    },
   },
     {
       defaultScope: {
@@ -48,7 +63,8 @@ module.exports = (sequelize, DataTypes) => {
       },
     });
   User.associate = function (models) {
-    // associations can be defined here
+    User.hasMany(models.Chore, { foreignKey: "user_id" })
+    User.belongsTo(models.Squad, { foreignKey: "squad_id" })
   };
   User.prototype.toSafeObject = function () {
     const { id, username, email } = this;
