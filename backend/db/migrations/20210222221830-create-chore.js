@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Users', {
+    return queryInterface.createTable('Chores', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,35 +9,33 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING(255),
+        allowNull: false
       },
-      username: {
-        type: Sequelize.STRING(30),
-        allowNull: false,
-        unique: true,
+      due_date: {
+        type: Sequelize.DATE,
+        get: function () {
+          return moment(this.getDataValue('due_date')).format('MM/DD/YYYY hh:mm')
+        },
       },
-      email: {
-        type: Sequelize.STRING(256),
-        allowNull: false,
-        unique: true,
-      },
-      role: {
-        type: Sequelize.STRING(30),
-      },
-      about_me: {
+      description: {
         type: Sequelize.TEXT
       },
-      photo_url: {
-        type: Sequelize.STRING,
+      estimated_time: {
+        type: Sequelize.INTEGER
       },
-      squad_id: {
+      isComplete: {
+        type: Sequelize.BOOLEAN
+      },
+      zone_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: "Squads" }
+        references: { model: "Zones" }
       },
-      hashedPassword: {
-        type: Sequelize.STRING.BINARY,
+      user_id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
+        references: { model: "Users" }
       },
       createdAt: {
         allowNull: false,
@@ -52,6 +50,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Users');
+    return queryInterface.dropTable('Chores');
   }
 };
