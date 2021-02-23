@@ -13,7 +13,10 @@ module.exports = {
         allowNull: false
       },
       due_date: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        get: function () {
+          return moment(this.getDataValue('due_date')).format('MM/DD/YYYY hh:mm')
+        },
       },
       description: {
         type: Sequelize.TEXT
@@ -25,10 +28,14 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       zone_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: "Zones" }
       },
       user_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: "Users" }
       },
       createdAt: {
         allowNull: false,

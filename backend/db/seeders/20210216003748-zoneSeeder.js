@@ -4,13 +4,13 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Zones', [
       {
-        name: "Kitchen",
+        location: "Kitchen",
       },
       {
-        name: "Upstairs"
+        location: "Upstairs"
       },
       {
-        name: "Boys' Room"
+        location: "Boys' Room"
       },
     ], {});
   },
