@@ -12,6 +12,7 @@ function SignupFormPage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [favoriteToClean, setFavoriteToClean] = useState("");
     const [errors, setErrors] = useState([]);
 
     if (sessionUser) return <Redirect to="/" />;
@@ -34,7 +35,7 @@ function SignupFormPage() {
             <div className="login-card">
                 <div className="logo-container">
                     <img className="logo-signup-page" src="images/boy-with-mop.png" />
-                    <img className="logo-login-page" src="images/do-your-chores.png" />
+                    <img className="logo-login-page" src="images/do-your-chores-black.png" />
                 </div>
                 <div className="login-form">
                     <form onSubmit={handleSubmit}>
@@ -47,6 +48,15 @@ function SignupFormPage() {
                                 type="text"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="username-container">
+                            <label>Username</label>
+                            <input
+                                type="text"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
                                 required
                             />
                         </div>
@@ -74,6 +84,15 @@ function SignupFormPage() {
                                 type="password"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="username-container">
+                            <label>What's your favorite thing to clean?</label>
+                            <input
+                                type="text"
+                                value={favoriteToClean}
+                                onChange={(e) => setFavoriteToClean(e.target.value)}
                                 required
                             />
                         </div>

@@ -26,7 +26,7 @@ function App() {
           </Route>
           <Route exact path='/'>
             <Navigation isLoaded={isLoaded} />
-            <HomePage isLoaded={isLoaded} />
+            {/* <HomePage isLoaded={isLoaded} /> */}
           </Route>
         </Switch>
       )}
