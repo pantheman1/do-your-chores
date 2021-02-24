@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Squad = sequelize.define('Squad', {
     name: DataTypes.STRING,
-    zone_id: DataTypes.INTEGER,
+    // zone_id: DataTypes.INTEGER,
     description: DataTypes.TEXT
   }, {});
   Squad.associate = function (models) {

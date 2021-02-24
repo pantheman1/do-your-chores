@@ -9,16 +9,17 @@ const ZonePage = () => {
     const zones = useSelector(state => state.zones);
     const dispatch = useDispatch();
 
+
     if (zones) {
         console.log('second time')
     }
     const zoneList = Object.values(zones);
 
-    // console.log('>>>>>>>>', zoneList)
+    console.log('>>>>>>>>', zones)
     useEffect(() => {
         dispatch(allUserZones(sessionUser.id))
     }, [dispatch])
-    // console.log('/////////', zones)
+    console.log('/////////', zoneList)
 
     if (!sessionUser) {
         return <Redirect to='/login' />

@@ -12,11 +12,11 @@ const displayZones = zoneList => ({
 
 
 export const allUserZones = (id) => async (dispatch) => {
-    const res = await csrfFetch(`/api/zones/${id}`);
+    const res = await csrfFetch(`/api/users/zones/${id}`);
 
     if (res.ok) {
         const data = await res.json();
-        console.log('-=-=-=-=-=-=-', data)
+        // console.log('-=-=-=-=-=-=-', data.zones)
         dispatch(displayZones(data.zones)) //the route sends us an object with a zones k/v pair
     }
 }

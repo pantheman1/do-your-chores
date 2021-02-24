@@ -21,9 +21,22 @@ module.exports = {
         user_id: 1,
       },
       {
+        name: "Dust light fixtures",
+        due_date: "02/24/2021 08:40",
+        description: "Dust it good.",
+        estimated_time: 10,
+        zone_id: 1,
+        user_id: 2,
+      },
+      {
         name: "Wipe table",
         zone_id: 3,
         user_id: 1,
+      },
+      {
+        name: "Clean out fridge",
+        zone_id: 1,
+        user_id: 3,
       },
       {
         name: "Mop",

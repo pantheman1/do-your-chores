@@ -2,11 +2,12 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import zonesReducer from './zones';
-
+import ChoresReducer from './chores';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     zones: zonesReducer,
+    chores: ChoresReducer,
 });
 
 let enhancer;
