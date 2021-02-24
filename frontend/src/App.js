@@ -7,6 +7,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from './components/HomePage';
 import Zones from './components/Zones';
+import Chores from './components/Chores';
 
 function App() {
   const dispatch = useDispatch();
@@ -19,19 +20,21 @@ function App() {
     <>
       {isLoaded && (
         <Switch>
-          <Route path="/login">
+          <Route path='/login'>
             <LoginFormPage />
           </Route>
-          <Route path="/signup">
+          <Route path='/signup'>
             <SignupFormPage />
           </Route>
           <Route exact path='/'>
             <Navigation isLoaded={isLoaded} />
-            {/* <HomePage isLoaded={isLoaded} /> */}
           </Route>
           <Route path='/zones'>
             <Navigation isLoaded={isLoaded} />
             <Zones />
+          </Route>
+          <Route path='/chores'>
+            <Chores />
           </Route>
         </Switch>
       )}
