@@ -10,7 +10,7 @@ router.get('/:userId', asyncHandler(async function (req, res) {
         attributes: ['name', 'isComplete'],
         include: [User]
     });
-    // const chore = res.json(chores)
+    // const chore = res.json({ chores })
     // console.log('chores--->', chore)
     return res.json({ chores });
 }));

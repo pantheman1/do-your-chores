@@ -7,7 +7,7 @@ const choresRouter = require('./chores');
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
 router.use('/zones', zonesRouter);
-router.use('/chore', choresRouter);
+router.use('/chores', choresRouter);
 
 
 module.exports = router;
