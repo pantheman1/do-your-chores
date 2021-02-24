@@ -16,7 +16,6 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-
   return (
     <>
       {isLoaded && (
@@ -30,11 +29,11 @@ function App() {
           <Route exact path='/'>
             <Navigation isLoaded={isLoaded} />
           </Route>
-          <Route path='/users/zones/:userId'>
+          <Route exact path='/zones/:userId'>
             <Navigation isLoaded={isLoaded} />
             <Zones />
           </Route>
-          <Route path='/zones/:zoneId/chores/:userId'>
+          <Route exact path='/chores/:zoneId'>
             <Navigation isLoaded={isLoaded} />
             <Chores />
           </Route>

@@ -1,9 +1,7 @@
 const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
 const { Zone, Chore, Squad, User } = require('../../db/models');
-const choresRouter = require('./chores');
 
-router.use('/chores', choresRouter);
 
 router.get('/:userId', asyncHandler(async function (req, res) {
     // this query finds the USER'S squad id

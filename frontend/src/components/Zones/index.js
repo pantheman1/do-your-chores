@@ -15,11 +15,11 @@ const ZonePage = () => {
     }
     const zoneList = Object.values(zones);
 
-    console.log('>>>>>>>>', zones)
+    // console.log('>>>>>>>>', zones)
     useEffect(() => {
         dispatch(allUserZones(sessionUser.id))
     }, [dispatch])
-    console.log('/////////', zoneList)
+    // console.log('/////////', zoneList)
 
     if (!sessionUser) {
         return <Redirect to='/login' />
