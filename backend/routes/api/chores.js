@@ -1,16 +1,17 @@
 const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
-const { Chore, Zone } = require('../../db/models')
+const { Chore, Zone, User } = require('../../db/models')
 
-router.get('/:user_id', asyncHandler(async function (req, res) {
-    // const { user } = req;
-
-    // console.log(res.json(Zone.findZone(user.id)))
-    const chores = await Chores.findAll({
+router.get('/:userId', asyncHandler(async function (req, res) {
+    const chores = await Chore.findAll({
         where: {
-            user_id: req.params.user_id
-        }
+            user_id: req.params.userId
+        },
+        attributes: ['name', 'isComplete'],
+        include: [User]
     });
+    // const chore = res.json(chores)
+    // console.log('chores--->', chore)
     return res.json({ chores });
 }));
 
