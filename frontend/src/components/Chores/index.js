@@ -9,9 +9,12 @@ const ChoresPage = () => {
     const chores = useSelector(state => state.chores);
     const dispatch = useDispatch();
 
+    // console.log('kjjjjjj', chores)
     useEffect(() => {
         dispatch(getSimpleList(sessionUser.id))
     }, [dispatch])
+
+
 
     if (!sessionUser) {
         return <Redirect to='/login' />

@@ -8,7 +8,7 @@ const displaySimpleChore = choreList => ({
 });
 
 export const getSimpleList = id => async (dispatch) => {
-    const res = await csrfFetch(`/api/chores/${id}`);
+    const res = await csrfFetch(`/api/chores/${id}`);//zone id, not user id
 
     if (res.ok) {
         const data = await res.json();
@@ -21,7 +21,7 @@ const ChoresReducer = (state = {}, action) => {
     switch (action.type) {
         case DISPLAY_SIMPLE_CHORE:
             console.log('action-->', action.choreList)
-            const newState = { ...state, ...action.choreList }
+            const newState = { ...state, chores: action.choreList }
             return newState;
         default:
             return state;
