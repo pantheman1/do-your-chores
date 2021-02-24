@@ -1,20 +1,35 @@
 .nav {
   display: flex;
   justify-content: space-between;
-  margin-top: 5px;
+  /* margin-top: 10px; */
 }
 
 .left-side {
   display: flex;
   margin-left: 2%;
-  /* margin-top: 6px; */
+  flex: 1 1 auto;
+  align-items: center;
 }
 
-.left-side > * {
+.menu-btn > ul {
   list-style-type: none;
 }
 
 .right-side {
   display: flex;
   margin-right: 2%;
+  margin-left: 25px;
+  align-items: center;
+}
+
+.menu-home {
+  max-height: 40px;
+}
+
+.home-text {
+  margin-left: 30px;
+}
+
+.search-box {
+  margin-right: 20px;
 }

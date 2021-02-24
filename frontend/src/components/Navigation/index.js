@@ -21,12 +21,16 @@ function Navigation({ isLoaded }) {
     return (
         <div className="nav">
             <div className="left-side">
-                <ul>
-                    <li>
-                        {isLoaded && sessionLinks}
-                    </li>
-                </ul>
-                <h3>Home</h3>
+                <div className="menu-btn">
+                    <ul>
+                        <li>
+                            {isLoaded && sessionLinks}
+                        </li>
+                    </ul>
+                </div>
+                <div className="home-text">
+                    <h3>Home</h3>
+                </div>
             </div>
             <div className="right-side">
                 <div className="search-box">

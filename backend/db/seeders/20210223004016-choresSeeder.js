@@ -22,6 +22,16 @@ module.exports = {
       },
       {
         name: "Wipe table",
+        zone_id: 3,
+        user_id: 1,
+      },
+      {
+        name: "Mop",
+        zone_id: 2,
+        user_id: 1,
+      },
+      {
+        name: "Clean toaster",
         zone_id: 1,
         user_id: 1,
       },

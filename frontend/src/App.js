@@ -6,6 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from './components/HomePage';
+import Zones from './components/Zones';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,10 @@ function App() {
           <Route exact path='/'>
             <Navigation isLoaded={isLoaded} />
             {/* <HomePage isLoaded={isLoaded} /> */}
+          </Route>
+          <Route path='/zones'>
+            <Navigation isLoaded={isLoaded} />
+            <Zones />
           </Route>
         </Switch>
       )}

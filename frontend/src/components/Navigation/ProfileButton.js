@@ -31,7 +31,7 @@ function ProfileButton({ user }) {
     return (
         <>
             <button onClick={openMenu}>
-                <i className="fab fa-accessible-icon"></i>
+                <img className="menu-home" src="images/broom-dustpan-ella.png" />
             </button>
             {showMenu && (
                 <ul className="profile-dropdown">
