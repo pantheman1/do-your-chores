@@ -19,7 +19,7 @@ router.get('/:userId', asyncHandler(async function (req, res) {
     })
     const zones = [];
     squad.Zones.forEach(zone => {
-        // console.log('zone------>>>>', zone.location)
+        // console.log('zone------>>>>', zone)
         if (!zones.includes(zone.location)) {
             zones.push(zone.location);
         }

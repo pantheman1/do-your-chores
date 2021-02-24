@@ -17,9 +17,9 @@ const ZonePage = () => {
 
     console.log('>>>>>>>>', zones)
     useEffect(() => {
-        dispatch(allUserZones(1))
+        dispatch(allUserZones(sessionUser.id))
     }, [dispatch])
-    console.log('/////////', zones)
+    console.log('/////////', zoneList)
 
     if (!sessionUser) {
         return <Redirect to='/login' />
