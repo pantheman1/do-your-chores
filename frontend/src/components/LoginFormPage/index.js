@@ -32,18 +32,13 @@ function LoginFormPage({ isLoaded }) {
         dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' }))
     }
 
-    const handleSignup = () => {
-        history.push('/signup')
-    }
-
-
     return (
         <div className="login-body">
             <div className="login-card">
                 <div className="logo-container">
                     <img className="logo-login-page" src="images/logo.png" />
+                    <img className="logo-login-page" src="images/do-your-chores-black.png" />
                 </div>
-                <div className="logo-text">Do Your <span className="chores">Chores!</span></div>
                 <div className="login-form">
                     <form onSubmit={handleSubmit}>
                         <ul>

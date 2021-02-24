@@ -12,6 +12,11 @@ module.exports = {
         type: Sequelize.STRING(100),
         allowNull: false,
       },
+      squad_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model: "Squads" }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

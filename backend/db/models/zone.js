@@ -4,8 +4,11 @@ module.exports = (sequelize, DataTypes) => {
     location: DataTypes.STRING,
   }, {});
   Zone.associate = function (models) {
-    Zone.hasOne(models.Squad, { foreignKey: 'zone_id' });
+    Zone.belongsTo(models.Squad, { foreignKey: 'squad_id' });
     Zone.hasMany(models.Chore, { foreignKey: 'zone_id' });
   };
+  Zone.findZone = async function (id) {
+    return await Zone.findByPk(id);
+  }
   return Zone;
 };
