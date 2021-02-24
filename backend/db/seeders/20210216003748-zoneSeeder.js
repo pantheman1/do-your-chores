@@ -5,12 +5,15 @@ module.exports = {
     return queryInterface.bulkInsert('Zones', [
       {
         location: "Kitchen",
+        squad_id: 1,
       },
       {
-        location: "Upstairs"
+        location: "Upstairs",
+        squad_id: 1,
       },
       {
-        location: "Boys' Room"
+        location: "Boys' Room",
+        squad_id: 1,
       },
     ], {});
   },

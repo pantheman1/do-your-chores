@@ -11,11 +11,6 @@ module.exports = {
       name: {
         type: Sequelize.STRING(100),
       },
-      zone_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: { model: "Zones" }
-      },
       description: {
         type: Sequelize.TEXT
       },
