@@ -1,12 +1,68 @@
-ul.chore-box {
+ul.chores-container {
   display: flex;
   flex-direction: column;
 }
 
-.chore-box > input {
+.input-chore-container {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid lightgray;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.input-chore-container:hover {
+  background-color: #f6f8f9;
+}
+
+.input-chore-container:active {
+  background-color: #cbd4db;
+}
+
+.chores-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-isComplete > input {
+  background: transparent;
   margin-top: 0px;
   margin-bottom: 0px;
   height: 37px;
-  border-radius: 0;
+  border-radius: 0px;
   margin-left: 4px;
+  border: none;
+  width: fit-content;
+}
+
+.input-isComplete:hover > input {
+  border: 1px solid #cbd4db;
+  background-color: #fff;
+}
+
+.chore-input-box {
+}
+
+.chore-input-box:hover {
+}
+
+.input-isComplete {
+  display: flex;
+  margin-left: 30px;
+  width: 80%;
+  gap: 10px;
+}
+
+.isComplete-btn {
+  padding: 5px;
+  align-self: center;
+}
+
+.chore-detail-btn {
+}
+
+.chore-detail-btn:hover {
+}
+
+.chore-detail-btn:active {
 }

@@ -33,7 +33,7 @@ function App() {
             <Navigation isLoaded={isLoaded} />
             <Zones />
           </Route>
-          <Route path='/zones/:zoneId'>
+          <Route exact path='/zones/:zoneId'>
             <Navigation isLoaded={isLoaded} />
             <Chores />
           </Route>

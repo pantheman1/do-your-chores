@@ -40,18 +40,25 @@ const ChoresPage = () => {
     let choreList;
     if (results?.length > 0) {
         choreList = (
-            <ul className="chore-box">
+            <div className="chores-container">
                 {results.map(chore => (
-                    <input
-                        key={nanoid()}
-                        type="text"
-                        value={chore.name}
-                        onChange={e => dispatch(updateChore(chore.id, e.target.value))}
-                        onBlur={e => updateDb(e.target.value)}
-                    >
-                    </input>
+                    <div className="input-chore-container">
+                        <div className="input-isComplete">
+                            <button type="button" className="isComplete-btn">+</button>
+                            <input
+                                className="chore-input-box"
+                                key={nanoid()}
+                                type="text"
+                                value={chore.name}
+                                onChange={e => dispatch(updateChore(chore.id, e.target.value))}
+                                onBlur={e => updateDb(e.target.value)}
+                            >
+                            </input>
+                        </div>
+                        <button type="button" className="chore-detail-btn">Details</button>
+                    </div>
                 ))}
-            </ul>
+            </div>
         )
     }
 
@@ -59,7 +66,7 @@ const ChoresPage = () => {
         <div>
             <h1>Chores</h1>
             {choreList}
-            <NavLink to="/"><img className="logo-login-page" src="images/add-button.png" /></NavLink>
+            <NavLink to="/">Add a Chore</NavLink>
         </div>
     )
 }
