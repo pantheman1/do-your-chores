@@ -8,7 +8,7 @@ router.get('/:zoneId', asyncHandler(async function (req, res) {
         where: {
             zone_id: req.params.zoneId
         },
-        attributes: ['name', 'isComplete', 'user_id', 'zone_id'],
+        // attributes: ['name', 'isComplete', 'user_id', 'zone_id'],
         // include: {
         //     model: Zone,
         //     attributes: ['location']

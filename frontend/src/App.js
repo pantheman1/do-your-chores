@@ -33,10 +33,10 @@ function App() {
             <Navigation isLoaded={isLoaded} />
             <Zones />
           </Route>
-          <Route exact path='/chores/:zoneId'>
+          {/* <Route exact path='/chores/:zoneId'>
             <Navigation isLoaded={isLoaded} />
             <Chores />
-          </Route>
+          </Route> */}
         </Switch>
       )}
     </>

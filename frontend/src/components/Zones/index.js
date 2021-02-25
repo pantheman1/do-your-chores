@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Redirect, useHistory } from "react-router-dom";
+import { Link, NavLink, Redirect, Route, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import { allUserZones } from "../../store/zones"
+import Chores from '../Chores';
+import { nanoid } from 'nanoid';
 
 const ZonePage = () => {
     const sessionUser = useSelector(state => state.session.user);
-    const zones = useSelector(state => state.zones);
+    const zones = useSelector(state => state.zones.Zones);
     const dispatch = useDispatch();
 
 
     if (zones) {
         console.log('second time')
     }
-    const zoneList = Object.values(zones);
+    // const zoneList = Object.values(zones);
 
-    // console.log('>>>>>>>>', zones)
+    console.log('>>>>>>>>', zones)
     useEffect(() => {
         dispatch(allUserZones(sessionUser.id))
     }, [dispatch])
@@ -26,29 +28,25 @@ const ZonePage = () => {
     }
 
     let zoneLinks;
-    if (zoneList.length > 0) {
+    if (zones?.length > 0) {
         zoneLinks = (
-            zoneList.map(zone => (
-                <li key={zone}>{zone}</li>
+            zones.map(zone => (
+                <NavLink key={nanoid()} to={`/zones/${zone.id}`}><li>{zone.location}</li></NavLink>
             ))
         )
     }
-    let content = (
-        <ul>
-            {zoneLinks}
-            <li>Add a Zone</li>
-        </ul>
-    )
 
 
     return (
         <div>
             <h1>Zones</h1>
-            {content}
-
+            {zoneLinks}
+            <Link to="/">Add a Zone</Link>
+            <Route path="/zones/:zoneId">
+                <Chores zones={zones} />
+            </Route>
         </div>
     )
-
 }
 
 export default ZonePage;

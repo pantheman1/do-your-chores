@@ -12,12 +12,12 @@ const displayZones = zoneList => ({
 
 
 export const allUserZones = (id) => async (dispatch) => {
-    const res = await csrfFetch(`/api/users/zones/${id}`);
+    const res = await csrfFetch(`/api/zones/${id}`);
 
     if (res.ok) {
         const data = await res.json();
-        // console.log('-=-=-=-=-=-=-', data.zones)
-        dispatch(displayZones(data.zones)) //the route sends us an object with a zones k/v pair
+        // console.log('-=-=-=-=-=-=-', data.squad)
+        dispatch(displayZones(data.squad)) //the route sends us an object with a zones k/v pair
     }
 }
 
@@ -25,7 +25,7 @@ const ZonesReducer = (state = {}, action) => {
     switch (action.type) {
         case DISPLAY_ZONES:
             console.log('action-->', action.zoneList)
-            const newState = { ...state, zones: action.zoneList }
+            const newState = { ...state, ...action.zoneList }
             return newState;
         default:
             return state
