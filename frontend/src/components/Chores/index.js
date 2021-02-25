@@ -6,13 +6,14 @@ import { getSimpleList } from '../../store/chores';
 import { nanoid } from 'nanoid';
 import { updateDbFromStore, updateChore } from '../../store/zones';
 import './chores.css'
+import ChoreDetails from "./choreDetails";
 
 const ChoresPage = () => {
     const sessionUser = useSelector(state => state.session.user);
-    // const chores = useSelector(state => state.chores);
     const zones = useSelector(state => state.zones.Zones);
     const dispatch = useDispatch();
     const { zoneId } = useParams();
+    const [detailedView, setDetailedView] = useState(true);
 
     console.log("zoneID--->>>", zoneId)
 
@@ -44,7 +45,7 @@ const ChoresPage = () => {
                 {results.map(chore => (
                     <div className="input-chore-container">
                         <div className="input-isComplete">
-                            <button type="button" className="isComplete-btn">+</button>
+                            <button type="button" className="isComplete-btn">C</button>
                             <input
                                 className="chore-input-box"
                                 key={nanoid()}
@@ -55,7 +56,8 @@ const ChoresPage = () => {
                             >
                             </input>
                         </div>
-                        <button type="button" className="chore-detail-btn">Details</button>
+                        <button type="button" className="chore-detail-btn" disabled={detailedView}>Details</button>
+                        <ChoreDetails detailedView={detailedView} />
                     </div>
                 ))}
             </div>
