@@ -4,9 +4,7 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User } = require('../../db/models');
-const zonesRouter = require('./zones');
 
-router.use('/zones', zonesRouter);
 
 const validateSignup = [
     check('email')
