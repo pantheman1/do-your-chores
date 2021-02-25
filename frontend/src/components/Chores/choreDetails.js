@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Route, Redirect, useHistory, useParams } from "react-router-dom";
 
 
-const ChoreDetails = ({ detailedView }) => {
+const ChoreDetails = () => {
     const chores = useSelector(state => state.zones.zones)
 
     console.log("chores-=-=-=-", chores)
@@ -12,7 +12,6 @@ const ChoreDetails = ({ detailedView }) => {
     return (
         <div>
             <form>
-                <button type="button" disabled={!detailedView}>Close Detail View</button>
                 <input
                     className=""
                 >

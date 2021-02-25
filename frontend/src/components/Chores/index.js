@@ -13,7 +13,7 @@ const ChoresPage = () => {
     const zones = useSelector(state => state.zones.Zones);
     const dispatch = useDispatch();
     const { zoneId } = useParams();
-    const [detailedView, setDetailedView] = useState(true);
+    const [detailedView, setDetailedView] = useState(false);
 
     console.log("zoneID--->>>", zoneId)
 
@@ -56,8 +56,11 @@ const ChoresPage = () => {
                             >
                             </input>
                         </div>
-                        <button type="button" className="chore-detail-btn" disabled={detailedView}>Details</button>
-                        <ChoreDetails detailedView={detailedView} />
+                        <button type="button" className="chore-detail-btn" onClick={() => setDetailedView(true)}>Details</button>
+                        <main hidden={!detailedView}>
+                            <button type="button" className="close-chore-detail-btn" onClick={() => setDetailedView(false)}>Close</button>
+                            <ChoreDetails />
+                        </main>
                     </div>
                 ))}
             </div>
