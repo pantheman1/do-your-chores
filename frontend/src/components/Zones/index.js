@@ -30,9 +30,11 @@ const ZonePage = () => {
     let zoneLinks;
     if (zones?.length > 0) {
         zoneLinks = (
-            zones.map(zone => (
-                <NavLink key={nanoid()} to={`/zones/${zone.id}`}><li>{zone.location}</li></NavLink>
-            ))
+            <ul className="chore-box">
+                {zones.map(zone => (
+                    <li key={nanoid()}><NavLink to={`/zones/${zone.id}`}>{zone.location}</NavLink></li>
+                ))}
+            </ul>
         )
     }
 
@@ -42,9 +44,6 @@ const ZonePage = () => {
             <h1>Zones</h1>
             {zoneLinks}
             <Link to="/">Add a Zone</Link>
-            <Route path="/zones/:zoneId">
-                <Chores zones={zones} />
-            </Route>
         </div>
     )
 }

@@ -29,14 +29,14 @@ function App() {
           <Route exact path='/'>
             <Navigation isLoaded={isLoaded} />
           </Route>
-          <Route exact path='/zones/:userId'>
+          <Route exact path='/zones'>
             <Navigation isLoaded={isLoaded} />
             <Zones />
           </Route>
-          {/* <Route exact path='/chores/:zoneId'>
+          <Route path='/zones/:zoneId'>
             <Navigation isLoaded={isLoaded} />
             <Chores />
-          </Route> */}
+          </Route>
         </Switch>
       )}
     </>

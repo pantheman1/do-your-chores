@@ -1,0 +1,12 @@
+ul.chore-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.chore-box > input {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  height: 37px;
+  border-radius: 0;
+  margin-left: 4px;
+}
