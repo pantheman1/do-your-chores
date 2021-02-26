@@ -27,7 +27,23 @@ router.get('/', asyncHandler(async (req, res) => {
 }))
 
 // localhost:5000/api/chores/:id
-router.get('/:id')
+router.patch('/:id', asyncHandler(async (req, res) => {
+    const { id } = req.params.id;
+    const chore = await Chore.findByPk(id);
+    const { isComplete } = req.body;
+
+    await chore.update(isComplete)
+    const chores = await Chores.findAll();
+    return res.json({ chores })
+}))
+
+
+
+// localhost:5000/api/chores/:id
+router.get('/:id', asyncHandler(async (req, res) => {
+    const chore = await Chore.findByPk(req.params.id);
+    return res.json({ chore });
+}))
 
 // localhost:5000/api/chores/zone/:id
 router.get('/zone/:id', asyncHandler(async function (req, res) {

@@ -11,20 +11,18 @@ import ChoreDetails from './choreDetails';
 
 const ChoresPage = () => {
     const sessionUser = useSelector(state => state.session.user);
-    const zones = useSelector(state => state.zones.Zones);
+    const chores = useSelector(state => state.chores);
     const dispatch = useDispatch();
     const { zoneId } = useParams();
     const [selectedChore, setSelectedChore] = useState({});
 
-    console.log("zoneID--->>>", zoneId)
+    const choreArr = Object.values(chores)
 
-    const results = zones?.find(zone => zone.id.toString() === zoneId).Chores
+    const choresList = choreArr?.filter(chore => chore.zone_id.toString() === zoneId)
 
     useEffect(() => {
-        console.log('selectedChore', selectedChore)
+        // console.log('selectedChore', selectedChore)
     }, [selectedChore])
-
-    // console.log('results---------->>>>', results)
 
     useEffect(() => {
         dispatch(getSimpleList(sessionUser.id))
@@ -35,10 +33,10 @@ const ChoresPage = () => {
     }
 
     let choreList;
-    if (results?.length > 0) {
+    if (choresList?.length > 0) {
         choreList = (
             <div className="chores-container">
-                {results.map(chore => (
+                {choresList.map(chore => (
                     <ChoreBlocks key={nanoid()} updateSelected={setSelectedChore} chore={chore} />
                 ))}
             </div>

@@ -8,10 +8,13 @@ const ChoreDetails = ({ chore }) => {
     const chores = useSelector(state => state.chores);
     const user = useSelector(state => state.zones)
     const dispatch = useDispatch();
-    console.log("chores---<><><", chore)
-    console.log('uuuusssseeeerrr-0----->>>>>', user)
+    // console.log("chores---<><><", chore)
+    // console.log('uuuusssseeeerrr-0----->>>>>', user)
 
-    const choresList = Object.values(chores)
+    // const choresList = Object.values(chores)
+
+    //create a conditional where if the chore exists, then populate the content.
+    //if the chore does not exist then populate the empty chore details
 
     return (
         <div className="detailed-view-pane">

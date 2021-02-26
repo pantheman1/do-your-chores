@@ -3,27 +3,32 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Route, Redirect, useHistory, useParams, Link } from "react-router-dom";
 import { nanoid } from 'nanoid';
 import { updateDbFromStore, updateChore } from '../../store/zones';
+import { toggleIsComplete } from '../../store/chores';
 import './chores.css'
 import ChoreDetails from "./choreDetails";
 
 const SimpleChoreView = ({ chore, updateSelected }) => {
     const dispatch = useDispatch();
     const [detailedView, setDetailedView] = useState(false);
+    const [choreName, setChoreName] = useState('');
+    const [isComplete, setIsComplete] = useState(false);
 
-
+    // console.log('chore.name-->', chore)
+    //send value to thunk
     const updateDb = (e) => {
         dispatch(updateDbFromStore(e.target.value))
     }
+
     return (
         <div className="input-chore-container">
             <div className="input-isComplete">
-                <button type="button" className="isComplete-btn">C</button>
+                <button type="button" className={"isComplete-btn" + (chore.isComplete ? " selected" : "")} onClick={e => dispatch(toggleIsComplete(chore.id))}>C</button>
                 <input
                     className="chore-input-box"
                     key={nanoid()}
                     type="text"
                     value={chore.name}
-                    onChange={e => dispatch(updateChore(chore.id, e.target.value))}
+                    onChange={e => setChoreName(e.target.value)}
                     onBlur={e => updateDb(e.target.value)}
                 >
                 </input>
@@ -31,10 +36,9 @@ const SimpleChoreView = ({ chore, updateSelected }) => {
             <button
                 className="chore-detail-btn"
                 type="button" onClick={() => updateSelected(chore)}>Details</button>
-            <main className="detail-view" hidden={!detailedView}>
-                {/* <button type="button" className="close-chore-detail-btn" >Close</button> */}
-                {/* <ChoreDetails /> */}
-            </main>
+            {/* <main className="detail-view" hidden={!detailedView}> */}
+            {/* <button type="button" className="close-chore-detail-btn" >Close</button> */}
+            {/* </main> */}
         </div>
     )
 }

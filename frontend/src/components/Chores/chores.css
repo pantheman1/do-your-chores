@@ -65,6 +65,11 @@ ul.chores-container {
   align-self: center;
 }
 
+button.selected {
+  color: white;
+  background-color: red;
+}
+
 /* .chore-detail-btn:hover {
   visibility: visible;
 } */

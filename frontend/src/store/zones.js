@@ -1,7 +1,4 @@
-import { combineReducers } from 'redux';
 import { csrfFetch } from './csrf';
-import { login } from './session';
-
 
 const DISPLAY_ZONES = 'zones/DISPLAY_ZONES';
 const UPDATE_CHORE = 'chores/UPDATE_CHORE';
@@ -35,11 +32,18 @@ export const allUserZones = (id) => async (dispatch) => {
 }
 // 
 export const updateDbFromStore = (choreId, newValue) => async dispatch => {
-    //call post route to post the new data
-    // dispatch(updateChore());
+    const res = await csrfFetch(`/api/chores/${choreId}`, {
+        method: 'PATCH',
+        body: JSON.stringify({ newValue })
+    });
+    if (res.ok) {
+        // const updatedChore = 
+    }
+    dispatch(updateChore());
 }
 
 export const updateChore = (choreId, newValue) => async dispatch => {
+
     //call post route to post the new data
     // dispatch(updateChore());
 }
