@@ -11,11 +11,13 @@ ul.chores-container {
   padding-bottom: 5px;
 }
 
+/* .input-chore-container.chore-detail-btn */
+
 .input-chore-container:hover {
   background-color: #f6f8f9;
 }
 
-.input-chore-container:active {
+.input-chore-container:focus-within {
   background-color: #cbd4db;
 }
 
@@ -40,6 +42,11 @@ ul.chores-container {
   background-color: #fff;
 }
 
+.input-isComplete:focus-within > input {
+  border: 1px solid #cbd4db;
+  background-color: #fff;
+}
+
 .chore-input-box {
 }
 
@@ -58,11 +65,27 @@ ul.chores-container {
   align-self: center;
 }
 
-.chore-detail-btn {
-}
+/* .chore-detail-btn:hover {
+  visibility: visible;
+} */
 
-.chore-detail-btn:hover {
-}
+/* .chore-detail-btn {
+  display: none;
+} */
 
 .chore-detail-btn:active {
 }
+
+/* .input-chore-container:hover + .chore-detail-btn:hover { */
+/* visibility: visible; */
+/* display: inline-block; */
+/* } */
+
+/* position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 300px;
+    right: -300px;
+    transition: all 0.2s linear;
+    background-color: whitesmoke;
+    box-shadow: 0px 0 8px 1px lightgrey; */

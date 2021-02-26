@@ -20,8 +20,9 @@ export const getSimpleList = id => async (dispatch) => {
 const ChoresReducer = (state = {}, action) => {
     switch (action.type) {
         case DISPLAY_SIMPLE_CHORE:
-            console.log('action-->', action.choreList)
-            const newState = { ...state, chores: action.choreList }
+            console.log('action--<><><>', action.choreList)
+            // newState.array().forEach()
+            const newState = { ...state, ...action.choreList }
             return newState;
         default:
             return state;

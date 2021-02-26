@@ -1,31 +1,54 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Route, Redirect, useHistory, useParams } from "react-router-dom";
+import { getChoreItemById, getSimpleList } from '../../store/chores';
+import './choresDetail.css'
 
+const ChoreDetails = ({ chore }) => {
+    const chores = useSelector(state => state.chores);
+    const user = useSelector(state => state.zones)
+    const dispatch = useDispatch();
+    console.log("chores---<><><", chore)
+    console.log('uuuusssseeeerrr-0----->>>>>', user)
 
-const ChoreDetails = () => {
-    const chores = useSelector(state => state.zones.zones)
-
-    console.log("chores-=-=-=-", chores)
-
+    const choresList = Object.values(chores)
 
     return (
-        <div>
-            <form>
+        <div className="detailed-view-pane">
+            <h1>{chore.name}</h1>
+            <div className="mark-complete-btn">
+                <button type="button">Mark Complete</button>
                 <input
-                    className=""
+                    className="chore-text"
+                // value={ }
                 >
-
                 </input>
-                <label></label>
+            </div>
+            <div className="assignee-btn">
+                <label>Assignee--select a user</label>
                 <input>
 
                 </input>
-                <label></label>
+            </div>
+            <div className="zone-btn">
+                <label>Select a Zone</label>
+                <select>
+
+                    <option></option>
+                </select>
+            </div>
+            <div className="estimated-time">
+                <label>Estimated Time</label>
                 <input>
 
                 </input>
-            </form>
+            </div>
+            <div className="description-detailed">
+                <label>Description</label>
+                <input>
+
+                </input>
+            </div>
         </div>
     )
 }
