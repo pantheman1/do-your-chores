@@ -8,6 +8,7 @@ import { updateDbFromStore, updateChore } from '../../store/zones';
 import './chores.css'
 import ChoreBlocks from './ChoreBlocks';
 import ChoreDetails from './choreDetails';
+import NewChore from './NewChore';
 
 const ChoresPage = () => {
     const sessionUser = useSelector(state => state.session.user);
@@ -50,7 +51,7 @@ const ChoresPage = () => {
             <h1>Chores</h1>
             {choreList}
             <NavLink to="/">Add a Chore</NavLink>
-            <ChoreDetails chore={selectedChore} />
+            {Object.keys(selectedChore).length === 0 ? <NewChore /> : <ChoreDetails chore={selectedChore} />}
         </div>
     )
 }

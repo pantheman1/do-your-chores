@@ -5,11 +5,9 @@ import { getChoreItemById, getSimpleList } from '../../store/chores';
 import './choresDetail.css'
 
 const ChoreDetails = ({ chore }) => {
+    // chores = object of all normalized chores
     const chores = useSelector(state => state.chores);
-    const user = useSelector(state => state.zones)
     const dispatch = useDispatch();
-    // console.log("chores---<><><", chore)
-    // console.log('uuuusssseeeerrr-0----->>>>>', user)
 
     // const choresList = Object.values(chores)
 

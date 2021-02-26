@@ -18,8 +18,6 @@ const SimpleChoreView = ({ chore, updateSelected }) => {
         dispatch(updateDbFromStore(e.target.value))
     }
 
-    console.log('chchchchch', chore)
-
     const toggleComplete = async () => {
         await dispatch(toggleIsComplete(chore))
     }
@@ -41,9 +39,6 @@ const SimpleChoreView = ({ chore, updateSelected }) => {
             <button
                 className="chore-detail-btn"
                 type="button" onClick={() => updateSelected(chore)}>Details</button>
-            {/* <main className="detail-view" hidden={!detailedView}> */}
-            {/* <button type="button" className="close-chore-detail-btn" >Close</button> */}
-            {/* </main> */}
         </div>
     )
 }
