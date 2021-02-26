@@ -11,7 +11,6 @@ const SimpleChoreView = ({ chore, updateSelected }) => {
     const dispatch = useDispatch();
     const [detailedView, setDetailedView] = useState(false);
     const [choreName, setChoreName] = useState('');
-    const [isComplete, setIsComplete] = useState(false);
 
     // console.log('chore.name-->', chore)
     //send value to thunk
@@ -19,10 +18,16 @@ const SimpleChoreView = ({ chore, updateSelected }) => {
         dispatch(updateDbFromStore(e.target.value))
     }
 
+    console.log('chchchchch', chore)
+
+    const toggleComplete = async () => {
+        await dispatch(toggleIsComplete(chore))
+    }
+
     return (
         <div className="input-chore-container">
             <div className="input-isComplete">
-                <button type="button" className={"isComplete-btn" + (chore.isComplete ? " selected" : "")} onClick={e => dispatch(toggleIsComplete(chore.id))}>C</button>
+                <button className={"isComplete-btn" + (chore.isComplete ? " selected" : "")} onClick={toggleComplete}>C</button>
                 <input
                     className="chore-input-box"
                     key={nanoid()}

@@ -18,7 +18,6 @@ export const getSimpleList = id => async (dispatch) => {
 
     if (res.ok) {
         const chores = await res.json();
-        console.log('list of chores---->>>>', chores)
         dispatch(displaySimpleChore(chores))
     }
 }
@@ -26,13 +25,14 @@ export const getSimpleList = id => async (dispatch) => {
 export const toggleIsComplete = (chore) => async dispatch => {
     const res = await csrfFetch(`/api/chores/${chore.id}`, {
         method: 'PATCH',
-        body: { chore }
+        body: JSON.stringify(chore)
     })
 
     if (res.ok) {
-        const chore = await res.json();
+        const chores = await res.json();
+        console.log("CHOooorres", chores)
         // console.log("CCCCHHHHHOOOOORRRRRREEEEE", chore.chore.id)
-        dispatch(updateIsComplete(chore))
+        dispatch(displaySimpleChore(chores))
     }
 }
 
@@ -40,18 +40,19 @@ const ChoresReducer = (state = {}, action) => {
     switch (action.type) {
         case DISPLAY_SIMPLE_CHORE:
             // console.log('action--<><><>', action.choreList)
-            // const allChores = {};
-            // action.choreList.forEach(chore => {
-            //     allChores[chore.id] = chore;
-            // });
-            return { ...state, ...action.choreList }
-        case TOGGLE_ISCOMPLETE:
-            return {
-                ...state, [action.choreId]: {
-                    ...state[action.choreId],
-                    isComplete: !state[action.choreId].isComplete,
-                }
-            }
+            const allChores = {};
+            action.choreList.forEach(chore => {
+                allChores[chore.id] = chore;
+            });
+            return { ...state, ...allChores }
+        // case TOGGLE_ISCOMPLETE:
+        //     console.log('action.chore.isComplete-->', action.chore.isComplete)
+
+        //     return {
+        //         ...state,
+        //         isComplete: !action.chore.isComplete,
+        //     }
+
         default:
             return state;
     }

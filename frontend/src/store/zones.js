@@ -51,7 +51,6 @@ export const updateChore = (choreId, newValue) => async dispatch => {
 const ZonesReducer = (state = {}, action) => {
     switch (action.type) {
         case DISPLAY_ZONES:
-            console.log('action-->', action.zoneList)
             const newState = { ...state, ...action.zoneList }
             return newState;
         default:

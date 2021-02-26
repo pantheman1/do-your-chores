@@ -16,6 +16,8 @@ const ChoresPage = () => {
     const { zoneId } = useParams();
     const [selectedChore, setSelectedChore] = useState({});
 
+    console.log("chores-->", chores.allChores)
+
     const choreArr = Object.values(chores)
 
     const choresList = choreArr?.filter(chore => chore.zone_id.toString() === zoneId)
