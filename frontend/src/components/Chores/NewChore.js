@@ -19,7 +19,7 @@ const NewChore = ({ choresList }) => {
     const dispatch = useDispatch();
     //need select a zone state
     const [name, setName] = useState('');
-    const [assignee, setAssignee] = useState(`${sessionUser.name}-${sessionUser.id}`)
+    const [assignee, setAssignee] = useState('')
     const [estimatedTime, setEstimatedTime] = useState(0)
     const [description, setDescription] = useState('')
     // const [errors, setErrors] = useState([])
@@ -32,8 +32,7 @@ const NewChore = ({ choresList }) => {
     // console.log('USERS-->>', sessionUser.name)
 
     const handleSelectedUser = (e) => {
-        const user_id = e.target.value.split("-")[1];
-        setAssignee(user_id)
+        setAssignee(e.target.value)
     }
 
     const objArray = Object.values(users)
@@ -47,7 +46,7 @@ const NewChore = ({ choresList }) => {
         const user_id = Number(user_idString);
 
         const zone_id = Number(zoneId)
-        console.log("NUMBER USER", zone_id)
+        // console.log("NUMBER USER", zone_id)
 
         const newUser = {
             name: name,
@@ -56,28 +55,16 @@ const NewChore = ({ choresList }) => {
             zone_id: zone_id,
             description: description
         }
-        console.log("FORM DATA--->", newUser)
+        // console.log("FORM DATA--->", newUser)
         await dispatch(postNewChore(newUser))
         e.preventDefault()
     }
 
-    // const handleNameChange = (e) => {
-    //     setName(e.target.value)
-    //     // dispatch(updateNameValue(name))
-    // }
-
-    // const handleTime = async (e) => {
-    //     await setEstimatedTime(e)
-    // }
-
-    // const handleDescription = (e) => {
-    //     setDescription(e.target.value)
-    // }
-
-
     useEffect(async () => {
         await dispatch(getUsers())
     }, [dispatch])
+
+    /////////////
 
     return (
         <div className="detailed-view-pane">
@@ -101,8 +88,10 @@ const NewChore = ({ choresList }) => {
                     <label>Who's doing this Chore?</label>
                     <select
                         onChange={handleSelectedUser}
+                        value={assignee}
                     >
-                        {squadUsers.map(user => (
+                        <option value='' disabled>Select someone...</option>
+                        {squadUsers && squadUsers.map(user => (
                             <option key={nanoid()}>{`${user.name}-${user.id}`}</option>
                         ))}
                     </select>
