@@ -6,20 +6,26 @@ import { getSimpleList } from '../../store/chores';
 import { nanoid } from 'nanoid';
 import { updateDbFromStore, updateChore } from '../../store/zones';
 import './chores.css'
+import ChoreBlocks from './ChoreBlocks';
+import ChoreDetails from './choreDetails';
+import NewChore from './NewChore';
 
 const ChoresPage = () => {
     const sessionUser = useSelector(state => state.session.user);
-    // const chores = useSelector(state => state.chores);
-    const zones = useSelector(state => state.zones.Zones);
+    const chores = useSelector(state => state.chores);
     const dispatch = useDispatch();
     const { zoneId } = useParams();
+    const [selectedChore, setSelectedChore] = useState({});
 
-    console.log("zoneID--->>>", zoneId)
+    console.log("chores-->", chores.allChores)
 
-    const results = zones?.find(zone => zone.id.toString() === zoneId).Chores
+    const choreArr = Object.values(chores)
 
+    const choresList = choreArr?.filter(chore => chore.zone_id.toString() === zoneId)
 
-    console.log('results---------->>>>', results)
+    useEffect(() => {
+        // console.log('selectedChore', selectedChore)
+    }, [selectedChore])
 
     useEffect(() => {
         dispatch(getSimpleList(sessionUser.id))
@@ -29,34 +35,12 @@ const ChoresPage = () => {
         return <Redirect to='/login' />
     }
 
-    // if (!results) {
-    //     return <Redirect to='/create' />
-    // }
-
-    const updateDb = (e) => {
-        dispatch(updateDbFromStore(e.target.value))
-    }
-
     let choreList;
-    if (results?.length > 0) {
+    if (choresList?.length > 0) {
         choreList = (
             <div className="chores-container">
-                {results.map(chore => (
-                    <div className="input-chore-container">
-                        <div className="input-isComplete">
-                            <button type="button" className="isComplete-btn">+</button>
-                            <input
-                                className="chore-input-box"
-                                key={nanoid()}
-                                type="text"
-                                value={chore.name}
-                                onChange={e => dispatch(updateChore(chore.id, e.target.value))}
-                                onBlur={e => updateDb(e.target.value)}
-                            >
-                            </input>
-                        </div>
-                        <button type="button" className="chore-detail-btn">Details</button>
-                    </div>
+                {choresList.map(chore => (
+                    <ChoreBlocks key={nanoid()} updateSelected={setSelectedChore} chore={chore} />
                 ))}
             </div>
         )
@@ -67,6 +51,7 @@ const ChoresPage = () => {
             <h1>Chores</h1>
             {choreList}
             <NavLink to="/">Add a Chore</NavLink>
+            {Object.keys(selectedChore).length === 0 ? <NewChore /> : <ChoreDetails chore={selectedChore} />}
         </div>
     )
 }
