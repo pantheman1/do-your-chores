@@ -5,7 +5,7 @@ import { getChoreItemById, getSimpleList } from '../../store/chores';
 import NumericInput from 'react-numeric-input';
 import './choresDetail.css'
 
-const ChoreDetails = ({ chore }) => {
+const ChoreDetails = ({ chore, choresList }) => {
     const [name, setName] = useState(chore.name);
 
 
