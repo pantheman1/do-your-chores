@@ -41,11 +41,24 @@ router.post(
 );
 
 router.get('/', asyncHandler(async (req, res) => {
-    const response = await User.findAll();
-    console.log('what the heck is going on', response)
+    const users = await User.findAll({
+        attributes: ['name', 'id']
+    });
 
-    const data = await response.json();
-    return data
+    return res.json(users)
 }))
+
+// router.get(
+//     '/',
+//     restoreUser,
+//     (req, res) => {
+//         const { user } = req;
+//         if (user) {
+//             return res.json({
+//                 user: user.toSafeObject()
+//             });
+//         } else return res.json({});
+//     }
+// );
 
 module.exports = router;

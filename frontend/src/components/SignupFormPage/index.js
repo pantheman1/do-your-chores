@@ -60,15 +60,6 @@ function SignupFormPage() {
                                 required
                             />
                         </div>
-                        <div className="username-container">
-                            <label>Username</label>
-                            <input
-                                type="text"
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
-                                required
-                            />
-                        </div>
                         <div className="password-container signup-password-input">
                             <label>Password</label>
                             <input
