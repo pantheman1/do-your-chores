@@ -2,26 +2,31 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Route, Redirect, useHistory, useParams } from "react-router-dom";
 import { getChoreItemById, getSimpleList } from '../../store/chores';
+import NumericInput from 'react-numeric-input';
 import './choresDetail.css'
 
 const ChoreDetails = ({ chore }) => {
+    const [name, setName] = useState(chore.name);
+
+
     // chores = object of all normalized chores
-    const chores = useSelector(state => state.chores);
     const dispatch = useDispatch();
 
-    // const choresList = Object.values(chores)
-
-    //create a conditional where if the chore exists, then populate the content.
-    //if the chore does not exist then populate the empty chore details
+    const handleNameChange = (e) => {
+        setName(e.target.value)
+        // dispatch(updateNameValue(name))
+    }
 
     return (
         <div className="detailed-view-pane">
             <h1>{chore.name}</h1>
-            <div className="mark-complete-btn">
-                <button type="button">Mark Complete</button>
+            <h3>Detailed View</h3>
+            <div>
+                <label>Chore Name</label>
                 <input
                     className="chore-text"
-                // value={ }
+                    value={name}
+                    onChange={e => setName(e.target.value)}
                 >
                 </input>
             </div>
@@ -49,6 +54,9 @@ const ChoreDetails = ({ chore }) => {
                 <input>
 
                 </input>
+            </div>
+            <div className="mark-complete-btn">
+                <button type="button">Mark Complete</button>
             </div>
         </div>
     )

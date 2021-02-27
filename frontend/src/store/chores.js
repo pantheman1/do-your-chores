@@ -13,6 +13,7 @@ const updateIsComplete = (chore) => ({
     chore
 })
 
+
 export const getSimpleList = id => async (dispatch) => {
     const res = await csrfFetch(`/api/chores`);
 
@@ -35,6 +36,20 @@ export const toggleIsComplete = (chore) => async dispatch => {
         dispatch(displaySimpleChore(chores))
     }
 }
+
+// export const updateNameValue = name => async dispatch => {
+//     const res = await csrfFetch(`/api/chores/${chore.id}`, {
+//         method: 'PATCH',
+//         body: JSON.stringify(name)
+//     })
+
+//     if (res.ok) {
+//         const name = await res.json();
+//         console.log("CHOooorres", chores)
+//         // console.log("CCCCHHHHHOOOOORRRRRREEEEE", chore.chore.id)
+//         dispatch(displaySimpleChore(chores))
+//     }
+// }
 
 const ChoresReducer = (state = {}, action) => {
     switch (action.type) {

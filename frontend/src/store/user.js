@@ -12,4 +12,5 @@ const getUser = (id) => {
 
 export const getUserById = (id) => async (dispatch) => {
     const res = await csrfFetch(`/api/users/`)
+
 }
