@@ -35,6 +35,11 @@ const ChoresPage = () => {
         return <Redirect to='/login' />
     }
 
+    const addAChore = (e) => {
+        e.preventDefault();
+        setSelectedChore({})
+    }
+
     let choreList;
     if (choresList?.length > 0) {
         choreList = (
@@ -50,8 +55,8 @@ const ChoresPage = () => {
         <div>
             <h1>Chores</h1>
             {choreList}
-            <NavLink to="/">Add a Chore</NavLink>
-            {Object.keys(selectedChore).length === 0 ? <NewChore /> : <ChoreDetails chore={selectedChore} />}
+            <button type="button" className="add-a-chore" onClick={addAChore}>Add a Chore</button>
+            {Object.keys(selectedChore).length === 0 ? <NewChore choresList={choresList} /> : <ChoreDetails choresList={choresList} chore={selectedChore} />}
         </div>
     )
 }

@@ -2,9 +2,15 @@ import { csrfFetch } from './csrf';
 
 const DISPLAY_ZONES = 'zones/DISPLAY_ZONES';
 const UPDATE_CHORE = 'chores/UPDATE_CHORE';
+const USER_BY_ZONE = 'user/USER_BY_ZONE';
 
 const displayZones = zoneList => ({
     type: DISPLAY_ZONES,
+    zoneList
+})
+
+const grabUserData = zoneList => ({
+    type: USER_BY_ZONE,
     zoneList
 })
 
@@ -32,20 +38,34 @@ export const allUserZones = (id) => async (dispatch) => {
 }
 // 
 export const updateDbFromStore = (choreId, newValue) => async dispatch => {
-    const res = await csrfFetch(`/api/chores/${choreId}`, {
-        method: 'PATCH',
-        body: JSON.stringify({ newValue })
-    });
-    if (res.ok) {
-        // const updatedChore = 
-    }
-    dispatch(updateChore());
+    //     const res = await csrfFetch(`/api/chores/${choreId}`, {
+    //         method: 'PATCH',
+    //         body: JSON.stringify({ newValue })
+    //     });
+    //     if (res.ok) {
+    //         // const updatedChore = 
+    //     }
+    //     dispatch(updateChore());
 }
 
-export const updateChore = (choreId, newValue) => async dispatch => {
-
-    //call post route to post the new data
-    // dispatch(updateChore());
+export const getUserByZone = (id) => async dispatch => {
+    const res = await csrfFetch(`/api/zones/${id}`);
+    const data = await res.json();
+    // console.log('-=-=-=-=-=-=-', data.squad)
+    // console.log('-=-=-=-=-=-=-', data.squad.Zones)
+    const obj = {};
+    //normalized zones data
+    data.squad.Zones.forEach(zone => {
+        obj[zone.id] = zone;
+    })
+    const zonesArr = Object.values(obj);
+    console.log("as;dlfzzzzzzzzzzzzzzz", zonesArr)
+    const zonesObj = {};
+    zonesArr.forEach(zone => {
+        zonesObj[zone.id] = zone
+    })
+    // const chores = zonesObj?.find(zone => zone.id.toString() === zoneId).Chores
+    dispatch(grabUserData(zonesObj)) //the route sends us an object with a zones k/v pair
 }
 
 const ZonesReducer = (state = {}, action) => {
@@ -53,6 +73,11 @@ const ZonesReducer = (state = {}, action) => {
         case DISPLAY_ZONES:
             const newState = { ...state, ...action.zoneList }
             return newState;
+        case USER_BY_ZONE:
+            return {
+                ...state,
+                ...action.zoneList
+            }
         default:
             return state
     }
