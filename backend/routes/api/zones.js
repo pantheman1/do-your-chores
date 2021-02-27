@@ -18,6 +18,7 @@ router.get('/:userId', asyncHandler(async function (req, res) {
     return res.json({ squad });
 }));
 
+// localhost:5000/api/zones/:id
 router.post('/:zoneId', asyncHandler(async (req, res) => {
     const {
         name,
