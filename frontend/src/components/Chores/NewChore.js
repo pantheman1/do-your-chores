@@ -5,10 +5,9 @@ import { nanoid } from 'nanoid';
 import NumericInput from 'react-numeric-input';
 import './chores.css'
 import { getUsers } from "../../store/user";
-import Assignee from "../Assignee/Assignee";
 import * as sessionActions from "../../store/session";
 import { getUserByZone } from '../../store/zones';
-
+import { postNewChore } from '../../store/chores';
 
 
 const NewChore = ({ choresList }) => {
@@ -20,7 +19,7 @@ const NewChore = ({ choresList }) => {
     const dispatch = useDispatch();
     //need select a zone state
     const [name, setName] = useState('');
-    const [assignee, setAssignee] = useState(sessionUser.name)
+    const [assignee, setAssignee] = useState(`${sessionUser.name}-${sessionUser.id}`)
     const [estimatedTime, setEstimatedTime] = useState(0)
     const [description, setDescription] = useState('')
     // const [errors, setErrors] = useState([])
@@ -30,8 +29,12 @@ const NewChore = ({ choresList }) => {
         dispatch(getUserByZone(sessionUser.id))
     }, [dispatch])
 
+    // console.log('USERS-->>', sessionUser.name)
 
-    console.log('USERS-->>', sessionUser.squad_id)
+    const handleSelectedUser = (e) => {
+        const user_id = e.target.value.split("-")[1];
+        setAssignee(user_id)
+    }
 
     const objArray = Object.values(users)
     console.log('user-squad.id', objArray)
@@ -39,27 +42,38 @@ const NewChore = ({ choresList }) => {
 
     console.log("--??>>", squadUsers)
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
+        const user_idString = assignee.split("-")[1];
+        const user_id = Number(user_idString);
+
+        const zone_id = Number(zoneId)
+        console.log("NUMBER USER", zone_id)
+
+        const newUser = {
+            name: name,
+            user_id: user_id,
+            estimated_time: estimatedTime,
+            zone_id: zone_id,
+            description: description
+        }
+        console.log("FORM DATA--->", newUser)
+        await dispatch(postNewChore(newUser))
         e.preventDefault()
-
     }
 
-    const handleNameChange = (e) => {
-        setName(e.target.value)
-        // dispatch(updateNameValue(name))
-    }
+    // const handleNameChange = (e) => {
+    //     setName(e.target.value)
+    //     // dispatch(updateNameValue(name))
+    // }
 
-    const handleSelectUser = (e) => {
-        setAssignee(e.target.value)
-    }
+    // const handleTime = async (e) => {
+    //     await setEstimatedTime(e)
+    // }
 
-    const handleTime = (e) => {
-        setEstimatedTime(e.target.value)
-    }
+    // const handleDescription = (e) => {
+    //     setDescription(e.target.value)
+    // }
 
-    const handleDescription = (e) => {
-        setDescription(e.target.value)
-    }
 
     useEffect(async () => {
         await dispatch(getUsers())
@@ -86,22 +100,22 @@ const NewChore = ({ choresList }) => {
                 <div className="assignee-btn">
                     <label>Who's doing this Chore?</label>
                     <select
-                        onSelect={handleSelectUser}
+                        onChange={handleSelectedUser}
                     >
                         {squadUsers.map(user => (
-                            <option key={nanoid()}>{user.name}</option>
+                            <option key={nanoid()}>{`${user.name}-${user.id}`}</option>
                         ))}
                     </select>
                 </div>
                 <div className="estimated-time">
                     <label>How many minutes will this chore take?</label>
-                    <NumericInput onBlur={handleTime} min={0} max={90} value={estimatedTime} step={5} />
+                    <NumericInput onChange={e => setEstimatedTime(e)} min={0} max={90} value={estimatedTime} step={5} />
                 </div>
                 <div className="description-detailed">
                     <label>Description</label>
                     <textarea
                         value={description}
-                        onChange={handleDescription}
+                        onChange={e => setDescription(e.target.value)}
                     />
                 </div>
                 <div className="submit-new-chore-btn">
