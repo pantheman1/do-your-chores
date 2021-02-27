@@ -1,13 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Route, Redirect, useHistory, useParams } from "react-router-dom";
-import { getChoreItemById, getSimpleList } from '../../store/chores';
+import { NavLink, Route, Redirect, useHistory, useParams, Link } from "react-router-dom";
+import { nanoid } from 'nanoid';
 import NumericInput from 'react-numeric-input';
-import './choresDetail.css'
+import './chores.css'
 
-const ChoreDetails = ({ chore }) => {
-    const [name, setName] = useState(chore.name);
 
+
+const NewChore = () => {
+    const [name, setName] = useState('');
+    //need user state
+    //need select a zone state
+    const [estimatedTime, setEstimatedTime] = useState(0)
+    const [validations, setValidations] = useState([])
+
+    const validation = () => {
+        const errors = [];
+
+        if (estimatedTime < 0) errors.push(`Cleaning takes longer than 0 minutes!`)
+
+        setValidations(errors);
+    }
 
     // chores = object of all normalized chores
     const dispatch = useDispatch();
@@ -19,8 +32,7 @@ const ChoreDetails = ({ chore }) => {
 
     return (
         <div className="detailed-view-pane">
-            <h1>{chore.name}</h1>
-            <h3>Detailed View</h3>
+            <h1>Create a new Chore!</h1>
             <div>
                 <label>Chore Name</label>
                 <input
@@ -32,22 +44,19 @@ const ChoreDetails = ({ chore }) => {
             </div>
             <div className="assignee-btn">
                 <label>Assignee--select a user</label>
-                <input>
-
-                </input>
+                <select>
+                    <option></option>
+                </select>
             </div>
             <div className="zone-btn">
                 <label>Select a Zone</label>
                 <select>
-
                     <option></option>
                 </select>
             </div>
             <div className="estimated-time">
                 <label>Estimated Time</label>
-                <input>
-
-                </input>
+                <NumericInput min={0} max={90} value={0} step={5} />
             </div>
             <div className="description-detailed">
                 <label>Description</label>
@@ -55,8 +64,8 @@ const ChoreDetails = ({ chore }) => {
 
                 </input>
             </div>
-            <div className="mark-complete-btn">
-                <button type="button">Mark Complete</button>
+            <div className="submit-new-chore-btn">
+                <button type="submit">Submit</button>
             </div>
         </div>
     )
@@ -65,4 +74,4 @@ const ChoreDetails = ({ chore }) => {
 
 
 
-export default ChoreDetails;
+export default NewChore;

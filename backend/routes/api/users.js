@@ -40,4 +40,12 @@ router.post(
     }),
 );
 
+router.get('/', asyncHandler(async (req, res) => {
+    const response = await User.findAll();
+    console.log('what the heck is going on', response)
+
+    const data = await response.json();
+    return data
+}))
+
 module.exports = router;

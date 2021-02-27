@@ -28,8 +28,8 @@ function Navigation({ isLoaded }) {
                         </li>
                     </ul>
                 </div>
-                <div className="home-text">
-                    <h3>Home</h3>
+                <div className="zones-link">
+                    <NavLink to="/zones">Zones</NavLink>
                 </div>
             </div>
             <div className="right-side">

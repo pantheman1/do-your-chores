@@ -1,0 +1,16 @@
+.detailed-view-pane {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* position: absolute;
+  transform: translateX(-100%); */
+}
+
+main.detail-view {
+  background-color: lightblue;
+  /* z-index: auto; */
+}
+
+/* .pane-view {
+  z-index: auto;
+} */
