@@ -11,14 +11,9 @@ const ZonePage = () => {
     const zones = useSelector(state => state.zones.Zones);
     const dispatch = useDispatch();
 
-
-    // const zoneList = Object.values(zones);
-
-    console.log('>>>>>>>>', zones)
     useEffect(() => {
         dispatch(allUserZones(sessionUser.id))
     }, [dispatch])
-    // console.log('/////////', zoneList)
 
     if (!sessionUser) {
         return <Redirect to='/login' />
@@ -34,7 +29,6 @@ const ZonePage = () => {
             </ul>
         )
     }
-
 
     return (
         <div>
