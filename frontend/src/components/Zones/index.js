@@ -12,9 +12,6 @@ const ZonePage = () => {
     const dispatch = useDispatch();
 
 
-    if (zones) {
-        console.log('second time')
-    }
     // const zoneList = Object.values(zones);
 
     console.log('>>>>>>>>', zones)

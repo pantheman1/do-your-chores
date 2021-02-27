@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import sessionReducer from './session';
 import zonesReducer from './zones';
 import ChoresReducer from './chores';
+import UsersReducer from './user';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     zones: zonesReducer,
     chores: ChoresReducer,
+    users: UsersReducer
 });
 
 let enhancer;
