@@ -31,6 +31,7 @@ const ZonePage = () => {
         "/images/spray-bottle.png",
         "/images/vacuum.png",
         "/images/winnie-the-pooh-ella.png",
+        "/images/logo.png"
     ]
 
     const randImage = () => {

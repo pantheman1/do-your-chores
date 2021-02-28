@@ -57,49 +57,53 @@ const NewChore = () => {
 
     return (
         <div className="detailed-view-pane">
-            <h1>Create a new Chore!</h1>
-            {/* <ul className="errors">
+            <div className="inner-container-form">
+                <div className="header-chore">
+                    <h1>Create a new Chore!</h1>
+                </div>
+                {/* <ul className="errors">
                 {errors && errors.map(error => (
                     <li key={error}>{error}</li>
                 ))}
             </ul> */}
-            <form onSubmit={onSubmit}>
-                <div>
-                    <label>Chore Name</label>
-                    <input
-                        className="chore-text"
-                        value={name}
-                        onChange={e => setName(e.target.value)}
-                    />
-                </div>
-                {/* <Assignee user={users} /> */}
-                <div className="assignee-btn">
-                    <label>Who's doing this Chore?</label>
-                    <select
-                        onChange={handleSelectedUser}
-                        value={assignee}
-                    >
-                        <option value='' disabled>Select someone...</option>
-                        {squadUsers && squadUsers.map(user => (
-                            <option key={nanoid()}>{`${user.name}-${user.id}`}</option>
-                        ))}
-                    </select>
-                </div>
-                <div className="estimated-time">
-                    <label>How many minutes will this chore take?</label>
-                    <NumericInput onChange={e => setEstimatedTime(e)} min={0} max={90} value={estimatedTime} step={5} />
-                </div>
-                <div className="description-detailed">
-                    <label>Description</label>
-                    <textarea
-                        value={description}
-                        onChange={e => setDescription(e.target.value)}
-                    />
-                </div>
-                <div className="submit-new-chore-btn">
-                    <button hidden={!name.length ? true : false} type="submit">Submit</button>
-                </div>
-            </form>
+                <form className="chore-form" onSubmit={onSubmit}>
+                    <div className="chore-name">
+                        <label>Chore Name</label>
+                        <input
+                            className="chore-text"
+                            value={name}
+                            onChange={e => setName(e.target.value)}
+                        />
+                    </div>
+                    {/* <Assignee user={users} /> */}
+                    <div className="assignee-btn">
+                        <label>Who's doing this Chore?</label>
+                        <select
+                            onChange={handleSelectedUser}
+                            value={assignee}
+                        >
+                            <option value='' disabled>Select someone...</option>
+                            {squadUsers && squadUsers.map(user => (
+                                <option key={nanoid()}>{`${user.name}-${user.id}`}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="estimated-time">
+                        <label>How many minutes will this chore take?</label>
+                        <NumericInput onChange={e => setEstimatedTime(e)} min={0} max={90} value={estimatedTime} step={5} />
+                    </div>
+                    <div className="description-detailed">
+                        <label>Description</label>
+                        <textarea
+                            value={description}
+                            onChange={e => setDescription(e.target.value)}
+                        />
+                    </div>
+                    <div className="submit-new-chore-btn">
+                        <button hidden={!name.length ? true : false} type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }

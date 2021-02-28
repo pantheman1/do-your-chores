@@ -31,47 +31,53 @@ const ChoreDetails = ({ chore }) => {
 
     return (
         <div className="detailed-view-pane">
-            <h1>{chore.name}</h1>
-            <h3>Detailed View</h3>
-            <form>
-                <div>
-                    <label>Chore Name</label>
-                    <input
-                        className="chore-text"
-                        value={chore.name}
-                        onChange={e => setName(e.target.value)}
-                    />
+            <div className="inner-container-form">
+                <div className="header-chore">
+                    <h1>{chore.name}</h1>
                 </div>
-                {/* <Assignee user={users} /> */}
-                <div className="assignee-btn">
-                    <label>Who's doing this Chore?</label>
-                    <select
-                        onChange={handleSelectedUser}
-                        value={users[chore.user_id]}
-                    >
-                        {squadUsers && squadUsers.map(user => (
-                            <option key={nanoid()}>{`${user.name}-${user.id}`}</option>
-                        ))}
-                    </select>
+                <div className="detailed-text">
+                    <h3>Detailed View</h3>
                 </div>
-                <div className="estimated-time">
-                    <label>How many minutes will this chore take?</label>
-                    <NumericInput onChange={e => setEstimatedTime(e)} min={0} max={90} value={chore.estimated_time} step={5} />
-                </div>
-                <div className="description-detailed">
-                    <label>Description</label>
-                    <textarea
-                        value={chore.description}
-                        onChange={e => setDescription(e.target.value)}
-                    />
-                </div>
-                <div className="mark-complete-btn">
-                    <button type="button">Mark Complete</button>
-                </div>
-                {/* <div className="submit-new-chore-btn">
+                <form className="chore-form">
+                    <div className="chore-name">
+                        <label>Chore Name</label>
+                        <input
+                            className="chore-text"
+                            value={chore.name}
+                            onChange={e => setName(e.target.value)}
+                        />
+                    </div>
+                    {/* <Assignee user={users} /> */}
+                    <div className="assignee-btn">
+                        <label>Who's doing this Chore?</label>
+                        <select
+                            onChange={handleSelectedUser}
+                            value={users[chore.user_id]}
+                        >
+                            {squadUsers && squadUsers.map(user => (
+                                <option key={nanoid()}>{`${user.name}-${user.id}`}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="estimated-time">
+                        <label>How many minutes will this chore take?</label>
+                        <NumericInput onChange={e => setEstimatedTime(e)} min={0} max={90} value={chore.estimated_time} step={5} />
+                    </div>
+                    <div className="description-detailed">
+                        <label>Description</label>
+                        <textarea
+                            value={chore.description}
+                            onChange={e => setDescription(e.target.value)}
+                        />
+                    </div>
+                    <div className="mark-complete">
+                        <button className="mark-complete-btn" type="button">Mark Complete</button>
+                    </div>
+                    {/* <div className="submit-new-chore-btn">
                     <button hidden={!name.length ? true : false} type="submit">Submit</button>
                 </div> */}
-            </form>
+                </form>
+            </div>
         </div>
     )
 }

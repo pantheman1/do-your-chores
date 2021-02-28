@@ -2,8 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* position: absolute;
-  transform: translateX(-100%); */
+  height: 500px;
 }
 
 main.detail-view {
@@ -14,3 +13,30 @@ main.detail-view {
 /* .pane-view {
   z-index: auto;
 } */
+
+.inner-container-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #fff;
+  box-shadow: 0 5px 20px 0 rgb(21 27 38 / 8%);
+  margin-top: 80px;
+  padding: 46px 46px 56px;
+  border-radius: 8px;
+}
+
+.complete-btn {
+  height: 50%;
+}
+
+.mark-complete {
+  padding-top: 10px;
+}
+
+.submit-new-chore-btn {
+  padding-top: 10px;
+}
+
+.detailed-text {
+  align-self: center;
+}

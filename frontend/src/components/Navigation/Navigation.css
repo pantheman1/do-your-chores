@@ -9,6 +9,8 @@
   display: flex;
   justify-content: space-between;
   border-bottom: 2px solid #e8ecee;
+  background: aliceblue;
+  /* max-height: 100px; */
 }
 
 .left-side {
@@ -20,6 +22,10 @@
 
 .menu-btn > ul {
   list-style-type: none;
+}
+
+ul.profile-dropdown {
+  list-style: none;
 }
 
 .right-side {
@@ -46,4 +52,16 @@
 
 .search-box {
   margin-right: 20px;
+}
+
+.nav-plus-btn {
+}
+
+.dropdown-button {
+  background-color: none !important;
+  border: none;
+  padding: 0 !important;
+  text-decoration: none;
+  display: inline-block;
+  color: white;
 }

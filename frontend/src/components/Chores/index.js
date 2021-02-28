@@ -49,8 +49,10 @@ const ChoresPage = () => {
     }
 
     return (
-        <div>
-            <h1>Chores</h1>
+        <div className="body-chores">
+            <div className="chores-header">
+                <h1>Chores</h1>
+            </div>
             {choreList}
             <button type="button" className="add-a-chore" onClick={addAChore}>Add a Chore</button>
             {Object.keys(selectedChore).length === 0 ? <NewChore choresList={choresList} /> : <ChoreDetails choresList={choresList} chore={selectedChore} />}
