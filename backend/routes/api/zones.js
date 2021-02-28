@@ -35,7 +35,6 @@ router.post('/:zoneId', asyncHandler(async (req, res) => {
         estimated_time: estimated_time,
         description: description
     })
-    // console.log('newChore--->>>', newChore)
     res.json({ newChore })
 }))
 

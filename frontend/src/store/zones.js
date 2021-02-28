@@ -32,7 +32,6 @@ export const allUserZones = (id) => async (dispatch) => {
 
     if (res.ok) {
         const data = await res.json();
-        // console.log('-=-=-=-=-=-=-', data.squad)
         dispatch(displayZones(data.squad)) //the route sends us an object with a zones k/v pair
     }
 }
@@ -51,15 +50,12 @@ export const updateDbFromStore = (choreId, newValue) => async dispatch => {
 export const getUserByZone = (id) => async dispatch => {
     const res = await csrfFetch(`/api/zones/${id}`);
     const data = await res.json();
-    // console.log('-=-=-=-=-=-=-', data.squad)
-    // console.log('-=-=-=-=-=-=-', data.squad.Zones)
     const obj = {};
     //normalized zones data
     data.squad.Zones.forEach(zone => {
         obj[zone.id] = zone;
     })
     const zonesArr = Object.values(obj);
-    console.log("as;dlfzzzzzzzzzzzzzzz", zonesArr)
     const zonesObj = {};
     zonesArr.forEach(zone => {
         zonesObj[zone.id] = zone

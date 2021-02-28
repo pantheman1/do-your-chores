@@ -53,31 +53,10 @@ router.post(
 router.get('/', asyncHandler(async (req, res) => {
     //if user gives us a zone then we'll filter chores by that squad
     //else return all chores regardless of zone
-
     let users = await User.findAll({
-        // include: Squad
     });
-    // console.log("USERS-->", users)
-
-    // let squads = await Squad.findByPk();
-
-    // const usersArr = users.filter(user => user.squad_id === squads.dataValues.id)
-
-    // console.log('squads--->', squads)
     return res.json(users);
 }))
 
-// router.get(
-//     '/',
-//     restoreUser,
-//     (req, res) => {
-//         const { user } = req;
-//         if (user) {
-//             return res.json({
-//                 user: user.toSafeObject()
-//             });
-//         } else return res.json({});
-//     }
-// );
 
 module.exports = router;

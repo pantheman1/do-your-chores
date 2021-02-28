@@ -11,8 +11,6 @@ ul.chores-container {
   padding-bottom: 5px;
 }
 
-/* .input-chore-container.chore-detail-btn */
-
 .input-chore-container:hover {
   background-color: #f6f8f9;
 }
@@ -61,13 +59,15 @@ ul.chores-container {
 }
 
 .isComplete-btn {
-  padding: 5px;
+  /* padding: 5px; */
   align-self: center;
+  height: 25px;
+  width: 25px;
 }
 
 button.selected {
   color: white;
-  background-color: red;
+  background-color: #38c872;
 }
 
 /* .chore-detail-btn:hover {
@@ -94,3 +94,32 @@ button.selected {
     transition: all 0.2s linear;
     background-color: whitesmoke;
     box-shadow: 0px 0 8px 1px lightgrey; */
+
+.body-chores {
+}
+
+.header-chore {
+  align-self: center;
+}
+
+h1 {
+  font-size: 38px;
+}
+
+.chore-name,
+.estimated-time,
+.assignee-btn,
+.description-detailed {
+  display: flex;
+  flex-direction: column;
+  padding: 6px;
+}
+
+.chores-header {
+  display: flex;
+  justify-content: center;
+}
+
+button.chore-detail-btn {
+  margin-right: 30px;
+}
