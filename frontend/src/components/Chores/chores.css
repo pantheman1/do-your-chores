@@ -11,8 +11,6 @@ ul.chores-container {
   padding-bottom: 5px;
 }
 
-/* .input-chore-container.chore-detail-btn */
-
 .input-chore-container:hover {
   background-color: #f6f8f9;
 }

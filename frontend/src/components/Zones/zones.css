@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap");
+
+* {
+  font-family: "Architects Daughter", cursive;
+}
+
+.outermost-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+}
+
+.section-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.inner-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 2px solid #e8ecee;
+  margin-left: 24px;
+  margin-right: 24px;
+  padding: 8px 0;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.zone-container {
+  display: flex;
+  flex-flow: row wrap;
+  padding-top: 16px;
+  gap: 50px;
+}
+
+.chore-box {
+  list-style-type: none;
+}
+
+.outer-tile-container {
+  border-radius: 30px;
+  box-sizing: border-box;
+  height: 226px;
+  min-width: 152px;
+  padding: 16px 0;
+  width: 152px;
+  align-items: center;
+  background: rgba(246, 248, 249, 0);
+  display: flex;
+  flex-flow: column;
+  position: relative;
+  transition-duration: 0.4s;
+}
+
+.tile-img {
+  height: inherit;
+  width: inherit;
+  border-radius: 20px;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  fill: #fff;
+  flex-direction: column;
+  justify-content: center;
+  flex-flow: column;
+  position: relative;
+  object-fit: contain;
+}
+
+.img-links {
+  width: fit-content;
+}
+
+a {
+  text-decoration: none;
+  height: inherit;
+}
+
+.header-text {
+  font-size: x-large;
+}

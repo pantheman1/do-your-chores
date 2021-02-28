@@ -31,7 +31,7 @@ function ProfileButton({ user }) {
     return (
         <>
             <button onClick={openMenu}>
-                <img className="menu-home" src="images/broom-dustpan-ella.png" />
+                <img className="menu-home" src="/images/broom-dustpan-ella.png" />
             </button>
             {showMenu && (
                 <ul className="profile-dropdown">

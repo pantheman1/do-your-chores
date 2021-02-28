@@ -36,8 +36,8 @@ function LoginFormPage() {
         <div className="login-body">
             <div className="login-card">
                 <div className="logo-container">
-                    <img className="logo-login-page" src="images/logo.png" />
-                    <img className="logo-login-page" src="images/do-your-chores-black.png" />
+                    <img className="logo-login-page" src="/images/logo.png" />
+                    <img className="logo-login-page" src="/images/do-your-chores-black.png" />
                 </div>
                 <div className="login-form">
                     <form onSubmit={handleSubmit}>
