@@ -6,7 +6,7 @@ import { NavLink, useHistory } from 'react-router-dom';
 import './LoginForm.css';
 
 
-function LoginFormPage({ isLoaded }) {
+function LoginFormPage() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const [credential, setCredential] = useState('');
@@ -15,7 +15,7 @@ function LoginFormPage({ isLoaded }) {
     const history = useHistory();
 
     if (sessionUser) return (
-        <Redirect to="/" />
+        <Redirect to="/zones" />
     );
 
     const handleSubmit = (e) => {

@@ -37,14 +37,11 @@ export const toggleIsComplete = (chore) => async dispatch => {
 
     if (res.ok) {
         const chores = await res.json();
-        console.log("CHOooorres", chores)
-        // console.log("CCCCHHHHHOOOOORRRRRREEEEE", chore.chore.id)
         dispatch(displaySimpleChore(chores))
     }
 }
 
 export const postNewChore = (chore) => async dispatch => {
-    console.log("CHORE--->", chore)
     const res = await csrfFetch(`/api/zones/${chore.zone_id}`, {
         method: 'POST',
         body: JSON.stringify(chore)
@@ -66,24 +63,19 @@ export const postNewChore = (chore) => async dispatch => {
 
 //     if (res.ok) {
 //         const name = await res.json();
-//         console.log("CHOooorres", chores)
-//         // console.log("CCCCHHHHHOOOOORRRRRREEEEE", chore.chore.id)
 //         dispatch(displaySimpleChore(chores))
 //     }
 // }
 
 const ChoresReducer = (state = {}, action) => {
-    console.log("ACTION", action)
     switch (action.type) {
         case DISPLAY_SIMPLE_CHORE:
-            // console.log('action--<><><>', action.choreList)
             const allChores = {};
             action.choreList.forEach(chore => {
                 allChores[chore.id] = chore;
             });
             return { ...state, ...allChores }
         case NEW_CHORE:
-            console.log("NEWCHORE", action.newChore)
             return {
                 ...state,
                 ...action.newChore
@@ -91,8 +83,6 @@ const ChoresReducer = (state = {}, action) => {
 
 
         // case TOGGLE_ISCOMPLETE:
-        //     console.log('action.chore.isComplete-->', action.chore.isComplete)
-
         //     return {
         //         ...state,
         //         isComplete: !action.chore.isComplete,

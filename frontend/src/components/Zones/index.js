@@ -34,7 +34,7 @@ const ZonePage = () => {
         <div>
             <h1>Zones</h1>
             {zoneLinks}
-            <Link to="/">Add a Zone</Link>
+            <Link to="/zones">Add a Zone</Link>
         </div>
     )
 }

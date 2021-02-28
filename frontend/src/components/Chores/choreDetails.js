@@ -6,7 +6,7 @@ import NumericInput from 'react-numeric-input';
 import { nanoid } from 'nanoid';
 import './choresDetail.css'
 
-const ChoreDetails = ({ chore, choresList }) => {
+const ChoreDetails = ({ chore }) => {
     const sessionUser = useSelector(state => state.session.user);
     const users = useSelector(state => state.users)
     const dispatch = useDispatch();
@@ -15,18 +15,6 @@ const ChoreDetails = ({ chore, choresList }) => {
     const [assignee, setAssignee] = useState(users[chore.user_id])
     const [estimatedTime, setEstimatedTime] = useState(chore.estimated_time)
     const [description, setDescription] = useState(chore.description)
-
-    // console.log("USERSEXYXYXYXYXYX", users[3])
-    console.log("CHOREAGAIN-->", assignee)
-
-    // useEffect(() => {
-    //     setName(chore.name);
-    //     setAssignee(`${chore.name}-${chore.id}`);
-    //     setEstimatedTime(chore.estimated_time);
-    //     setDescription(chore.description);
-    // }, [name, assignee, estimatedTime, description])
-
-    // chores = object of all normalized chores
 
     const handleNameChange = (e) => {
         setName(e.target.value)
@@ -38,29 +26,8 @@ const ChoreDetails = ({ chore, choresList }) => {
     }
 
     const objArray = Object.values(users)
-    console.log('user-squad.id', objArray)
     const squadUsers = objArray?.filter(user => sessionUser.squad_id === user.squad_id)
 
-    console.log("--??>>", squadUsers)
-
-    // const onSubmit = async (e) => {
-    //     const user_idString = assignee.split("-")[1];
-    //     const user_id = Number(user_idString);
-
-    //     const zone_id = Number(zoneId)
-    //     console.log("NUMBER USER", zone_id)
-
-    //     const newUser = {
-    //         name: name,
-    //         user_id: user_id,
-    //         estimated_time: estimatedTime,
-    //         zone_id: zone_id,
-    //         description: description
-    //     }
-    //     console.log("FORM DATA--->", newUser)
-    //     // await dispatch((newUser))
-    //     e.preventDefault()
-    // }
 
     return (
         <div className="detailed-view-pane">

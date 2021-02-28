@@ -15,7 +15,7 @@ function SignupFormPage() {
     const [favoriteToClean, setFavoriteToClean] = useState("");
     const [errors, setErrors] = useState([]);
 
-    if (sessionUser) return <Redirect to="/" />;
+    if (sessionUser) return <Redirect to="/zones" />;
 
     const handleSubmit = (e) => {
         e.preventDefault();

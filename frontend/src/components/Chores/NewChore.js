@@ -5,12 +5,11 @@ import { nanoid } from 'nanoid';
 import NumericInput from 'react-numeric-input';
 import './chores.css'
 import { getUsers } from "../../store/user";
-import * as sessionActions from "../../store/session";
 import { getUserByZone } from '../../store/zones';
 import { postNewChore } from '../../store/chores';
 
 
-const NewChore = ({ choresList }) => {
+const NewChore = () => {
     //logged in user
     const sessionUser = useSelector(state => state.session.user);
     //need user state -- starts out as an empty object--how do I populate this so i can loop through and grab all the users?
@@ -29,24 +28,17 @@ const NewChore = ({ choresList }) => {
         dispatch(getUserByZone(sessionUser.id))
     }, [dispatch])
 
-    // console.log('USERS-->>', sessionUser.name)
-
     const handleSelectedUser = (e) => {
         setAssignee(e.target.value)
     }
 
     const objArray = Object.values(users)
-    console.log('user-squad.id', objArray)
     const squadUsers = objArray.filter(user => sessionUser.squad_id === user.squad_id)
-
-    console.log("--??>>", squadUsers)
 
     const onSubmit = async (e) => {
         const user_idString = assignee.split("-")[1];
         const user_id = Number(user_idString);
-
         const zone_id = Number(zoneId)
-        // console.log("NUMBER USER", zone_id)
 
         const newUser = {
             name: name,
@@ -55,7 +47,6 @@ const NewChore = ({ choresList }) => {
             zone_id: zone_id,
             description: description
         }
-        // console.log("FORM DATA--->", newUser)
         await dispatch(postNewChore(newUser))
         e.preventDefault()
     }
@@ -63,8 +54,6 @@ const NewChore = ({ choresList }) => {
     useEffect(async () => {
         await dispatch(getUsers())
     }, [dispatch])
-
-    /////////////
 
     return (
         <div className="detailed-view-pane">
