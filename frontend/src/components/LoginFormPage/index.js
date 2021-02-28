@@ -6,7 +6,7 @@ import { NavLink, useHistory } from 'react-router-dom';
 import './LoginForm.css';
 
 
-function LoginFormPage({ isLoaded }) {
+function LoginFormPage() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
     const [credential, setCredential] = useState('');
@@ -15,7 +15,7 @@ function LoginFormPage({ isLoaded }) {
     const history = useHistory();
 
     if (sessionUser) return (
-        <Redirect to="/" />
+        <Redirect to="/zones" />
     );
 
     const handleSubmit = (e) => {
@@ -36,8 +36,8 @@ function LoginFormPage({ isLoaded }) {
         <div className="login-body">
             <div className="login-card">
                 <div className="logo-container">
-                    <img className="logo-login-page" src="images/logo.png" />
-                    <img className="logo-login-page" src="images/do-your-chores-black.png" />
+                    <img className="logo-login-page" src="/images/logo.png" />
+                    <img className="logo-login-page" src="/images/do-your-chores-black.png" />
                 </div>
                 <div className="login-form">
                     <form onSubmit={handleSubmit}>

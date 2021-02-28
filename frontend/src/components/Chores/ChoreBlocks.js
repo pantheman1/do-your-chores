@@ -5,14 +5,12 @@ import { nanoid } from 'nanoid';
 import { updateDbFromStore, updateChore } from '../../store/zones';
 import { toggleIsComplete } from '../../store/chores';
 import './chores.css'
-import ChoreDetails from "./choreDetails";
 
 const SimpleChoreView = ({ chore, updateSelected }) => {
     const dispatch = useDispatch();
     const [detailedView, setDetailedView] = useState(false);
     const [choreName, setChoreName] = useState('');
 
-    // console.log('chore.name-->', chore)
     //send value to thunk
     const updateDb = (e) => {
         dispatch(updateDbFromStore(e.target.value))

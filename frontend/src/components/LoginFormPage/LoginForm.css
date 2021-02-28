@@ -34,7 +34,7 @@ div {
 }
 
 input {
-  font-size: 13px;
+  font-size: 20px;
   height: 36px;
   border-radius: 6px;
   border: 1px solid #cbd4db;
@@ -70,7 +70,7 @@ input {
 .login-btn,
 .demo-btn {
   width: 40%;
-  font-size: 15px;
+  font-size: 20px;
   padding: 10px;
   border-radius: 6px;
   border: 1px;

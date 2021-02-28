@@ -22,7 +22,6 @@ export const getUsers = () => async (dispatch) => {
 export default function UsersReducer(state = {}, action) {
     switch (action.type) {
         case GET_USERS:
-            console.log('action.users', action.users)
             const newState = {};
             action.users.forEach(user => {
                 newState[user.id] = user

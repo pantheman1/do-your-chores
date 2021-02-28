@@ -1,7 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap");
+
+* {
+  font-family: "Architects Daughter", cursive;
+  font-size: 20px;
+}
+
 .nav {
   display: flex;
   justify-content: space-between;
-  /* margin-top: 10px; */
+  border-bottom: 2px solid #e8ecee;
+  background: aliceblue;
+  /* max-height: 100px; */
 }
 
 .left-side {
@@ -13,6 +22,10 @@
 
 .menu-btn > ul {
   list-style-type: none;
+}
+
+ul.profile-dropdown {
+  list-style: none;
 }
 
 .right-side {
@@ -34,9 +47,21 @@
 .zones-link > a:visited {
   text-decoration: none;
   color: rgb(40, 30, 175);
-  font-size: x-large;
+  font-size: xx-large;
 }
 
 .search-box {
   margin-right: 20px;
+}
+
+.nav-plus-btn {
+}
+
+.dropdown-button {
+  background-color: none !important;
+  border: none;
+  padding: 0 !important;
+  text-decoration: none;
+  display: inline-block;
+  color: white;
 }

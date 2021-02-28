@@ -40,12 +40,12 @@ function Navigation({ isLoaded }) {
                         type="text"
                     />
                 </div>
-                <div className="plus-dropdown">
-                    <button type="button">+</button>
+                {/* <div className="plus-dropdown">
+                    <button type="button"><img className="nav-plus-btn" src="/images/add-button.png" /></button>
                 </div>
                 <div className="profile">
                     <button type="button">Pic</button>
-                </div>
+                </div> */}
             </div>
         </div>
     );
