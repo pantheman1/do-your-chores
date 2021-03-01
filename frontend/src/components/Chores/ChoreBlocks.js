@@ -23,7 +23,7 @@ const SimpleChoreView = ({ chore, updateSelected }) => {
     return (
         <div className="input-chore-container">
             <div className="input-isComplete">
-                <button className={"isComplete-btn " + (chore.isComplete ? " selected" : "")} onClick={toggleComplete}>C</button>
+                <button className={"isComplete-btn " + (chore.isComplete ? " selected" : "")} onClick={toggleComplete}><i class="far fa-check-circle"></i></button>
                 <input
                     className="chore-input-box"
                     key={nanoid()}
