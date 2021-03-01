@@ -1,12 +1,35 @@
+# Do Your Chores - Asana Clone
 
-# Create React App Template
+### Link to live site
 
-A no-frills template from which to create React applications with
-[Create React App](https://github.com/facebook/create-react-app).
+https://doyourchores.herokuapp.com/
 
-```sh
-npx create-react-app my-app --template @appacademy/simple --use-npm
-```
+Do Your Chores is a web application that allows parents and children to keep track of chores which need to get done around the house. Here is a quick rundown of the different components and features:
+
+## Features
+
+### Login/Signup
+
+- A user who wishes to view and experience the site as a fully registered user, but does not wish to create a new account, may use the Demo login.
+- Users may create a new account or login using their existing credentials.
+
+### Squads
+
+- Upon signup, users will join a Squad, which is a team. This Squad may have many Zones for which they are responsible.
+- The user's Squad dictates which Zones they are able to see.
+- In a future version of the app, the user will be allowed to have more than one Squad.
+
+### Zones
+
+- Users may create a "Zone" which can be a section of the house that kids, or parents, will be cleaning. i.e. "Kitchen", or "Bathrooms".
+- Zones are larger components similar to projects which hold smaller components called Chores.
+- In a future version of this app only the master user will be able to create, update, or delete Zones.
+
+### Chores
+
+- Any user may create a new Chore.
+- A Chore is equivalent to a task and can be created, edited, and deleted.
+- Additionally, a user may complete a Chore. In a future version of the app, when a Chore is completed it will disappear from the "Incomplete Chores" page and appear in the "Completed Chores" page. A user may toggle back and forth between the two pages to view completed and incomplete Chores and change the status of Chores as they wish.
 
 ## Available Scripts
 
@@ -20,57 +43,14 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
+## Technologies Used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React
+- Redux
+- JavaScript
+- CSS
+- Heroku
 
-### `npm run build`
+## Link to Wiki docs
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+https://github.com/pantheman1/asana-clone-doyourchores/wiki
