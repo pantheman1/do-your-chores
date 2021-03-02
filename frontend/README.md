@@ -23,11 +23,10 @@ Here is a quick rundown of how this document is laid out:
 
 ### Login/Signup
 
-![](https://i.postimg.cc/cCHzr61N/Login-page.jpg)
-![](https://i.postimg.cc/Fzd2T1MV/Signup-page.jpg)
-
 - A user who wishes to view and experience the site as a fully registered user, but does not wish to create a new account, may use the Demo login.
 - Users may create a new account or login using their existing credentials.
+  ![](https://i.postimg.cc/cCHzr61N/Login-page.jpg)
+  ![](https://i.postimg.cc/Fzd2T1MV/Signup-page.jpg)
 
 ### Squads
 
@@ -45,15 +44,13 @@ Here is a quick rundown of how this document is laid out:
 
 ### Chores
 
-Create a Chore View
-![](https://i.postimg.cc/G2Qk6QCc/chores-page-create-chore.jpg)
-
-Detailed Chore View
-![](https://i.postimg.cc/v8CWkcRx/detailed-chore-view.jpg)
-
-- Any user may create a new Chore.
 - A Chore is equivalent to a task and can be created, edited, and deleted.
+- Any user may create a new Chore.
+  ![](https://i.postimg.cc/QdZ5jfsg/create-a-chore.gif)
+- A user can toggle between Create a Chore and Detailed Chore View:
+  ![](https://i.postimg.cc/FKkWdP8P/toggle-detailed-view.gif)
 - Additionally, a user may complete a Chore. In a future version of the app, when a Chore is completed it will disappear from the "Incomplete Chores" page and appear in the "Completed Chores" page. A user may toggle back and forth between the two pages to view completed and incomplete Chores and change the status of Chores as they wish.
+  ![](https://i.postimg.cc/Y0vZRpsH/complete-chore.gif)
 
 ### React Component List
 
@@ -105,7 +102,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-## Technologies Used
+### Technologies Used
 
 - React
 - Redux
@@ -113,6 +110,6 @@ You will also see any lint errors in the console.
 - CSS
 - Heroku
 
-## Link to Wiki docs
+### Link to Wiki docs
 
 https://github.com/pantheman1/asana-clone-doyourchores/wiki
