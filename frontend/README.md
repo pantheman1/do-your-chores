@@ -6,18 +6,18 @@ https://doyourchores.herokuapp.com/
 
 Do Your Chores is a web application that allows parents and children to keep track of chores which need to get done around the house.
 
-Here is a quick rundown of how the document is laid out:
+Here is a quick rundown of how this document is laid out:
 
-1. [Feature List](./feature-list)
-   - [Login/Signup](./login/signup)
-   - [Squads](./squads)
-   - [Zones](./zones)
-   - [Chores](./chores)
-2. [React Component List](./react-component-list)
-3. [Database Schema](./database-schema)
-4. [Frontend Routes](./frontend-routes)
-5. [API routes](./api-routes)
-6. [Redux Store Tree](./redux-store-tree)
+1. [Feature List](#feature-list)
+   - [Login/Signup](#login/signup)
+   - [Squads](#squads)
+   - [Zones](#zones)
+   - [Chores](#chores)
+2. [React Component List](#react-component-list)
+3. [Database Schema](#database-schema)
+4. [Frontend Routes](#frontend-routes)
+5. [API routes](#api-routes)
+6. [Redux Store Tree](#redux-store-tree)
 
 ## Feature List
 
@@ -54,6 +54,44 @@ Detailed Chore View
 - Any user may create a new Chore.
 - A Chore is equivalent to a task and can be created, edited, and deleted.
 - Additionally, a user may complete a Chore. In a future version of the app, when a Chore is completed it will disappear from the "Incomplete Chores" page and appear in the "Completed Chores" page. A user may toggle back and forth between the two pages to view completed and incomplete Chores and change the status of Chores as they wish.
+
+### React Component List
+
+- Chores (4 nested components)
+- HomePage
+- LoginFormPage
+- Navigation (2 nested components)
+- SignupFormPage
+- Squads
+- Zones
+
+### Database Schema
+
+![](https://i.postimg.cc/nVQgbfDM/database-schema.jpg)
+
+### Frontend Routes
+
+- `/login`
+- `/signup`
+- `/zones`
+- `/zones/:id`
+
+### API routes
+
+- `/users`
+- `/zones`
+- `/session`
+- `/chores`
+
+### Redux Store Tree
+
+- `chores.js`
+- `csrf.js`
+- `index.js`
+- `session.js`
+- `squads.js`
+- `user.js`
+- `zones.js`
 
 ## Available Scripts
 
