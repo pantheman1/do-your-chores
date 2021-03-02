@@ -1,4 +1,8 @@
-# Do Your Chores - Asana Clone
+# Do Your Chores
+
+### Asana Clone
+
+<p align="center"><img width="200" src="https://i.postimg.cc/4N6WHTwv/logo-madeline.png" /></p>
 
 ### Link to live site
 
@@ -25,8 +29,8 @@ Here is a quick rundown of how this document is laid out:
 
 - A user who wishes to view and experience the site as a fully registered user, but does not wish to create a new account, may use the Demo login.
 - Users may create a new account or login using their existing credentials.
-  ![](https://i.postimg.cc/cCHzr61N/Login-page.jpg)
-  ![](https://i.postimg.cc/Fzd2T1MV/Signup-page.jpg)
+<p align="center"><img src=https://i.postimg.cc/cCHzr61N/Login-page.jpg /></p>
+<p align="center"><img src=https://i.postimg.cc/Fzd2T1MV/Signup-page.jpg /></p>
 
 ### Squads
 
@@ -36,7 +40,7 @@ Here is a quick rundown of how this document is laid out:
 
 ### Zones
 
-![](https://i.postimg.cc/HWbG88tT/zones-page.jpg)
+<p align="center"><img src=https://i.postimg.cc/HWbG88tT/zones-page.jpg /></p>
 
 - Users may create a "Zone" which can be a section of the house that kids, or parents, will be cleaning. i.e. "Kitchen", or "Bathrooms".
 - Zones are larger components similar to projects which hold smaller components called Chores.
@@ -46,11 +50,11 @@ Here is a quick rundown of how this document is laid out:
 
 - A Chore is equivalent to a task and can be created, edited, and deleted.
 - Any user may create a new Chore.
-  ![](https://i.postimg.cc/QdZ5jfsg/create-a-chore.gif)
+<p align="center"><img src=https://i.postimg.cc/QdZ5jfsg/create-a-chore.gif /></p>
 - A user can toggle between Create a Chore and Detailed Chore View:
-  ![](https://i.postimg.cc/FKkWdP8P/toggle-detailed-view.gif)
+<p align="center"><img src=https://i.postimg.cc/FKkWdP8P/toggle-detailed-view.gif /></p>
 - Additionally, a user may complete a Chore. In a future version of the app, when a Chore is completed it will disappear from the "Incomplete Chores" page and appear in the "Completed Chores" page. A user may toggle back and forth between the two pages to view completed and incomplete Chores and change the status of Chores as they wish.
-  ![](https://i.postimg.cc/Y0vZRpsH/complete-chore.gif)
+<p align="center"><img src=https://i.postimg.cc/Y0vZRpsH/complete-chore.gif /></p>
 
 ### React Component List
 
