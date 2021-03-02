@@ -4,11 +4,27 @@
 
 https://doyourchores.herokuapp.com/
 
-Do Your Chores is a web application that allows parents and children to keep track of chores which need to get done around the house. Here is a quick rundown of the different components and features:
+Do Your Chores is a web application that allows parents and children to keep track of chores which need to get done around the house.
 
-## Features
+Here is a quick rundown of how the document is laid out:
+
+1. [Feature List](./feature-list)
+   - [Login/Signup](./login/signup)
+   - [Squads](./squads)
+   - [Zones](./zones)
+   - [Chores](./chores)
+2. [React Component List](./react-component-list)
+3. [Database Schema](./database-schema)
+4. [Frontend Routes](./frontend-routes)
+5. [API routes](./api-routes)
+6. [Redux Store Tree](./redux-store-tree)
+
+## Feature List
 
 ### Login/Signup
+
+![](https://i.postimg.cc/cCHzr61N/Login-page.jpg)
+![](https://i.postimg.cc/Fzd2T1MV/Signup-page.jpg)
 
 - A user who wishes to view and experience the site as a fully registered user, but does not wish to create a new account, may use the Demo login.
 - Users may create a new account or login using their existing credentials.
@@ -21,11 +37,19 @@ Do Your Chores is a web application that allows parents and children to keep tra
 
 ### Zones
 
+![](https://i.postimg.cc/HWbG88tT/zones-page.jpg)
+
 - Users may create a "Zone" which can be a section of the house that kids, or parents, will be cleaning. i.e. "Kitchen", or "Bathrooms".
 - Zones are larger components similar to projects which hold smaller components called Chores.
 - In a future version of this app only the master user will be able to create, update, or delete Zones.
 
 ### Chores
+
+Create a Chore View
+![](https://i.postimg.cc/G2Qk6QCc/chores-page-create-chore.jpg)
+
+Detailed Chore View
+![](https://i.postimg.cc/v8CWkcRx/detailed-chore-view.jpg)
 
 - Any user may create a new Chore.
 - A Chore is equivalent to a task and can be created, edited, and deleted.
