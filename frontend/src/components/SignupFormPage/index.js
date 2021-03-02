@@ -42,6 +42,9 @@ function SignupFormPage() {
                         <ul>
                             {errors.map((error, idx) => <li className="error-li" key={idx}>{error}</li>)}
                         </ul>
+                        {/* <select className="email-container">
+                            <option>...Select a Squad to Join!</option>
+                        </select> */}
                         <div className="email-container">
                             <label>Email</label>
                             <input
