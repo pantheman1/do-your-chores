@@ -5,11 +5,13 @@ import { nanoid } from 'nanoid';
 import { updateDbFromStore, updateChore } from '../../store/zones';
 import { toggleIsComplete } from '../../store/chores';
 import './chores.css'
+import CompletedChores from "./CompleteChores";
 
 const SimpleChoreView = ({ chore, updateSelected }) => {
     const dispatch = useDispatch();
     const [detailedView, setDetailedView] = useState(false);
     const [choreName, setChoreName] = useState('');
+    const [complete, setComplete] = useState(false);
 
     //send value to thunk
     const updateDb = (e) => {
@@ -18,12 +20,17 @@ const SimpleChoreView = ({ chore, updateSelected }) => {
 
     const toggleComplete = async () => {
         await dispatch(toggleIsComplete(chore))
+        setComplete(!complete)
+    }
+
+    if (complete) {
+        <CompletedChores />
     }
 
     return (
         <div className="input-chore-container">
             <div className="input-isComplete">
-                <button className={"isComplete-btn " + (chore.isComplete ? " selected" : "")} onClick={toggleComplete}><i class="far fa-check-circle"></i></button>
+                <button className={"isComplete-btn " + (chore.isComplete ? " selected" : "")} onClick={toggleComplete}><i className="far fa-check-circle"></i></button>
                 <input
                     className="chore-input-box"
                     key={nanoid()}

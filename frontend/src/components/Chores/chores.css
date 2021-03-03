@@ -127,7 +127,7 @@ h1 {
 
 .chores-header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 button.chore-detail-btn {

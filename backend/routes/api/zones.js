@@ -3,6 +3,14 @@ const asyncHandler = require('express-async-handler');
 const { Zone, Chore, Squad, User } = require('../../db/models');
 
 
+// localhost:5000/api/zones/zone/:id
+router.get('/zone/:zoneId', asyncHandler(async (req, res) => {
+    const zone = await Zone.findByPk(req.params.zoneId, {
+        attributes: ['location'],
+    });
+    return res.json({ zone })
+}))
+
 router.get('/:userId', asyncHandler(async function (req, res) {
     // this query finds the USER'S squad id
     const squadId = await User.findByPk(req.params.userId, {

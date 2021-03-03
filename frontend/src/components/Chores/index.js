@@ -5,6 +5,7 @@ import * as sessionActions from "../../store/session";
 import { getSimpleList } from '../../store/chores';
 import { nanoid } from 'nanoid';
 import { updateDbFromStore, updateChore } from '../../store/zones';
+import { getOneZone } from '../../store/singleZone';
 import './chores.css'
 import ChoreBlocks from './ChoreBlocks';
 import ChoreDetails from './choreDetails';
@@ -13,16 +14,21 @@ import NewChore from './NewChore';
 const ChoresPage = () => {
     const sessionUser = useSelector(state => state.session.user);
     const chores = useSelector(state => state.chores);
+    //zone is only bringing in the location of the zone
+    const zone = useSelector(state => state.singleZone.zone)
     const dispatch = useDispatch();
     const { zoneId } = useParams();
     const [selectedChore, setSelectedChore] = useState({});
+
+    useEffect(() => {
+        dispatch(getOneZone(zoneId))
+    }, [dispatch])
 
     const choreArr = Object.values(chores)
 
     const choresList = choreArr?.filter(chore => chore.zone_id.toString() === zoneId)
 
-    useEffect(() => {
-    }, [selectedChore])
+    // console.log("zone-->", zone.location)
 
     useEffect(() => {
         dispatch(getSimpleList(sessionUser.id))
@@ -51,7 +57,9 @@ const ChoresPage = () => {
     return (
         <div className="body-chores">
             <div className="chores-header">
-                <h1>Chores</h1>
+                <button type="button" className="completed-chores">Completed</button>
+                <h1>{zone?.location}</h1>
+                <button type="button" className="incomplete-chores">Incomplete</button>
             </div>
             {choreList}
             <button type="button" className="add-a-chore" onClick={addAChore}>Add a Chore</button>
