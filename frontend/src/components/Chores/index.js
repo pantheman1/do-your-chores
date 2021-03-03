@@ -14,15 +14,11 @@ import NewChore from './NewChore';
 const ChoresPage = () => {
     const sessionUser = useSelector(state => state.session.user);
     const chores = useSelector(state => state.chores);
+    //zone is only bringing in the location of the zone
     const zone = useSelector(state => state.singleZone.zone)
     const dispatch = useDispatch();
     const { zoneId } = useParams();
     const [selectedChore, setSelectedChore] = useState({});
-
-    // I need to get access to the Zone name so I can render it at the top of the
-    //   page. 
-
-    // console.log('singleZone-->', zone.location)
 
     useEffect(() => {
         dispatch(getOneZone(zoneId))
@@ -32,8 +28,7 @@ const ChoresPage = () => {
 
     const choresList = choreArr?.filter(chore => chore.zone_id.toString() === zoneId)
 
-    useEffect(() => {
-    }, [selectedChore])
+    // console.log("zone-->", zone.location)
 
     useEffect(() => {
         dispatch(getSimpleList(sessionUser.id))
@@ -62,7 +57,9 @@ const ChoresPage = () => {
     return (
         <div className="body-chores">
             <div className="chores-header">
-                <h1>{zone.location}</h1>
+                <button type="button" className="completed-chores">Completed</button>
+                <h1>{zone?.location}</h1>
+                <button type="button" className="incomplete-chores">Incomplete</button>
             </div>
             {choreList}
             <button type="button" className="add-a-chore" onClick={addAChore}>Add a Chore</button>

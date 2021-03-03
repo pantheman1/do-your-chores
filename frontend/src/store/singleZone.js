@@ -13,7 +13,7 @@ export const getOneZone = (id) => async dispatch => {
 
     if (res.ok) {
         const zone = await res.json();
-        console.log('zone-->', zone)
+        // console.log('zone----->', zone)
         dispatch(gettingOneZone(zone))
     }
 }
