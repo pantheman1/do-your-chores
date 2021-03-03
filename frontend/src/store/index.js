@@ -4,12 +4,14 @@ import sessionReducer from './session';
 import zonesReducer from './zones';
 import ChoresReducer from './chores';
 import UsersReducer from './user';
+import singleZone from './singleZone';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     zones: zonesReducer,
     chores: ChoresReducer,
-    users: UsersReducer
+    users: UsersReducer,
+    singleZone: singleZone
 });
 
 let enhancer;

@@ -68,7 +68,7 @@ Here is a quick rundown of how this document is laid out:
 
 ### Database Schema
 
-![](https://i.postimg.cc/nVQgbfDM/database-schema.jpg)
+<p align="center"><img src="https://i.postimg.cc/nVQgbfDM/database-schema.jpg" /></p>)
 
 ### Frontend Routes
 
