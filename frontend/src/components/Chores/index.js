@@ -18,21 +18,38 @@ const ChoresPage = () => {
     const zone = useSelector(state => state.singleZone.zone)
     const dispatch = useDispatch();
     const { zoneId } = useParams();
+    const history = useHistory();
     const [selectedChore, setSelectedChore] = useState({});
 
+    // Will initiate a fetch to grab all chores in this zoneId
     useEffect(() => {
         dispatch(getOneZone(zoneId))
-    }, [dispatch])
+    }, [dispatch, zoneId])
+
+    //useEffect which will update each time the completed button is clicked or status is changed
+    // useEffect(() => {
+    //     dispatch(getOneZone(zoneId))
+    // }, [dispatch])
+
+    // Will initiate a fetch to grab all completed chores in this zoneId
+    const handleCompleteChores = () => {
+        history.push(`/zones/${zoneId}/completed`)
+    }
+
+    // Will initiate a fetch to grab all incomplete chores in this zoneId
+    const handleIncompleteChores = () => {
+        // history.push('/zones/:zoneId/incomplete')
+    }
 
     const choreArr = Object.values(chores)
 
     const choresList = choreArr?.filter(chore => chore.zone_id.toString() === zoneId)
 
-    // console.log("zone-->", zone.location)
+    console.log('--->>>', choresList)
 
     useEffect(() => {
         dispatch(getSimpleList(sessionUser.id))
-    }, [dispatch])
+    }, [dispatch, sessionUser.id])
 
     if (!sessionUser) {
         return <Redirect to='/login' />
@@ -57,9 +74,9 @@ const ChoresPage = () => {
     return (
         <div className="body-chores">
             <div className="chores-header">
-                <button type="button" className="completed-chores">Completed</button>
+                <button type="button" className="completed-chores" onClick={handleCompleteChores}>Completed</button>
                 <h1>{zone?.location}</h1>
-                <button type="button" className="incomplete-chores">Incomplete</button>
+                <button type="button" className="incomplete-chores" onClick={handleIncompleteChores}>Incomplete</button>
             </div>
             {choreList}
             <button type="button" className="add-a-chore" onClick={addAChore}>Add a Chore</button>

@@ -21,10 +21,7 @@ const SimpleChoreView = ({ chore, updateSelected }) => {
     const toggleComplete = async () => {
         await dispatch(toggleIsComplete(chore))
         setComplete(!complete)
-    }
-
-    if (complete) {
-        <CompletedChores />
+        // console.log(chore)
     }
 
     return (

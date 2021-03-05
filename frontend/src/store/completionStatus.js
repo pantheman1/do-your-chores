@@ -20,7 +20,6 @@ export const completedChores = zoneId => async (dispatch) => {
 
     if (res.ok) {
         const chores = await res.json();
-        console.log("LOONEY TOON--->>>", chores)
         dispatch(completedChoresAction(chores))
     }
 }
