@@ -59,8 +59,29 @@ router.get('/:id', asyncHandler(async (req, res) => {
     return res.json({ chore });
 }))
 
-// localhost:5000/api/chores/zone/:id
-router.get('/zone/:id', asyncHandler(async function (req, res) {
+// localhost:5000/api/chores/:zoneId/completed 
+// this will return all completed chores in a specific zone
+router.get('/:id/completed', asyncHandler(async function (req, res) {
+    const isCompleteChore = await Chore.findAll({
+        where: {
+            'isComplete': true,
+            'zone_id': req.params.id
+        }
+    });
+    // console.log("____>>>>>", isCompleteChore)
+    return res.json(isCompleteChore)
+}));
+
+// localhost:5000/api/chores/:zoneId/incomplete
+// this will return all incomplete chores in a specific zone
+router.get('/:id/incomplete', asyncHandler(async function (req, res) {
+    const isIncompleteChore = await Chore.findAll({
+        where: {
+            'isComplete': false,
+            'zone_id': req.params.id
+        }
+    });
+    return res.json(isIncompleteChore)
 }));
 
 
