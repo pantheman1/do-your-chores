@@ -14,14 +14,14 @@ const CompletedChores = () => {
     // next steps: render compChores - find out the type of data for compChores state
 
     const completedChoresArr = Object.values(compChores);
-    console.log("COMPLETED CHORES-->>", completedChoresArr)
+    // console.log("COMPLETED CHORES-->>", completedChoresArr)
 
 
     return (
         <div className="input-chore-container">
             <div className="input-isComplete">
                 <h1>Completed chores list</h1>
-                <button type="button" onClick={e => dispatch(completedChores(zoneId))}>See Chores</button>
+                {/* <button type="button" onClick={e => dispatch(completedChores(zoneId))}>See Chores</button> */}
             </div>
         </div>
     )

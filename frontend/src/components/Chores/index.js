@@ -15,14 +15,15 @@ import { completedChores } from '../../store/completionStatus';
 const ChoresPage = () => {
     const sessionUser = useSelector(state => state.session.user);
     const chores = useSelector(state => state.chores);
+    const compChores = useSelector(state => state.completionStatus)
     //zone is only bringing in the location of the zone
     const zone = useSelector(state => state.singleZone.zone)
     const dispatch = useDispatch();
-    const { zoneId } = useParams();
     const history = useHistory();
     const [selectedChore, setSelectedChore] = useState({});
     const [complete, setComplete] = useState(false);
     const [selectedButton, setSelectedButton] = useState('all');
+    const { zoneId } = useParams();
 
     // Will initiate a fetch to grab all chores in this zoneId
     useEffect(() => {
@@ -34,22 +35,30 @@ const ChoresPage = () => {
     //     dispatch(getOneZone(zoneId))
     // }, [dispatch])
 
+
     // Will initiate a fetch to grab all completed chores in this zoneId
     const handleCompleteChores = () => {
-        history.push(`/zones/${zoneId}/completed`)
+        // history.push(`/zones/${zoneId}/completed`)
+        setSelectedButton('completed');
         dispatch(completedChores(zoneId))
     }
+
 
     // Will initiate a fetch to grab all incomplete chores in this zoneId
     const handleIncompleteChores = () => {
         // history.push('/zones/:zoneId/incomplete')
     }
 
-    const choreArr = Object.values(chores)
+    //This turns the normalized object of chores (already specific to this zone) into an array
+    const completedChoresArr = Object.values(compChores);
+    console.log("COMPLETED CHORES-->>", completedChoresArr)
 
+    // This turns a normalized object of all chores into an array
+    const choreArr = Object.values(chores)
+    // This filters the list into only those chores for this zone
     const choresList = choreArr?.filter(chore => chore.zone_id.toString() === zoneId)
 
-    console.log('--->>>', choresList)
+    // console.log('--->>>', choresList)
 
     useEffect(() => {
         dispatch(getSimpleList(sessionUser.id))
@@ -64,6 +73,8 @@ const ChoresPage = () => {
         setSelectedChore({})
     }
 
+    console.log("selectedButton-->", selectedButton)
+
     let choreList;
     if (choresList?.length > 0 && selectedButton === "all") {
         choreList = (
@@ -73,8 +84,14 @@ const ChoresPage = () => {
                 ))}
             </div>
         )
-    } else if (choresList?.length > 0 && selectedButton === "completed") {
-
+    } else if (completedChoresArr?.length > 0 && selectedButton === "completed") {
+        choreList = (
+            <div className="chores-container">
+                {completedChoresArr.map(chore => (
+                    <ChoreBlocks key={nanoid()} complete={complete} setComplete={setComplete} setSelectedChore={setSelectedChore} chore={chore} />
+                ))}
+            </div>
+        )
     } else if (choresList?.length > 0 && selectedButton === "incomplete") {
 
     }
@@ -99,7 +116,7 @@ const ChoresPage = () => {
                 <button type="button" className="incomplete-chores" onClick={handleIncompleteChores}>Incomplete</button>
             </div>
             {/* {choreList} */}
-            {selectedButton && selectedButton === "all" ? choreList : selectedButton && selectedButton === "completed" ? "COMPLETE CHORES" : selectedButton && selectedButton === "incomplete" ? "whatever incomplete" : 'All'}
+            {selectedButton && selectedButton === "all" ? choreList : selectedButton && selectedButton === "completed" ? choreList : selectedButton && selectedButton === "incomplete" ? "whatever incomplete" : 'All'}
             <button type="button" className="add-a-chore" onClick={addAChore}>Add a Chore</button>
             {Object.keys(selectedChore).length === 0 ? <NewChore choresList={choresList} /> : <ChoreDetails choresList={choresList} chore={selectedChore} />}
         </div>
