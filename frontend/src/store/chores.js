@@ -20,7 +20,7 @@ const newChorePost = (newChore) => ({
 })
 
 
-export const getSimpleList = id => async (dispatch) => {
+export const getSimpleList = () => async (dispatch) => {
     const res = await csrfFetch(`/api/chores`);
 
     if (res.ok) {

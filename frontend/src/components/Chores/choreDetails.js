@@ -16,6 +16,15 @@ const ChoreDetails = ({ chore }) => {
     const [estimatedTime, setEstimatedTime] = useState(chore.estimated_time)
     const [description, setDescription] = useState(chore.description)
 
+    // this page needs to update the store and the database with any changes to the forms
+
+    useEffect(() => {
+        setName(chore.name);
+        setAssignee(users[chore.user_id]);
+        setDescription(chore.description);
+        setEstimatedTime(chore.estimated_time);
+    }, [chore, users])
+
     const handleNameChange = (e) => {
         setName(e.target.value)
         // dispatch(updateNameValue(name))
@@ -28,6 +37,7 @@ const ChoreDetails = ({ chore }) => {
     const objArray = Object.values(users)
     const squadUsers = objArray?.filter(user => sessionUser.squad_id === user.squad_id)
 
+    if (!chore || !users) return null
 
     return (
         <div className="detailed-view-pane">
@@ -43,7 +53,7 @@ const ChoreDetails = ({ chore }) => {
                         <label>Chore Name</label>
                         <input
                             className="chore-text"
-                            value={chore.name}
+                            value={name}
                             onChange={e => setName(e.target.value)}
                         />
                     </div>
@@ -52,7 +62,7 @@ const ChoreDetails = ({ chore }) => {
                         <label>Who's doing this Chore?</label>
                         <select
                             onChange={handleSelectedUser}
-                            value={users[chore.user_id]}
+                            value={assignee}
                         >
                             {squadUsers && squadUsers.map(user => (
                                 <option key={nanoid()}>{`${user.name}-${user.id}`}</option>
@@ -66,7 +76,7 @@ const ChoreDetails = ({ chore }) => {
                     <div className="description-detailed">
                         <label>Description</label>
                         <textarea
-                            value={chore.description}
+                            value={description}
                             onChange={e => setDescription(e.target.value)}
                         />
                     </div>

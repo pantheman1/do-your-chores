@@ -3,34 +3,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Route, Redirect, useHistory, useParams, Link } from "react-router-dom";
 import { nanoid } from 'nanoid';
 import { updateDbFromStore, updateChore } from '../../store/zones';
-import { toggleIsComplete } from '../../store/chores';
 import './chores.css'
 import CompletedChores from "./CompleteChores";
+import CompletedChoreButton from './CompleteButton'
 
-const SimpleChoreView = ({ chore, updateSelected }) => {
+const SimpleChoreView = ({ chore, setSelectedChore, complete, setComplete }) => {
     const dispatch = useDispatch();
     const [detailedView, setDetailedView] = useState(false);
     const [choreName, setChoreName] = useState('');
-    const [complete, setComplete] = useState(false);
 
     //send value to thunk
     const updateDb = (e) => {
         dispatch(updateDbFromStore(e.target.value))
     }
-
-    const toggleComplete = async () => {
-        await dispatch(toggleIsComplete(chore))
-        setComplete(!complete)
-    }
-
-    if (complete) {
-        <CompletedChores />
-    }
+    // console.log('the real chore-->>', chore)
 
     return (
         <div className="input-chore-container">
             <div className="input-isComplete">
-                <button className={"isComplete-btn " + (chore.isComplete ? " selected" : "")} onClick={toggleComplete}><i className="far fa-check-circle"></i></button>
+                <CompletedChoreButton chore={chore} complete={complete} setComplete={setComplete} />
                 <input
                     className="chore-input-box"
                     key={nanoid()}
@@ -43,7 +34,7 @@ const SimpleChoreView = ({ chore, updateSelected }) => {
             </div>
             <button
                 className="chore-detail-btn"
-                type="button" onClick={() => updateSelected(chore)}>Details</button>
+                type="button" onClick={() => setSelectedChore(chore)}>Details</button>
         </div>
     )
 }

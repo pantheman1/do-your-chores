@@ -5,13 +5,15 @@ import zonesReducer from './zones';
 import ChoresReducer from './chores';
 import UsersReducer from './user';
 import singleZone from './singleZone';
+import CompletedChoresReducer from './completionStatus';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
     zones: zonesReducer,
     chores: ChoresReducer,
     users: UsersReducer,
-    singleZone: singleZone
+    singleZone: singleZone,
+    completionStatus: CompletedChoresReducer,
 });
 
 let enhancer;

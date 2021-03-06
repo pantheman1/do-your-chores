@@ -8,6 +8,8 @@ import Navigation from "./components/Navigation";
 import HomePage from './components/HomePage';
 import Zones from './components/Zones';
 import Chores from './components/Chores';
+import CompletedChores from "./components/Chores/CompleteChores";
+// import IncompleteChores from "./components/Chores/IncompleteChores"; //make this
 
 function App() {
   const dispatch = useDispatch();
@@ -15,6 +17,8 @@ function App() {
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
+
+  //create new routes for any new pages I need
 
   return (
     <>
