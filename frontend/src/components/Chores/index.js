@@ -22,6 +22,7 @@ const ChoresPage = () => {
     const history = useHistory();
     const [selectedChore, setSelectedChore] = useState({});
     const [complete, setComplete] = useState(false);
+    const [selectedButton, setSelectedButton] = useState('all');
 
     // Will initiate a fetch to grab all chores in this zoneId
     useEffect(() => {
@@ -64,7 +65,7 @@ const ChoresPage = () => {
     }
 
     let choreList;
-    if (choresList?.length > 0) {
+    if (choresList?.length > 0 && selectedButton === "all") {
         choreList = (
             <div className="chores-container">
                 {choresList.map(chore => (
@@ -72,7 +73,23 @@ const ChoresPage = () => {
                 ))}
             </div>
         )
+    } else if (choresList?.length > 0 && selectedButton === "completed") {
+
+    } else if (choresList?.length > 0 && selectedButton === "incomplete") {
+
     }
+
+    //bring in state from completed and incomplete chores
+    //update if statement:
+    // if complete button is clicked
+    //    then map through completed choreList and render a <CompletedChores /> with all the props passed in
+    // if incomplete button is clicked
+    //    then map through incomplete choreList and render a <IncompleteChores /> with all the props passed in
+    // if All Chores button is clicked
+    //    then map through choreList and render a <ChoreBlocks /> with all the props passed in
+
+    // if completed button is clicked:
+    //   then dispatch the thunk action creator for the completed chores and render them
 
     return (
         <div className="body-chores">
@@ -81,7 +98,8 @@ const ChoresPage = () => {
                 <h1>{zone?.location}</h1>
                 <button type="button" className="incomplete-chores" onClick={handleIncompleteChores}>Incomplete</button>
             </div>
-            {choreList}
+            {/* {choreList} */}
+            {selectedButton && selectedButton === "all" ? choreList : selectedButton && selectedButton === "completed" ? "COMPLETE CHORES" : selectedButton && selectedButton === "incomplete" ? "whatever incomplete" : 'All'}
             <button type="button" className="add-a-chore" onClick={addAChore}>Add a Chore</button>
             {Object.keys(selectedChore).length === 0 ? <NewChore choresList={choresList} /> : <ChoreDetails choresList={choresList} chore={selectedChore} />}
         </div>
