@@ -32,21 +32,25 @@ const ChoresPage = () => {
 
     //useEffect which will update each time the completed button is clicked or status is changed
     // useEffect(() => {
-    //     dispatch(getOneZone(zoneId))
-    // }, [dispatch])
+    //     dispatch(completedChores(zoneId))
+    // }, [dispatch, complete])
 
+    const handleAllChores = () => {
+        dispatch(getSimpleList(sessionUser.id))
+        setSelectedButton('all');
+    }
 
     // Will initiate a fetch to grab all completed chores in this zoneId
     const handleCompleteChores = () => {
-        // history.push(`/zones/${zoneId}/completed`)
         setSelectedButton('completed');
-        dispatch(completedChores(zoneId))
+        // dispatch(completedChores(zoneId))
+
     }
 
 
     // Will initiate a fetch to grab all incomplete chores in this zoneId
     const handleIncompleteChores = () => {
-        // history.push('/zones/:zoneId/incomplete')
+        setSelectedButton('incomplete');
     }
 
     //This turns the normalized object of chores (already specific to this zone) into an array
@@ -57,11 +61,13 @@ const ChoresPage = () => {
     const choreArr = Object.values(chores)
     // This filters the list into only those chores for this zone
     const choresList = choreArr?.filter(chore => chore.zone_id.toString() === zoneId)
-
+    const completedChoresList = choresList?.filter(chore => chore.isComplete === true)
+    const incompleteChoresList = choresList?.filter(chore => chore.isComplete === false)
     // console.log('--->>>', choresList)
 
     useEffect(() => {
         dispatch(getSimpleList(sessionUser.id))
+        // setSelectedButton('all')
     }, [dispatch, sessionUser.id])
 
     if (!sessionUser) {
@@ -84,39 +90,38 @@ const ChoresPage = () => {
                 ))}
             </div>
         )
-    } else if (completedChoresArr?.length > 0 && selectedButton === "completed") {
+    } else if (completedChoresList?.length > 0 && selectedButton === "completed") {
         choreList = (
             <div className="chores-container">
-                {completedChoresArr.map(chore => (
+                {completedChoresList.map(chore => (
                     <ChoreBlocks key={nanoid()} complete={complete} setComplete={setComplete} setSelectedChore={setSelectedChore} chore={chore} />
                 ))}
             </div>
         )
-    } else if (choresList?.length > 0 && selectedButton === "incomplete") {
-
+    } else if (incompleteChoresList?.length > 0 && selectedButton === "incomplete") {
+        choreList = (
+            <div className="chores-container">
+                {incompleteChoresList.map(chore => (
+                    <ChoreBlocks key={nanoid()} complete={complete} setComplete={setComplete} setSelectedChore={setSelectedChore} chore={chore} />
+                ))}
+            </div>
+        )
     }
 
-    //bring in state from completed and incomplete chores
-    //update if statement:
-    // if complete button is clicked
-    //    then map through completed choreList and render a <CompletedChores /> with all the props passed in
-    // if incomplete button is clicked
-    //    then map through incomplete choreList and render a <IncompleteChores /> with all the props passed in
-    // if All Chores button is clicked
-    //    then map through choreList and render a <ChoreBlocks /> with all the props passed in
-
-    // if completed button is clicked:
-    //   then dispatch the thunk action creator for the completed chores and render them
+    // Trying to render the Choreblocks component on the CompleteChores page. Currently very broken. 
+    // Look at if statement above and something about the buttons
 
     return (
         <div className="body-chores">
             <div className="chores-header">
                 <button type="button" className="completed-chores" onClick={handleCompleteChores}>Completed</button>
-                <h1>{zone?.location}</h1>
                 <button type="button" className="incomplete-chores" onClick={handleIncompleteChores}>Incomplete</button>
+                <button type="button" className="all-chores" onClick={handleAllChores}>All</button>
+                <h1>{zone?.location}</h1>
             </div>
             {/* {choreList} */}
-            {selectedButton && selectedButton === "all" ? choreList : selectedButton && selectedButton === "completed" ? choreList : selectedButton && selectedButton === "incomplete" ? "whatever incomplete" : 'All'}
+            {selectedButton && selectedButton === "all" ? choreList : selectedButton && selectedButton === "completed" ? choreList : selectedButton && selectedButton === "incomplete" ? choreList : 'All'}
+            {/* {selectedButton && selectedButton === "all" ? choreList : 'All'} */}
             <button type="button" className="add-a-chore" onClick={addAChore}>Add a Chore</button>
             {Object.keys(selectedChore).length === 0 ? <NewChore choresList={choresList} /> : <ChoreDetails choresList={choresList} chore={selectedChore} />}
         </div>
