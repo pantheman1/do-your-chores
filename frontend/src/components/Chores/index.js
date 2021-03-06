@@ -68,7 +68,7 @@ const ChoresPage = () => {
         choreList = (
             <div className="chores-container">
                 {choresList.map(chore => (
-                    <ChoreBlocks key={nanoid()} complete={complete} setComplete={setComplete} updateSelected={setSelectedChore} chore={chore} />
+                    <ChoreBlocks key={nanoid()} complete={complete} setComplete={setComplete} setSelectedChore={setSelectedChore} chore={chore} />
                 ))}
             </div>
         )
