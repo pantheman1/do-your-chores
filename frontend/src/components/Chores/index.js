@@ -10,6 +10,7 @@ import './chores.css'
 import ChoreBlocks from './ChoreBlocks';
 import ChoreDetails from './choreDetails';
 import NewChore from './NewChore';
+import { completedChores } from '../../store/completionStatus';
 
 const ChoresPage = () => {
     const sessionUser = useSelector(state => state.session.user);
@@ -20,6 +21,7 @@ const ChoresPage = () => {
     const { zoneId } = useParams();
     const history = useHistory();
     const [selectedChore, setSelectedChore] = useState({});
+    const [complete, setComplete] = useState(false);
 
     // Will initiate a fetch to grab all chores in this zoneId
     useEffect(() => {
@@ -34,6 +36,7 @@ const ChoresPage = () => {
     // Will initiate a fetch to grab all completed chores in this zoneId
     const handleCompleteChores = () => {
         history.push(`/zones/${zoneId}/completed`)
+        dispatch(completedChores(zoneId))
     }
 
     // Will initiate a fetch to grab all incomplete chores in this zoneId
@@ -65,7 +68,7 @@ const ChoresPage = () => {
         choreList = (
             <div className="chores-container">
                 {choresList.map(chore => (
-                    <ChoreBlocks key={nanoid()} updateSelected={setSelectedChore} chore={chore} />
+                    <ChoreBlocks key={nanoid()} complete={complete} setComplete={setComplete} updateSelected={setSelectedChore} chore={chore} />
                 ))}
             </div>
         )

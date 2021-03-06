@@ -44,7 +44,7 @@ function App() {
           <Route exact path='/zones/:zoneId/completed'>
             <CompletedChores />
           </Route>
-          {/* <Route path='/zones/:id/incomplete'>
+          {/* <Route path='/zones/:zoneId/incomplete'>
             <IncompleteChores />
           </Route> */}
         </Switch>
