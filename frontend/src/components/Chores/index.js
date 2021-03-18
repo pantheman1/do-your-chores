@@ -65,10 +65,10 @@ const ChoresPage = () => {
     const incompleteChoresList = choresList?.filter(chore => chore.isComplete === false)
     // console.log('--->>>', choresList)
 
+    // Loads chores upon render
     useEffect(() => {
-        dispatch(getSimpleList(sessionUser.id))
-        // setSelectedButton('all')
-    }, [dispatch, sessionUser.id])
+        dispatch(getSimpleList())
+    }, [dispatch])
 
     if (!sessionUser) {
         return <Redirect to='/login' />
