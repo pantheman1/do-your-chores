@@ -61,6 +61,12 @@ In `/backend` there is a file called `.env.example`.  Make a copy of that file a
 
 ### Create user and DB for app
 
+Log into `psql`:
+
+```bash
+sudo -u postgres psql
+```
+
 Now create the user for your app account in the DB:
 
 ```bash
