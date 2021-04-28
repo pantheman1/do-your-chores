@@ -55,6 +55,33 @@ ALTER USER postgres WITH ENCRYPTED PASSWORD '*****'
 
 replacing `'*****'` with a password.  You can now exit psql using `ctrl-d`.
 
+### Fill out .env
+
+In `/backend` there is a file called `.env.example`.  Make a copy of that file and call it `.env` (still in the `/backend` directory).  Fill out the pieces that need to be filled out.
+
+### Create user and DB for app
+
+Now create the user for your app account in the DB:
+
+```bash
+CREATE USER <username> CREATEDB WITH ENCRYPTED PASSWORD '*****';
+```
+
+where `<username>` is the username from `.env`, and `'*****'` is the password from `.env`.
+
+Next, create the actual database using `sequelize`:
+
+```bash
+npx dotenv sequelize-cli db:create
+```
+
+### Migrate and seed DB
+
+```bash
+npx dotenv sequelize-cli db:migrate
+npx dotenv sequelize-cli db:seed:all
+```
+
 ### Install Postbird
 
 Install the database management service [Postbird][postbird].
