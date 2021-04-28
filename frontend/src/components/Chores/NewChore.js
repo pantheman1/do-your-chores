@@ -9,7 +9,7 @@ import { getUserByZone } from '../../store/zones';
 import { postNewChore } from '../../store/chores';
 
 
-const NewChore = () => {
+const NewChore = ({ setSelectedChore }) => {
     //logged in user
     const sessionUser = useSelector(state => state.session.user);
     //need user state -- starts out as an empty object--how do I populate this so i can loop through and grab all the users?
@@ -36,6 +36,7 @@ const NewChore = () => {
     const squadUsers = objArray.filter(user => sessionUser.squad_id === user.squad_id)
 
     const onSubmit = async (e) => {
+        e.preventDefault()
         const user_idString = assignee.split("-")[1];
         const user_id = Number(user_idString);
         const zone_id = Number(zoneId)
@@ -47,8 +48,18 @@ const NewChore = () => {
             zone_id: zone_id,
             description: description
         }
+        // chore is getting duplicated ////////////////////////bugbugbug
+        // Create chore now will duplicate the chore when you click the COMPLETE button
+        // The Create a new Chore form does not reset
         await dispatch(postNewChore(newUser))
-        e.preventDefault()
+        // setSelectedChore("")
+        // newUser = {
+        //     name: "",
+        //     user_id: "",
+        //     estimated_time: "",
+        //     zone_id: "",
+        //     description: "",
+        // };
     }
 
     useEffect(async () => {
