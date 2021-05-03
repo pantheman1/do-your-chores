@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "subscriptionId": {
+      "value": "abced48e-3b8f-4091-be87-96b99af21906"
+    },
+    "name": {
+      "value": "doyourchores"
+    },
+    "location": {
+      "value": "West US"
+    },
+    "hostingPlanName": {
+      "value": "ASP-doyourchores-9650"
+    },
+    "serverFarmResourceGroup": {
+      "value": "doyourchores"
+    },
+    "alwaysOn": {
+      "value": false
+    },
+    "sku": {
+      "value": "Basic"
+    },
+    "skuCode": {
+      "value": "B1"
+    },
+    "workerSize": {
+      "value": "0"
+    },
+    "workerSizeId": {
+      "value": "0"
+    },
+    "numberOfWorkers": {
+      "value": "1"
+    },
+    "linuxFxVersion": {
+      "value": "DOCKER|mcr.microsoft.com/appsvc/staticsite:latest"
+    },
+    "dockerRegistryUrl": {
+      "value": "https://mcr.microsoft.com"
+    },
+    "dockerRegistryStartupCommand": {
+      "value": ""
+    }
+  }
+}
