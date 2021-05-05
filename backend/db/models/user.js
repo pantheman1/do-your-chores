@@ -20,6 +20,9 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
+    masterUserId: {
+      type: DataTypes.INTEGER,
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -33,18 +36,6 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [60, 60]
       },
-    },
-    role: {
-      type: DataTypes.STRING,
-    },
-    about_me: {
-      type: DataTypes.TEXT,
-    },
-    favorite_thing_to_clean: {
-      type: DataTypes.STRING,
-    },
-    squad_id: {
-      type: DataTypes.INTEGER,
     },
   },
     {
@@ -63,8 +54,13 @@ module.exports = (sequelize, DataTypes) => {
       },
     });
   User.associate = function (models) {
-    User.hasMany(models.Chore, { foreignKey: "user_id" })
-    User.belongsTo(models.Squad, { foreignKey: "squad_id" })
+    const columnMapping = {
+      through: 'UserSquad',
+      otherKey: 'squadId',
+      foreignKey: 'userId',
+    }
+    User.hasMany(models.Chore, { foreignKey: "userId" })
+    User.belongsToMany(models.Squad, columnMapping)
   };
   User.prototype.toSafeObject = function () {
     const { id, username, email, squad_id, name } = this;

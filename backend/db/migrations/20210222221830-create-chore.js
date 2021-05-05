@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.STRING(255),
         allowNull: false
       },
-      due_date: {
+      dueDate: {
         type: Sequelize.DATE,
         get: function () {
           return moment(this.getDataValue('due_date')).format('MM/DD/YYYY hh:mm')
@@ -21,18 +21,18 @@ module.exports = {
       description: {
         type: Sequelize.TEXT
       },
-      estimated_time: {
+      estimatedTime: {
         type: Sequelize.INTEGER
       },
       isComplete: {
         type: Sequelize.BOOLEAN
       },
-      zone_id: {
+      zoneId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: "Zones" }
       },
-      user_id: {
+      userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: "Users" }

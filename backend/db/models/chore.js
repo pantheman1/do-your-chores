@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     user_id: DataTypes.INTEGER
   }, {});
   Chore.associate = function (models) {
-    Chore.belongsTo(models.User, { foreignKey: "user_id" });
-    Chore.belongsTo(models.Zone, { foreignKey: "zone_id" });
+    Chore.belongsTo(models.User, { foreignKey: "userId" });
+    Chore.belongsTo(models.Zone, { foreignKey: "zoneId" });
   };
   //create component for zone which will house the chore component
 

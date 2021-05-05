@@ -8,6 +8,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      masterUserId: {
+        type: Sequelize.INTEGER,
+      },
       name: {
         type: Sequelize.STRING(30),
       },
@@ -20,20 +23,6 @@ module.exports = {
         type: Sequelize.STRING(256),
         allowNull: false,
         unique: true,
-      },
-      role: {
-        type: Sequelize.STRING(30),
-      },
-      about_me: {
-        type: Sequelize.TEXT
-      },
-      favorite_thing_to_clean: {
-        type: Sequelize.STRING(50),
-      },
-      squad_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: { model: "Squads" }
       },
       hashedPassword: {
         type: Sequelize.STRING.BINARY,
