@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "serverName": {
+      "value": "do-your-chores"
+    },
+    "location": {
+      "value": "westus2"
+    },
+    "skuName": {
+      "value": "B_Gen5_1"
+    },
+    "skuTier": {
+      "value": "Basic"
+    },
+    "skuCapacity": {
+      "value": 1
+    },
+    "skuFamily": {
+      "value": "Gen5"
+    },
+    "skuSizeMB": {
+      "value": 5120
+    },
+    "backupRetentionDays": {
+      "value": 7
+    },
+    "geoRedundantBackup": {
+      "value": "Disabled"
+    },
+    "storageAutoGrow": {
+      "value": "Enabled"
+    },
+    "tags": {
+      "value": {}
+    },
+    "infrastructureEncryption": {
+      "value": "Disabled"
+    },
+    "administratorLogin": {
+      "value": "pantheman"
+    },
+    "administratorLoginPassword": {
+      "value": null
+    },
+    "previewFeature": {
+      "value": ""
+    },
+    "version": {
+      "value": "11"
+    }
+  }
+}
