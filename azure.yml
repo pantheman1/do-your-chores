@@ -29,9 +29,7 @@ jobs:
   build-and-deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
-    environment: production
     steps:
-      - uses: actions/checkout@v2
       - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v2
         with:
@@ -49,3 +47,20 @@ jobs:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+
+      # Checkout code
+      - uses: actions/checkout@v2
+
+      # Login to Azure
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      # Deploy Postgres Database
+      - name: Deploy postgres
+        uses: azure/arm-deploy@v1
+        with:
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+          resourceGroupName: ${{ secrets.AZURE_RG }}
+          template: /deploy/template/postgres_template.json
+          parameters: /deploy/template/postgres_parameters.json
