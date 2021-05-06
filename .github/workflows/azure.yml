@@ -29,6 +29,13 @@ jobs:
     name: Build and Deploy
     runs-on: ubuntu-latest
     steps:
+      - name: "Infrastructure setup"
+        uses: azure/arm-deploy@v1
+        with:
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+          resourceGroupName: ${{ secrets.AZURE_RG }}
+          template: ./deploy/template/azure_infrastructure_template.json
+          parameters: ./deploy/template/azure_infrastructure_parameters.json
       - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v2
         with:
