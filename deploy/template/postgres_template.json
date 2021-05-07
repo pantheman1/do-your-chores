@@ -60,7 +60,7 @@
       "name": "[parameters('serverName')]",
       "properties": {
         "administratorLogin": "[parameters('administratorLogin')]",
-        "administratorLoginPassword": "randomString",
+        "administratorLoginPassword": "randomStringkljhlkhj#23$@5hj",
         "version": "[parameters('version')]",
         "storageProfile": {
           "storageMB": "[parameters('skuSizeMB')]",
