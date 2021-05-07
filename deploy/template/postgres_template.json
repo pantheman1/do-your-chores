@@ -62,13 +62,6 @@
       "location": "[parameters('location')]",
       "name": "[parameters('serverName')]",
       "properties": {
-        "version": "[parameters('version')]",
-        "storageProfile": {
-          "storageMB": "[parameters('skuSizeMB')]",
-          "backupRetentionDays": "[parameters('backupRetentionDays')]",
-          "geoRedundantBackup": "[parameters('geoRedundantBackup')]",
-          "storageAutoGrow": "[parameters('storageAutoGrow')]"
-        },
         "createMode": "[parameters('createMode')]",
         "administratorLogin": "[parameters('administratorLogin')]",
         "administratorLoginPassword": {
@@ -78,6 +71,13 @@
             },
             "secretName": "doyourchoressecret"
           }
+        },
+        "version": "[parameters('version')]",
+        "storageProfile": {
+          "storageMB": "[parameters('skuSizeMB')]",
+          "backupRetentionDays": "[parameters('backupRetentionDays')]",
+          "geoRedundantBackup": "[parameters('geoRedundantBackup')]",
+          "storageAutoGrow": "[parameters('storageAutoGrow')]"
         },
         "previewFeature": "[parameters('previewFeature')]",
         "infrastructureEncryption": "[parameters('infrastructureEncryption')]"
