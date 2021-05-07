@@ -63,9 +63,9 @@
         "administratorLoginPassword": {
           "reference": {
             "keyVault": {
-              "id": "[resourceId('[resourceGroup().name]', 'Microsoft.KeyVault/vaults', 'doyourchoresvault')]"
-            },
-            "secretName": "doyourchoressecret"
+              "id": "[resourceId('[resourceGroup().name]', 'Microsoft.KeyVault/vaults', 'doyourchoresvault')]",
+              "secretName": "doyourchoressecret"
+            }
           }
         },
         "version": "[parameters('version')]",
