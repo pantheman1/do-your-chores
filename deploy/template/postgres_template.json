@@ -5,6 +5,9 @@
     "administratorLogin": {
       "type": "string"
     },
+    "administratorLoginPassword": {
+      "type": "secureString"
+    },
     "location": {
       "type": "string"
     },
@@ -52,9 +55,6 @@
       "defaultValue": "Disabled"
     }
   },
-  "variables": {
-    "keyVaultVar": "/subscriptions/[subscription().subscriptionId]/resourceGroups/[resourceGroup().name]/providers/Microsoft.KeyVault/vaults/doyourchoresvault"
-  },
   "resources": [
     {
       "apiVersion": "2017-12-01-preview",
@@ -63,14 +63,7 @@
       "name": "[parameters('serverName')]",
       "properties": {
         "administratorLogin": "[parameters('administratorLogin')]",
-        "administratorLoginPassword": {
-          "reference": {
-            "keyVault": {
-              "id": "[variables('keyVaultVar')]"
-            },
-            "secretName": "doyourchoressecret"
-          }
-        },
+        "administratorLoginPassword": "[parameters('administratorLoginPassword')]",
         "version": "[parameters('version')]",
         "storageProfile": {
           "storageMB": "[parameters('skuSizeMB')]",
