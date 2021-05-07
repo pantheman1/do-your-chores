@@ -1,6 +1,7 @@
 {
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
+
   "parameters": {
     "serverName": {
       "value": "do-your-chores"
@@ -41,22 +42,11 @@
     "administratorLogin": {
       "value": "pantheman"
     },
-    "administratorLoginPassword": {
-      "reference": {
-        "keyVault": {
-          "id": "[variables('keyVaultVar')]"
-        },
-        "secretName": "doyourchoressecret"
-      }
-    },
     "previewFeature": {
       "value": ""
     },
     "version": {
       "value": "11"
-    },
-    "variables": {
-      "keyVaultVar": "/subscriptions/[subscription().subscriptionId]/resourceGroups/[resourceGroup().name]/providers/Microsoft.KeyVault/vaults/doyourchoresvault"
     }
   }
 }
