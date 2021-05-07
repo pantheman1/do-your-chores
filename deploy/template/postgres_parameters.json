@@ -38,6 +38,9 @@
     "infrastructureEncryption": {
       "value": "Disabled"
     },
+    "createMode": {
+      "value": "Default"
+    },
     "administratorLogin": {
       "value": "pantheman"
     },
