@@ -5,6 +5,9 @@
     "administratorLogin": {
       "type": "string"
     },
+    "administratorLoginPassword": {
+      "type": "string"
+    },
     "location": {
       "type": "string"
     },
@@ -60,7 +63,7 @@
       "name": "[parameters('serverName')]",
       "properties": {
         "administratorLogin": "[parameters('administratorLogin')]",
-        "administratorLoginPassword": "randomStringkljhlkhj#23$@5hj",
+        "administratorLoginPassword": "[parameters('administratorLoginPassword')]",
         "version": "[parameters('version')]",
         "storageProfile": {
           "storageMB": "[parameters('skuSizeMB')]",
