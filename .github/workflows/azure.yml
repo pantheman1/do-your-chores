@@ -29,10 +29,12 @@ jobs:
     name: Build and Deploy
     runs-on: ubuntu-latest
     steps:
-      # Login to Azure
-      - uses: azure/login@v1
+      - name: "Login to Azure"
+        uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - uses: actions/checkout@v2
+
       - name: "Infrastructure setup"
         uses: azure/arm-deploy@v1
         with:
@@ -40,10 +42,12 @@ jobs:
           resourceGroupName: ${{ secrets.AZURE_RG }}
           template: ./deploy/template/azure_infrastructure_template.json
           parameters: ./deploy/template/azure_infrastructure_parameters.json
+
       - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ env.NODE_VERSION }}
+
       - name: "Deploy to Azure WebApp"
         uses: azure/webapps-deploy@v2
         with:
@@ -51,9 +55,6 @@ jobs:
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
-      - uses: actions/checkout@v2
-
-      # Deploy Postgres Database
       - name: Deploy postgres
         uses: azure/arm-deploy@v1
         with:
