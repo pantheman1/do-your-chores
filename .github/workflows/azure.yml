@@ -61,6 +61,4 @@ jobs:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
           resourceGroupName: ${{ secrets.AZURE_RG }}
           template: ./deploy/template/postgres_template.json
-          parameters:
-            - administratorLoginPassword=craza;jrqrq32r34iuhj
-            - ./deploy/template/postgres_parameters.json
+          parameters: "administratorLoginPassword=craza;jrqrq32r34iuhj ./deploy/template/postgres_parameters.json"
