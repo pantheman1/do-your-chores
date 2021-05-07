@@ -44,7 +44,7 @@
     "administratorLoginPassword": {
       "reference": {
         "keyVault": {
-          "id": "/subscriptions/[subscription().subscriptionId]/resourceGroups/[resourceGroup().name]/providers/Microsoft.KeyVault/vaults/doyourchoresvault"
+          "id": "[variables('keyVaultId')]"
         },
         "secretName": "doyourchoressecret"
       }
@@ -55,5 +55,8 @@
     "version": {
       "value": "11"
     }
+  },
+  "variables": {
+    "keyVaultId": "/subscriptions/[subscription().subscriptionId]/resourceGroups/[resourceGroup().name]/providers/Microsoft.KeyVault/vaults/doyourchoresvault"
   }
 }
