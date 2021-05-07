@@ -2,9 +2,6 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "createMode": {
-      "type": "string"
-    },
     "administratorLogin": {
       "type": "string"
     },
@@ -62,7 +59,6 @@
       "location": "[parameters('location')]",
       "name": "[parameters('serverName')]",
       "properties": {
-        "createMode": "[parameters('createMode')]",
         "administratorLogin": "[parameters('administratorLogin')]",
         "administratorLoginPassword": {
           "reference": {
