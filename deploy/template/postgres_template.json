@@ -60,14 +60,7 @@
       "name": "[parameters('serverName')]",
       "properties": {
         "administratorLogin": "[parameters('administratorLogin')]",
-        "administratorLoginPassword": {
-          "reference": {
-            "keyVault": {
-              "id": "[resourceId('Microsoft.KeyVault/vaults', 'doyourchoresvault')]",
-              "secretName": "doyourchoressecret"
-            }
-          }
-        },
+        "administratorLoginPassword": "randomString",
         "version": "[parameters('version')]",
         "storageProfile": {
           "storageMB": "[parameters('skuSizeMB')]",
