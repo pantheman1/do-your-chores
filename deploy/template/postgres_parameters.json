@@ -44,14 +44,6 @@
     "administratorLogin": {
       "value": "pantheman"
     },
-    "administratorLoginPassword": {
-      "reference": {
-        "keyVault": {
-          "id": "[resourceId('[resourceGroup().name]', 'Microsoft.KeyVault/vaults', 'doyourchoresvault')]"
-        },
-        "secretName": "doyourchoressecret"
-      }
-    },
     "previewFeature": {
       "value": ""
     },

@@ -8,9 +8,6 @@
     "administratorLogin": {
       "type": "string"
     },
-    "administratorLoginPassword": {
-      "type": "securestring"
-    },
     "location": {
       "type": "string"
     },
@@ -74,7 +71,14 @@
         },
         "createMode": "[parameters('createMode')]",
         "administratorLogin": "[parameters('administratorLogin')]",
-        "administratorLoginPassword": "[parameters('administratorLoginPassword')]",
+        "administratorLoginPassword": {
+          "reference": {
+            "keyVault": {
+              "id": "[resourceId('[resourceGroup().name]', 'Microsoft.KeyVault/vaults', 'doyourchoresvault')]"
+            },
+            "secretName": "doyourchoressecret"
+          }
+        },
         "previewFeature": "[parameters('previewFeature')]",
         "infrastructureEncryption": "[parameters('infrastructureEncryption')]"
       },
@@ -88,6 +92,5 @@
       "tags": "[parameters('tags')]",
       "type": "Microsoft.DBforPostgreSQL/servers"
     }
-  ],
-  "variables": {}
+  ]
 }
