@@ -29,6 +29,10 @@ jobs:
     name: Build and Deploy
     runs-on: ubuntu-latest
     steps:
+      # Login to Azure
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: "Infrastructure setup"
         uses: azure/arm-deploy@v1
         with:
@@ -48,11 +52,6 @@ jobs:
           package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
       - uses: actions/checkout@v2
-
-      # Login to Azure
-      - uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       # Deploy Postgres Database
       - name: Deploy postgres
