@@ -33,7 +33,9 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - uses: actions/checkout@v2
+
+      - name: Checkout code
+        uses: actions/checkout@v2
 
       # - name: "Infrastructure setup"
       #   uses: azure/arm-deploy@v1
@@ -56,6 +58,7 @@ jobs:
       #     package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
       - name: Execute database Sequelize commands
+        working-directory: backend/
         run: |
           # npx dotenv sequelize-cli db:drop
           npx sequelize-cli db:create --url {{ secrets.DB_CONNECTION_STRING }}
