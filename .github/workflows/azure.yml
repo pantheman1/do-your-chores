@@ -58,8 +58,9 @@ jobs:
       #     package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
       - name: Execute database Sequelize commands
-        working-directory: backend/
         run: |
+          npm install
+          cd backend
           # npx dotenv sequelize-cli db:drop
           npx sequelize-cli db:create --url {{ secrets.DB_CONNECTION_STRING }}
           npx sequelize-cli db:migrate --url {{ secrets.DB_CONNECTION_STRING }}
