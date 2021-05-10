@@ -62,6 +62,6 @@ jobs:
           npm install
           cd backend
           # npx dotenv sequelize-cli db:drop
-          npx sequelize-cli db:create --url {{ secrets.DB_CONNECTION_STRING }}
-          npx sequelize-cli db:migrate --url {{ secrets.DB_CONNECTION_STRING }}
-          npx sequelize-cli db:seed:all --url {{ secrets.DB_CONNECTION_STRING }}
+          npx sequelize-cli db:create --url ${{ secrets.DB_CONNECTION_STRING }}
+          npx sequelize-cli db:migrate --url ${{ secrets.DB_CONNECTION_STRING }}
+          npx sequelize-cli db:seed:all --url ${{ secrets.DB_CONNECTION_STRING }}
