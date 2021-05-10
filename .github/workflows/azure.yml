@@ -58,6 +58,6 @@ jobs:
       - name: Execute database Sequelize commands
         run: |
           # npx dotenv sequelize-cli db:drop
-          npx dotenv sequelize-cli db:create
-          npx dotenv sequelize-cli db:migrate
-          npx dotenv sequelize-cli db:seed:all
+          npx sequelize-cli db:create --url {{ secrets.DB_CONNECTION_STRING }}
+          npx sequelize-cli db:migrate --url {{ secrets.DB_CONNECTION_STRING }}
+          npx sequelize-cli db:seed:all --url {{ secrets.DB_CONNECTION_STRING }}
