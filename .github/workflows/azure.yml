@@ -35,22 +35,29 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - uses: actions/checkout@v2
 
-      - name: "Infrastructure setup"
-        uses: azure/arm-deploy@v1
-        with:
-          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
-          resourceGroupName: ${{ secrets.AZURE_RG }}
-          template: ./deploy/template/azure_infrastructure_template.json
-          parameters: ./deploy/template/azure_infrastructure_parameters.json
+      # - name: "Infrastructure setup"
+      #   uses: azure/arm-deploy@v1
+      #   with:
+      #     subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+      #     resourceGroupName: ${{ secrets.AZURE_RG }}
+      #     template: ./deploy/template/azure_infrastructure_template.json
+      #     parameters: ./deploy/template/azure_infrastructure_parameters.json
 
       - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: "Deploy to Azure WebApp"
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+      # - name: "Deploy to Azure WebApp"
+      #   uses: azure/webapps-deploy@v2
+      #   with:
+      #     app-name: ${{ env.AZURE_WEBAPP_NAME }}
+      #     publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+      #     package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+
+      - name: Execute database Sequelize commands
+        run: |
+          # npx dotenv sequelize-cli db:drop
+          npx dotenv sequelize-cli db:create
+          npx dotenv sequelize-cli db:migrate
+          npx dotenv sequelize-cli db:seed:all
