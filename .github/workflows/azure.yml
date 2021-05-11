@@ -57,14 +57,24 @@ jobs:
       #     publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
       #     package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
 
-      - name: Execute database Sequelize commands
-        env:
-          NODE_ENV: "production"
-          DB_CONNECTION_STRING: ${{ secrets.DB_CONNECTION_STRING }}
+      # - name: Execute database Sequelize commands
+      #   env:
+      #     NODE_ENV: "production"
+      #     DB_CONNECTION_STRING: ${{ secrets.DB_CONNECTION_STRING }}
+      #   run: |
+      #     npm install
+      #     cd backend
+      #     # npx dotenv sequelize-cli db:drop
+      #     npx sequelize-cli db:create
+      #     npx sequelize-cli db:migrate
+      #     npx sequelize-cli db:seed:all
+
+      - name: Build and deploy Docker images
+        uses: azure/docker-login@v1
+        with:
+          login-server: "doyourchores.azurecr.io"
+          username: ${{ secrets.AZURE_SP_APP_ID }}
+          password: ${{ secrets.AZURE_SP_APP_PASSWORD }}
         run: |
-          npm install
-          cd backend
-          # npx dotenv sequelize-cli db:drop
-          npx sequelize-cli db:create
-          npx sequelize-cli db:migrate
-          npx sequelize-cli db:seed:all
+          docker build . -t doyourchores.azurecr.io/doyourchores:backend
+          docker push doyourchores.azurecr.io/doyourchores:backend
