@@ -69,12 +69,14 @@ jobs:
       #     npx sequelize-cli db:migrate
       #     npx sequelize-cli db:seed:all
 
-      - name: Build and deploy Docker images
+      - name: Login to ACR (Azure Container Registry)
         uses: azure/docker-login@v1
         with:
           login-server: "doyourchores.azurecr.io"
           username: ${{ secrets.AZURE_SP_APP_ID }}
           password: ${{ secrets.AZURE_SP_APP_PASSWORD }}
+
+      - name: Build and deploy Docker images
         run: |
           docker build . -t doyourchores.azurecr.io/doyourchores:backend
           docker push doyourchores.azurecr.io/doyourchores:backend
