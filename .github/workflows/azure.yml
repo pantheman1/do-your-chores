@@ -92,3 +92,4 @@ jobs:
           images: |
             doyourchores.azurecr.io/doyourchores:backend
             doyourchores.azurecr.io/doyourchores:frontend
+          configuration-file: ./docker-compose.yml
