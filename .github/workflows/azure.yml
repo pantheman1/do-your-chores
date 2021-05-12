@@ -76,14 +76,15 @@ jobs:
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
-      - name: Build and deploy Docker images
-        run: |
-          docker build ./backend -t doyourchores.azurecr.io/doyourchores:backend
-          docker build ./frontend -t doyourchores.azurecr.io/doyourchores:frontend
-          docker push doyourchores.azurecr.io/doyourchores:backend
-          docker push doyourchores.azurecr.io/doyourchores:frontend
+      # - name: Build and deploy Docker images
+      #   run: |
+      #     docker build ./backend -t doyourchores.azurecr.io/doyourchores:backend
+      #     docker build ./frontend -t doyourchores.azurecr.io/doyourchores:frontend
+      #     docker push doyourchores.azurecr.io/doyourchores:backend
+      #     docker push doyourchores.azurecr.io/doyourchores:frontend
 
-      - uses: azure/webapps-deploy@v2
+      - name: Run Docker-compose
+        uses: azure/webapps-deploy@v2
         env:
           NODE_ENV: "production"
         with:
