@@ -2,8 +2,6 @@ const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
 const { Chore, Zone, User } = require('../../db/models')
 
-// test comment
-
 // localhost:5000/api/chores
 // localhost:5000/api/chores?zone=3
 // localhost:5000/api/chores?user=1

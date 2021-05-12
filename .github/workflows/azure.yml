@@ -79,4 +79,6 @@ jobs:
       - name: Build and deploy Docker images
         run: |
           docker build ./backend -t doyourchores.azurecr.io/doyourchores:backend
+          docker build ./frontend -t doyourchores.azurecr.io/doyourchores:frontend
           docker push doyourchores.azurecr.io/doyourchores:backend
+          docker push doyourchores.azurecr.io/doyourchores:frontend
