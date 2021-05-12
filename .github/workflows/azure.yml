@@ -86,8 +86,8 @@ jobs:
       - name: Deploy to Azure Container-backend
         uses: azure/aci-deploy@v1
         with:
-          resource-group: ${{ secrets.RESOURCE_GROUP }}
-          dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
+          resource-group: ${{ secrets.AZURE_RG }}
+          dns-name-label: ${{ secrets.AZURE_RG }}${{ github.run_number }}
           image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/doyourchores:backend
           registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
           registry-username: ${{ secrets.REGISTRY_USERNAME }}
