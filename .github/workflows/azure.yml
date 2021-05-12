@@ -83,8 +83,8 @@ jobs:
           docker push doyourchores.azurecr.io/doyourchores:backend
           docker push doyourchores.azurecr.io/doyourchores:frontend
 
-      - name: 'Deploy to Azure Container-backend'
-          uses: 'azure/aci-deploy@v1'
+      - name: Deploy to Azure Container-backend
+          uses: azure/aci-deploy@v1
           with:
             resource-group: ${{ secrets.RESOURCE_GROUP }}
             dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
@@ -93,7 +93,7 @@ jobs:
             registry-username: ${{ secrets.REGISTRY_USERNAME }}
             registry-password: ${{ secrets.REGISTRY_PASSWORD }}
             name: doyourchores
-            location: 'west us'
+            location: west us
 
       # - name: 'Deploy to Azure Container-frontend'
       #     uses: 'azure/aci-deploy@v1'
