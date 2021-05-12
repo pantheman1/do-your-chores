@@ -108,7 +108,8 @@ jobs:
       #     location: west us
 
       - uses: azure/webapps-deploy@v2
-        env: NODE_ENV: "production"
+        env:
+          NODE_ENV: "production"
         with:
           app-name: doyourchores
           publish-profile: ${{ secrets.azureWebAppPublishProfile }}
