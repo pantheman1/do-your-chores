@@ -107,11 +107,10 @@ jobs:
       #     name: doyourchores
       #     location: west us
 
-      
       - uses: azure/webapps-deploy@v2
         with:
           app-name: doyourchores
           publish-profile: ${{ secrets.azureWebAppPublishProfile }}
-          images:
-            'doyourchores.azurecr.io/doyourchores:backend'
-            'doyourchores.azurecr.io/doyourchores:frontend'
+          images: |
+            doyourchores.azurecr.io/doyourchores:backend
+            doyourchores.azurecr.io/doyourchores:frontend
