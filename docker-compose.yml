@@ -5,6 +5,9 @@ services:
     build: ./backend
     image: doyourchores.azurecr.io/doyourchores:backend
     container_name: doyourchores-backend
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      DB_CONNECTION_STRING: ${DB_CONNECTION_STRING}
     ports:
       - "5000:5000"
   frontend:

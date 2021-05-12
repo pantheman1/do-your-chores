@@ -87,6 +87,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         env:
           NODE_ENV: "production"
+          DB_CONNECTION_STRING: ${{ secrets.DB_CONNECTION_STRING }}
         with:
           app-name: doyourchores
           publish-profile: ${{ secrets.azureWebAppPublishProfile }}
