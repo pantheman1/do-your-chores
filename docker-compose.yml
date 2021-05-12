@@ -2,6 +2,14 @@ version: "3.1"
 
 services:
   backend:
+    build: ./backend
     image: doyourchores.azurecr.io/doyourchores:backend
+    container_name: doyourchores-backend
+    ports:
+      - "5000:5000"
   frontend:
+    build: ./frontend
     image: doyourchores.azurecr.io/doyourchores:frontend
+    container_name: doyourchores-frontend
+    ports:
+      - "3000:3000"
