@@ -95,14 +95,14 @@ jobs:
           name: doyourchores
           location: west us
 
-      # - name: 'Deploy to Azure Container-frontend'
-      #     uses: 'azure/aci-deploy@v1'
-      #     with:
-      #       resource-group: ${{ secrets.RESOURCE_GROUP }}
-      #       dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
-      #       image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/doyourchores:frontend
-      #       registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
-      #       registry-username: ${{ secrets.REGISTRY_USERNAME }}
-      #       registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-      #       name: doyourchores
-      #       location: 'west us'
+      - name: Deploy to Azure Container-frontend
+        uses: azure/aci-deploy@v1
+        with:
+          resource-group: ${{ secrets.AZURE_RG }}
+          dns-name-label: ${{ secrets.AZURE_RG }}${{ github.run_number }}
+          image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/doyourchores:frontend
+          registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          registry-username: ${{ secrets.REGISTRY_USERNAME }}
+          registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+          name: doyourchores
+          location: west us
