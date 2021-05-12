@@ -73,8 +73,8 @@ jobs:
         uses: azure/docker-login@v1
         with:
           login-server: "doyourchores.azurecr.io"
-          username: ${{ secrets.AZURE_SP_APP_ID }}
-          password: ${{ secrets.AZURE_SP_APP_PASSWORD }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
 
       - name: Build and deploy Docker images
         run: |
