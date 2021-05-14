@@ -85,9 +85,6 @@ jobs:
 
       # - name: Run Docker-compose
       #   uses: azure/webapps-deploy@v2
-      #   env:
-      #     NODE_ENV: "production"
-      #     DB_CONNECTION_STRING: ${{ secrets.DB_CONNECTION_STRING }}
       #   with:
       #     app-name: doyourchores
       #     publish-profile: ${{ secrets.azureWebAppPublishProfile }}
@@ -96,5 +93,8 @@ jobs:
       #       doyourchores.azurecr.io/doyourchores:frontend
       #     configuration-file: ./docker-compose.yml
 
-      - run: |
+      - env:
+          NODE_ENV: "production"
+          DB_CONNECTION_STRING: ${{ secrets.DB_CONNECTION_STRING }}
+        run: |
           docker-compose up
