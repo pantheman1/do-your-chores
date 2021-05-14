@@ -79,9 +79,9 @@ jobs:
       - name: Set K8s Context
         uses: azure/aks-set-context@v1
         with:
-          creds: "${{ secrets.AZURE_CREDENTIALS }}" # Azure credentials
-          resourceGroupName: "doyourchores"
-          clusterName: "doyourchoresCluster"
+          creds: ${{ secrets.AZURE_CREDENTIALS }} # Azure credentials
+          resourceGroupName: doyourchores
+          clusterName: doyourchoresCluster
         id: login
 
       - name: Deployment of all code
