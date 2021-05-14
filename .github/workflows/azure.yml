@@ -50,13 +50,6 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      # - name: "Deploy to Azure WebApp"
-      #   uses: azure/webapps-deploy@v2
-      #   with:
-      #     app-name: ${{ env.AZURE_WEBAPP_NAME }}
-      #     publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-      #     package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-
       # - name: Execute database Sequelize commands
       #   env:
       #     NODE_ENV: "production"
@@ -69,12 +62,12 @@ jobs:
       #     npx sequelize-cli db:migrate
       #     npx sequelize-cli db:seed:all
 
-      - name: Login to ACR (Azure Container Registry)
-        uses: azure/docker-login@v1
-        with:
-          login-server: "doyourchores.azurecr.io"
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
+      # - name: Login to ACR (Azure Container Registry)
+      #   uses: azure/docker-login@v1
+      #   with:
+      #     login-server: "doyourchores.azurecr.io"
+      #     username: ${{ secrets.REGISTRY_USERNAME }}
+      #     password: ${{ secrets.REGISTRY_PASSWORD }}
 
       # - name: Build and deploy Docker images
       #   run: |
@@ -83,18 +76,18 @@ jobs:
       #     docker push doyourchores.azurecr.io/doyourchores:backend
       #     docker push doyourchores.azurecr.io/doyourchores:frontend
 
-      # - name: Run Docker-compose
-      #   uses: azure/webapps-deploy@v2
-      #   with:
-      #     app-name: doyourchores
-      #     publish-profile: ${{ secrets.azureWebAppPublishProfile }}
-      #     images: |
-      #       doyourchores.azurecr.io/doyourchores:backend
-      #       doyourchores.azurecr.io/doyourchores:frontend
-      #     configuration-file: ./docker-compose.yml
+      - name: Set K8s Context
+        uses: azure/aks-set-context@v1
+          with:
+            creds: "${{ secrets.AZURE_CREDENTIALS }}" # Azure credentials
+            resourceGroupName: "doyourchores"
+            clusterName: "doyourchoresCluster"
+          id: login
 
-      - env:
-          NODE_ENV: "production"
-          DB_CONNECTION_STRING: ${{ secrets.DB_CONNECTION_STRING }}
-        run: |
-          docker-compose up
+      - name: Deployment of all code
+        uses: Azure/k8s-deploy@v1.4
+        with:
+          manifests: |
+            deployment.yml
+          strategy: canary
+          percentage: 20
