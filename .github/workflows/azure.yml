@@ -80,8 +80,8 @@ jobs:
         uses: azure/aks-set-context@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }} # Azure credentials
-          resourceGroupName: doyourchores
-          clusterName: doyourchoresCluster
+          resource-group: doyourchores
+          cluster-name: doyourchoresCluster
         id: login
 
       - name: Deployment of all code
