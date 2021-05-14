@@ -88,6 +88,6 @@ jobs:
         uses: Azure/k8s-deploy@v1.4
         with:
           manifests: |
-            deployment.yml
+            deploy/k8s/deployment.yml
           strategy: canary
           percentage: 20
