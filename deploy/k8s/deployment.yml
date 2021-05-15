@@ -8,9 +8,6 @@ kind: Deployment
 metadata:
   name: doyourchores-back
 spec:
-  metadata:
-    labels:
-      app: doyourchores-back
   replicas: 2
   selector:
     matchLabels:
@@ -56,9 +53,6 @@ kind: Deployment
 metadata:
   name: doyourchores-front
 spec:
-  metadata:
-    labels:
-      app: doyourchores-front
   replicas: 3
   selector:
     matchLabels:
