@@ -106,7 +106,7 @@ jobs:
         uses: Azure/k8s-deploy@v1.4
         with:
           imagePullSecrets: |
-            image-pull-secret
+            doyourchores-cr
           namespace: doyourchores-cluster
           manifests: |
             deploy/k8s/deployment.yml

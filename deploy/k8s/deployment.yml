@@ -39,7 +39,7 @@ spec:
           ports:
             - containerPort: 5000
       imagePullSecrets:
-        - name: image-pull-secret
+        - name: doyourchores-cr
 ---
 apiVersion: v1
 kind: Service
@@ -78,7 +78,7 @@ spec:
           ports:
             - containerPort: 3000
       imagePullSecrets:
-        - name: image-pull-secret
+        - name: doyourchores-cr
 ---
 apiVersion: v1
 kind: Service
