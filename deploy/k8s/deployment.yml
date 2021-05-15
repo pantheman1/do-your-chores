@@ -11,11 +11,11 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: doyourchores-back-label
+      app: doyourchores-back
   template:
     metadata:
       labels:
-        app: doyourchores-back-label
+        app: doyourchores-back
     spec:
       nodeSelector:
         "beta.kubernetes.io/os": linux
@@ -30,8 +30,6 @@ spec:
                 secretKeyRef:
                   name: azure-storage
                   key: db-connection-string
-            - name: DEPLOYMENT_NAME
-              value: doyourchores-back
           resources:
             requests:
               cpu: 100m
@@ -60,20 +58,17 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: doyourchores-front-label
+      app: doyourchores-front
   template:
     metadata:
       labels:
-        app: doyourchores-front-label
+        app: doyourchores-front
     spec:
       nodeSelector:
         "beta.kubernetes.io/os": linux
       containers:
         - name: doyourchores-front
           image: doyourchores.azurecr.io/doyourchores:frontend
-          env:
-            - name: DEPLOYMENT_NAME
-              value: doyourchores-front
           resources:
             requests:
               cpu: 100m
