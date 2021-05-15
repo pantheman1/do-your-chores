@@ -84,9 +84,18 @@ jobs:
           cluster-name: doyourchoresCluster
         id: login
 
+      - name: Set K8s Secrets
+        uses: azure/k8s-create-secret@v1
+        with:
+          namespace: doyourchores-cluster
+          secret-type: generic
+          arguments: --from-literal=db-connection-string=${{ secrets.DB_CONNECTION_STRING }}
+          secret-name: azure-storage
+
       - name: Deployment of all code
         uses: Azure/k8s-deploy@v1.4
         with:
+          namespace: doyourchores-cluster
           manifests: |
             deploy/k8s/deployment.yml
           strategy: canary

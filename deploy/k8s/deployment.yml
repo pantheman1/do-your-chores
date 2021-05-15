@@ -1,3 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: doyourchores-cluster
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -21,7 +26,10 @@ spec:
             - name: NODE_ENV
               value: "production"
             - name: DB_CONNECTION_STRING
-              value: $(DB_CONNECTION_STRING)
+              valueFrom:
+                secretKeyRef:
+                  name: azure-storage
+                  key: db-connection-string
           resources:
             requests:
               cpu: 100m
