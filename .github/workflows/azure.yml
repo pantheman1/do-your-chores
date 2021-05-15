@@ -99,6 +99,7 @@ jobs:
           container-registry-url: doyourchores.azurecr.io
           container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
           container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+          secret-name: doyourchores-cr
         id: image-pull-secret
 
       - name: Deployment of all code
