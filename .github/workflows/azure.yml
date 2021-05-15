@@ -62,12 +62,12 @@ jobs:
       #     npx sequelize-cli db:migrate
       #     npx sequelize-cli db:seed:all
 
-      - name: Login to ACR (Azure Container Registry)
-        uses: azure/docker-login@v1
-        with:
-          login-server: "doyourchores.azurecr.io"
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
+      #- name: Login to ACR (Azure Container Registry)
+      #  uses: azure/docker-login@v1
+      #  with:
+      #    login-server: "doyourchores.azurecr.io"
+      #    username: ${{ secrets.REGISTRY_USERNAME }}
+      #    password: ${{ secrets.REGISTRY_PASSWORD }}
 
       # - name: Build and deploy Docker images
       #   run: |
@@ -92,9 +92,20 @@ jobs:
           arguments: --from-literal=db-connection-string=${{ secrets.DB_CONNECTION_STRING }}
           secret-name: azure-storage
 
+      - name: Get login creds for ACR
+        uses: azure/k8s-create-secret@v1
+        with:
+          namespace: doyourchores-cluster
+          container-registry-url: doyourchores.azurecr.io
+          container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
+          container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+        id: image-pull-secret
+
       - name: Deployment of all code
         uses: Azure/k8s-deploy@v1.4
         with:
+          imagePullSecrets: |
+            image-pull-secret
           namespace: doyourchores-cluster
           manifests: |
             deploy/k8s/deployment.yml

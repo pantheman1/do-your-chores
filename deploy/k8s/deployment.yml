@@ -20,6 +20,7 @@ spec:
       containers:
         - name: doyourchores-back
           image: doyourchores.azurecr.io/doyourchores:backend
+
           env:
             - name: NODE_ENV
               value: "production"
@@ -37,6 +38,8 @@ spec:
               memory: 256Mi
           ports:
             - containerPort: 5000
+      imagePullSecrets:
+        - name: image-pull-secret
 ---
 apiVersion: v1
 kind: Service
@@ -74,6 +77,8 @@ spec:
               memory: 256Mi
           ports:
             - containerPort: 3000
+      imagePullSecrets:
+        - name: image-pull-secret
 ---
 apiVersion: v1
 kind: Service
