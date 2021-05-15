@@ -79,7 +79,8 @@ jobs:
       - name: Set K8s Context
         uses: azure/aks-set-context@v1
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }} # Azure credentials
+          #creds: ${{ secrets.AZURE_CREDENTIALS }} # Azure credentials
+          creds: ${{ secrets.TEMP_AZURE_CREDS }} # Azure credentials
           resource-group: doyourchores
           cluster-name: doyourchoresCluster
         id: login
@@ -98,3 +99,4 @@ jobs:
           namespace: doyourchores-cluster
           manifests: |
             deploy/k8s/deployment.yml
+      # A new sp was created, I think we need to use those creds for line 82
