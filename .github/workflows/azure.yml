@@ -62,12 +62,12 @@ jobs:
       #     npx sequelize-cli db:migrate
       #     npx sequelize-cli db:seed:all
 
-      # - name: Login to ACR (Azure Container Registry)
-      #   uses: azure/docker-login@v1
-      #   with:
-      #     login-server: "doyourchores.azurecr.io"
-      #     username: ${{ secrets.REGISTRY_USERNAME }}
-      #     password: ${{ secrets.REGISTRY_PASSWORD }}
+      - name: Login to ACR (Azure Container Registry)
+        uses: azure/docker-login@v1
+        with:
+          login-server: "doyourchores.azurecr.io"
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
 
       # - name: Build and deploy Docker images
       #   run: |
@@ -79,8 +79,7 @@ jobs:
       - name: Set K8s Context
         uses: azure/aks-set-context@v1
         with:
-          #creds: ${{ secrets.AZURE_CREDENTIALS }} # Azure credentials
-          creds: ${{ secrets.TEMP_AZURE_CREDS }} # Azure credentials
+          creds: ${{ secrets.AZURE_CREDENTIALS }} # Azure credentials
           resource-group: doyourchores
           cluster-name: doyourchoresCluster
         id: login
@@ -99,4 +98,3 @@ jobs:
           namespace: doyourchores-cluster
           manifests: |
             deploy/k8s/deployment.yml
-      # A new sp was created, I think we need to use those creds for line 82
