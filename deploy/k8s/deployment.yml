@@ -17,8 +17,6 @@ spec:
       labels:
         app: doyourchores-back
     spec:
-      nodeSelector:
-        "beta.kubernetes.io/os": linux
       containers:
         - name: doyourchores-back
           image: doyourchores.azurecr.io/doyourchores:backend
@@ -64,8 +62,6 @@ spec:
       labels:
         app: doyourchores-front
     spec:
-      nodeSelector:
-        "beta.kubernetes.io/os": linux
       containers:
         - name: doyourchores-front
           image: doyourchores.azurecr.io/doyourchores:frontend
