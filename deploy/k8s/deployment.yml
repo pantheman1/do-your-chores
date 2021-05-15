@@ -30,6 +30,8 @@ spec:
                 secretKeyRef:
                   name: azure-storage
                   key: db-connection-string
+            - name: DEPLOYMENT_NAME
+              value: doyourchores-back
           resources:
             requests:
               cpu: 100m
@@ -69,6 +71,9 @@ spec:
       containers:
         - name: doyourchores-front
           image: doyourchores.azurecr.io/doyourchores:frontend
+          env:
+            - name: DEPLOYMENT_NAME
+              value: doyourchores-front
           resources:
             requests:
               cpu: 100m
