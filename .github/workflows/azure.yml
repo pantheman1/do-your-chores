@@ -97,6 +97,6 @@ jobs:
         with:
           namespace: doyourchores-cluster
           manifests: |
-            deploy/k8s/deployment.yml
+            deployment.yml
           strategy: canary
           percentage: 20
