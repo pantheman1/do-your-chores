@@ -20,7 +20,6 @@ spec:
       containers:
         - name: doyourchores-back
           image: doyourchores.azurecr.io/doyourchores:backend
-
           env:
             - name: NODE_ENV
               value: "production"
@@ -68,6 +67,9 @@ spec:
       containers:
         - name: doyourchores-front
           image: doyourchores.azurecr.io/doyourchores:frontend
+          env:
+            - name: NODE_ENV
+              value: "production"
           resources:
             requests:
               cpu: 100m
