@@ -20,9 +20,6 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
-    masterUserId: {
-      type: DataTypes.INTEGER,
-    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -54,13 +51,21 @@ module.exports = (sequelize, DataTypes) => {
       },
     });
   User.associate = function (models) {
-    const columnMapping = {
+    User.hasMany(models.Chore, { foreignKey: "userId" })
+
+    const columnMappingUserSquad = {
       through: 'UserSquad',
       otherKey: 'squadId',
       foreignKey: 'userId',
     }
-    User.hasMany(models.Chore, { foreignKey: "userId" })
-    User.belongsToMany(models.Squad, columnMapping)
+    User.belongsToMany(models.Squad, columnMappingUserSquad)
+
+    const columnMappingOwnerSquad = {
+      through: 'UserSquad',
+      otherKey: 'squadId',
+      foreignKey: 'userId',
+    }
+    User.belongsToMany(models.Squad, columnMappingOwnerSquad)
   };
   User.prototype.toSafeObject = function () {
     const { id, username, email, squad_id, name } = this;

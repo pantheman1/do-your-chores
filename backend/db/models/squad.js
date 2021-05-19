@@ -6,12 +6,20 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.TEXT
   }, {});
   Squad.associate = function (models) {
-    const columnMapping = {
+    const columnMappingUserSquad = {
       through: 'UserSquad',
       otherKey: 'userId',
       foreignKey: 'squadId',
     }
-    Squad.belongsToMany(models.User, columnMapping);
+    Squad.belongsToMany(models.User, columnMappingUserSquad);
+
+    const columnMappingOwnerSquad = {
+      through: 'UserSquad',
+      otherKey: 'userId',
+      foreignKey: 'squadId',
+    }
+    Squad.belongsToMany(models.User, columnMappingOwnerSquad);
+
     Squad.hasMany(models.UserSquad, { foreignKey: "squadId" });
     Squad.hasMany(models.Zone, { foreignKey: "squadId" });
   };
