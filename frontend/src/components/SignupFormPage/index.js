@@ -12,7 +12,6 @@ function SignupFormPage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [favoriteToClean, setFavoriteToClean] = useState("");
     const [errors, setErrors] = useState([]);
 
     if (sessionUser) return <Redirect to="/zones" />;
@@ -78,15 +77,6 @@ function SignupFormPage() {
                                 type="password"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
-                                required
-                            />
-                        </div>
-                        <div className="username-container">
-                            <label>What's your favorite thing to clean?</label>
-                            <input
-                                type="text"
-                                value={favoriteToClean}
-                                onChange={(e) => setFavoriteToClean(e.target.value)}
                                 required
                             />
                         </div>
