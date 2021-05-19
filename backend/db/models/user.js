@@ -20,9 +20,6 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     },
-    masterUserId: {
-      type: DataTypes.INTEGER,
-    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
