@@ -106,7 +106,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-ingress-controller-svc
+  name: nginx-ingress-controller
 spec:
   ports:
     - name: http
