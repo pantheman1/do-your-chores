@@ -8,7 +8,7 @@ kind: Deployment
 metadata:
   name: doyourchores-back
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: doyourchores-back
@@ -76,10 +76,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-ingress-controller
+  namespace: doyourchores-cluster
   labels:
     app: nginx-ingress-controller
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: nginx-ingress-controller
@@ -90,7 +91,24 @@ spec:
     spec:
       containers:
         - name: nginx-ingress-controller
-          image: nginx:latest
+          image: k8s.gcr.io/ingress-nginx/controller
+          args:
+            - /nginx-ingress-controller
+            - --publish-service=$(POD_NAMESPACE)/ingress-nginx-controller
+            - --election-id=ingress-controller-leader
+            - --ingress-class=nginx
+            - --validating-webhook=:8443
+            - --validating-webhook-certificate=/usr/local/certificates/cert
+            - --validating-webhook-key=/usr/local/certificates/key
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
           resources:
             requests:
               cpu: 100m
@@ -124,7 +142,7 @@ kind: Deployment
 metadata:
   name: doyourchores-front
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: doyourchores-front
@@ -147,7 +165,7 @@ spec:
               cpu: 250m
               memory: 600Mi
           ports:
-            - containerPort: 3000
+            - containerPort: 8080
       imagePullSecrets:
         - name: doyourchores-cr
 ---
@@ -157,7 +175,9 @@ metadata:
   name: doyourchores-front
 spec:
   ports:
-    - port: 80
-      targetPort: 3000
+    - name: http
+      port: 80
+      targetPort: 8080
+      protocol: TCP
   selector:
     app: doyourchores-front
