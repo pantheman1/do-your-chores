@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import HomePage from '../HomePage';
+import PlusMenu from './PlusMenu';
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
@@ -17,17 +18,9 @@ function Navigation({ isLoaded }) {
         history.push('/login');
     }
 
-
     return (
         <div className="nav">
             <div className="left-side">
-                <div className="menu-btn">
-                    <ul>
-                        <li>
-                            {isLoaded && sessionLinks}
-                        </li>
-                    </ul>
-                </div>
                 <div className="zones-link">
                     <NavLink to="/zones">Zones</NavLink>
                 </div>
@@ -39,6 +32,12 @@ function Navigation({ isLoaded }) {
                         placeholder="search"
                         type="text"
                     />
+                </div>
+                <div className="menu-btn">
+                    {isLoaded && sessionLinks}
+                </div>
+                <div>
+                    <PlusMenu />
                 </div>
                 {/* <div className="plus-dropdown">
                     <button type="button"><img className="nav-plus-btn" src="/images/add-button.png" /></button>
