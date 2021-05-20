@@ -91,7 +91,7 @@ spec:
     spec:
       containers:
         - name: nginx-ingress-controller
-          image: k8s.gcr.io/ingress-nginx/controller
+          image: k8s.gcr.io/ingress-nginx/controller:v0.46.0
           args:
             - /nginx-ingress-controller
             - --publish-service=$(POD_NAMESPACE)/ingress-nginx-controller
