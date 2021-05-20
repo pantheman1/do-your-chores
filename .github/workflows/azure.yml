@@ -62,19 +62,19 @@ jobs:
       #     npx sequelize-cli db:migrate
       #     npx sequelize-cli db:seed:all
 
-      - name: Login to ACR (Azure Container Registry)
-        uses: azure/docker-login@v1
-        with:
-          login-server: "doyourchores.azurecr.io"
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
+      #- name: Login to ACR (Azure Container Registry)
+      #  uses: azure/docker-login@v1
+      #  with:
+      #    login-server: "doyourchores.azurecr.io"
+      #    username: ${{ secrets.REGISTRY_USERNAME }}
+      #    password: ${{ secrets.REGISTRY_PASSWORD }}
 
-      - name: Build and deploy Docker images
-        run: |
-          docker build ./backend -t doyourchores.azurecr.io/doyourchores:backend
-          docker build ./frontend -t doyourchores.azurecr.io/doyourchores:frontend
-          docker push doyourchores.azurecr.io/doyourchores:backend
-          docker push doyourchores.azurecr.io/doyourchores:frontend
+      #- name: Build and deploy Docker images
+      #  run: |
+      #    docker build ./backend -t doyourchores.azurecr.io/doyourchores:backend
+      #    docker build ./frontend -t doyourchores.azurecr.io/doyourchores:frontend
+      #    docker push doyourchores.azurecr.io/doyourchores:backend
+      #    docker push doyourchores.azurecr.io/doyourchores:frontend
 
       - name: Set K8s Context
         uses: azure/aks-set-context@v1
