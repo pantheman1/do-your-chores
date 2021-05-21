@@ -4,7 +4,6 @@ import sessionReducer from './session';
 import zonesReducer from './zones';
 import ChoresReducer from './chores';
 import UsersReducer from './user';
-import singleZone from './singleZone';
 import CompletedChoresReducer from './completionStatus';
 
 const rootReducer = combineReducers({
@@ -12,7 +11,6 @@ const rootReducer = combineReducers({
     zones: zonesReducer,
     chores: ChoresReducer,
     users: UsersReducer,
-    singleZone: singleZone,
     completionStatus: CompletedChoresReducer,
 });
 
