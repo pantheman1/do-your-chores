@@ -9,16 +9,20 @@ import HomePage from './components/HomePage';
 import Zones from './components/Zones';
 import Chores from './components/Chores';
 import CompletedChores from "./components/Chores/CompleteChores";
+import Squads from "./components/Squads";
 // import IncompleteChores from "./components/Chores/IncompleteChores"; //make this
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  //create new routes for any new pages I need
+  // useEffect(() => {
+  //   // dispatch a thunk to get all of the user's squads
+  // }, [dispatch])
 
   return (
     <>
@@ -29,6 +33,9 @@ function App() {
           </Route>
           <Route path='/signup'>
             <SignupFormPage />
+          </Route>
+          <Route path='/:userId/squads'>
+            <Squads />
           </Route>
           <Route exact path='/'>
             <Navigation isLoaded={isLoaded} />
