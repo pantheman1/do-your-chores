@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Route, Redirect, useHistory, useParams, Link } from "react-router-dom";
 import { getSimpleList } from '../../store/chores';
 import { nanoid } from 'nanoid';
-import { getOneZone } from '../../store/singleZone';
 import './chores.css'
 import ChoreBlocks from './ChoreBlocks';
 import ChoreDetails from './choreDetails';
@@ -22,9 +21,8 @@ const ChoresPage = () => {
     const { zoneId } = useParams();
 
     // Will initiate a fetch to grab all chores in this zoneId
-    useEffect(() => {
-        dispatch(getOneZone(zoneId))
-    }, [dispatch, zoneId])
+    // useEffect(() => {
+    // }, [dispatch, zoneId])
 
     const handleAllChores = () => {
         dispatch(getSimpleList(sessionUser.id))

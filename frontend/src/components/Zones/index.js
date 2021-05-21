@@ -20,6 +20,10 @@ const ZonePage = () => {
         return <Redirect to='/login' />
     }
 
+    const handleAddZone = (e) => {
+        e.preventDefault();
+        // modal popup with add a zone form
+    }
 
     const images = [
         "/images/broom-dustpan-ella.png",
@@ -46,7 +50,6 @@ const ZonePage = () => {
         )
     }
 
-
     let zoneLinks;
     if (zones?.length > 0) {
         zoneLinks = (
@@ -57,7 +60,7 @@ const ZonePage = () => {
                     </div>
                 ))}
                 <div className="outer-tile-container">
-                    <NavLink className="img-links" to="/zones"><img className="tile-img" src="/images/add-button.png" />Add a Zone</NavLink>
+                    <button type="button" className="img-links" onClick={handleAddZone}><img className="tile-img" src="/images/add-button.png" />Add a Zone</button>
                 </div>
             </div>
         )

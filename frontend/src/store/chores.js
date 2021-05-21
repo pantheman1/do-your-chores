@@ -4,6 +4,8 @@ const DISPLAY_SIMPLE_CHORE = 'chores/DISPLAY_SIMPLE_CHORE';
 const TOGGLE_ISCOMPLETE = 'chore/TOGGLE_ISCOMPLETE';
 const NEW_CHORE = 'chore/NEW_CHORE';
 
+// Action Creators
+
 const displaySimpleChore = choreList => ({
     type: DISPLAY_SIMPLE_CHORE,
     choreList
@@ -19,6 +21,7 @@ const newChorePost = (newChore) => ({
     newChore
 })
 
+// Thunk Action Creators
 
 export const getSimpleList = () => async (dispatch) => {
     const res = await csrfFetch(`/api/chores`);
