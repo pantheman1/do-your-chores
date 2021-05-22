@@ -16,11 +16,10 @@
     "react-scripts": "4.0.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "yarn": "^1.22.10",
-    "http-server": "^0.12.3"
+    "yarn": "^1.22.10"
   },
   "scripts": {
-    "start": "http-server -a localhost -p 8000",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
