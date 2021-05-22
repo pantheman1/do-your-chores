@@ -16,13 +16,15 @@
     "react-scripts": "4.0.2",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
-    "yarn": "^1.22.10"
+    "yarn": "^1.22.10",
+    "http-server": "^0.12.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prod": "http-server -a localhost -p 8080"
   },
   "eslintConfig": {
     "extends": "react-app"
