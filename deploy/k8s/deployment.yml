@@ -19,6 +19,7 @@ spec:
     spec:
       containers:
         - name: doyourchores-back
+          imagePullPolicy: Always
           image: doyourchores.azurecr.io/doyourchores:backend
           env:
             - name: NODE_ENV
@@ -66,7 +67,8 @@ spec:
     spec:
       containers:
         - name: doyourchores-front
-          image: doyourchores.azurecr.io/doyourchores:frontendTest
+          imagePullPolicy: Always
+          image: doyourchores.azurecr.io/doyourchores:frontend
           env:
             - name: NODE_ENV
               value: "production"
