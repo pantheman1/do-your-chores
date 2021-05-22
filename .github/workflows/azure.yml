@@ -72,9 +72,9 @@ jobs:
       - name: Build and deploy Docker images
         run: |
           docker build ./backend -t doyourchores.azurecr.io/doyourchores:backend
-          docker build ./frontend -t doyourchores.azurecr.io/doyourchores:frontend
+          docker build ./frontend -t doyourchores.azurecr.io/doyourchores:frontendTest
           docker push doyourchores.azurecr.io/doyourchores:backend
-          docker push doyourchores.azurecr.io/doyourchores:frontend
+          docker push doyourchores.azurecr.io/doyourchores:frontendTest
 
       - name: Set K8s Context
         uses: azure/aks-set-context@v1
