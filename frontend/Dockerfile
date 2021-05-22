@@ -3,5 +3,5 @@ COPY . ./frontend
 WORKDIR /frontend
 EXPOSE 8080
 RUN npm install
-CMD ["npm", "start"]
+CMD ["npm", "prod"]
 
