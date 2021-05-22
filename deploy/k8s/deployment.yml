@@ -118,7 +118,7 @@ spec:
           service:
             name: doyourchores-front
             port:
-              number: 80
+              number: 8000
 ---
 # Source: ingress-nginx/templates/controller-serviceaccount.yaml
 apiVersion: v1
