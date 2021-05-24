@@ -14,7 +14,7 @@ function LoginFormPage() {
     const history = useHistory();
 
     if (sessionUser) return (
-        <Redirect to="/zones" />
+        <Redirect to="/squads" />
     );
 
     const handleSubmit = (e) => {
