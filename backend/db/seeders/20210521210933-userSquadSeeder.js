@@ -15,6 +15,14 @@ module.exports = {
         squadId: 1,
         userId: 4
       },
+      {
+        squadId: 2,
+        userId: 2
+      },
+      {
+        squadId: 2,
+        userId: 3
+      },
     ], {});
   },
 
