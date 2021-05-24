@@ -12,7 +12,8 @@ const getSquadAction = (data) => ({
 export const getSquads = (userId) => async dispatch => {
     let res = await fetch(`/api/squads/${userId}`)
     if (res.ok) {
-        dispatch(getSquadAction(res.data));
+        const data = await res.json()
+        dispatch(getSquadAction(data.squads));
     }
 }
 
@@ -23,6 +24,9 @@ export default function SquadsReducer(state = {}, action) {
     let newState = {};
     switch (action.type) {
         case GET_SQUADS:
+            action.data.forEach(item => {
+                newState[item.id] = item;
+            })
             return newState;
         default:
             return state;
