@@ -25,6 +25,7 @@ function Navigation({ isLoaded }) {
     return (
         <div className="nav">
             <div className="left-side">
+                <NavLink to="/squads"><img className="menu-home" src="/images/logo-2.png" /></NavLink>
                 <div className="zones-link">
                     <NavLink to="/zones">Zones</NavLink>
                 </div>

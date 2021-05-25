@@ -19,7 +19,6 @@ function Profile({ user }) {
                     <span><i class="fas fa-user"></i></span>
                 }
             >
-                <img className="menu-home" src="/images/logo-2.png" />
                 {
                     <ul className="profile-dropdown">
                         <li>{user.username}</li>
