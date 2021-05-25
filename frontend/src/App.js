@@ -10,7 +10,7 @@ import Zones from './components/Zones';
 import Chores from './components/Chores';
 import CompletedChores from "./components/Chores/CompleteChores";
 import Squads from "./components/Squads";
-import { getOwnerSquads } from "./store/squads";
+import { getOwnerSquads } from "./store/ownerSquads";
 // import IncompleteChores from "./components/Chores/IncompleteChores"; //make this
 import 'bootstrap/dist/css/bootstrap.min.css';
 

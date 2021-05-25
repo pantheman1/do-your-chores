@@ -1,10 +1,10 @@
 import { csrfFetch } from './csrf';
 
-const GET_SQUADS = 'squads/GET_SQUADS';
-const CREATE_SQUAD = 'squads/CREATE_SQUAD';
+const GET_OWNER_SQUADS = 'squads/GET_OWNER_SQUADS';
+const CREATE_OWNER_SQUAD = 'squads/CREATE_OWNER_SQUAD';
 
 const getSquadAction = (data) => ({
-    type: GET_SQUADS,
+    type: GET_OWNER_SQUADS,
     data
 });
 
@@ -29,7 +29,7 @@ export const createSquad = (name) => async dispatch => {
 export default function SquadsReducer(state = {}, action) {
     let newState = {};
     switch (action.type) {
-        case GET_SQUADS:
+        case GET_OWNER_SQUADS:
             action.data.forEach(item => {
                 newState[item.id] = item;
             })
