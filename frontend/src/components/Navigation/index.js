@@ -5,6 +5,8 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import HomePage from '../HomePage';
 import PlusMenu from './PlusMenu';
+import DropdownButton from 'react-bootstrap/DropdownButton'
+import Dropdown from 'react-bootstrap/Dropdown'
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
@@ -39,6 +41,11 @@ function Navigation({ isLoaded }) {
                 <div>
                     <PlusMenu />
                 </div>
+                <DropdownButton id="dropdown-basic-button" title="Dropdown button">
+                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                </DropdownButton>
                 {/* <div className="plus-dropdown">
                     <button type="button"><img className="nav-plus-btn" src="/images/add-button.png" /></button>
                 </div>

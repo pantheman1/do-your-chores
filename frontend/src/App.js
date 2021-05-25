@@ -10,7 +10,7 @@ import Zones from './components/Zones';
 import Chores from './components/Chores';
 import CompletedChores from "./components/Chores/CompleteChores";
 import Squads from "./components/Squads";
-import { getSquads } from "./store/squads";
+import { getOwnerSquads } from "./store/squads";
 // import IncompleteChores from "./components/Chores/IncompleteChores"; //make this
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
 
   useEffect(() => {
     if (user?.id) {
-      dispatch(getSquads(user.id))
+      dispatch(getOwnerSquads(user.id))
     }
   }, [dispatch, user?.id])
 

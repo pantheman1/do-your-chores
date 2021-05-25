@@ -7,7 +7,7 @@ const { Squad, OwnerSquad } = require('../../db/models');
 // Give them a message that says, if you would like to invite others to join your squad,
 // just share this squadId with those members: Squad.name.concat(squad.id)
 
-// get request to get the ID and name from the squad
+// get request to get the ID and name from the OWNER's squads
 // localhost:5000/api/squads/:id
 router.get('/:id', asyncHandler(async (req, res) => {
     const { id } = req.params; // userId

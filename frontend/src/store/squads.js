@@ -7,9 +7,9 @@ const getSquadAction = (data) => ({
     data
 });
 
-//Thunk that will fetch all Squads
+//Thunk that will fetch all OWNER Squads
 
-export const getSquads = (userId) => async dispatch => {
+export const getOwnerSquads = (userId) => async dispatch => {
     let res = await fetch(`/api/squads/${userId}`)
     if (res.ok) {
         const data = await res.json()
