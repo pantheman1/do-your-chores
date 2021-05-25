@@ -6,7 +6,8 @@ import './Navigation.css';
 import HomePage from '../HomePage';
 import PlusMenu from './PlusMenu';
 import DropdownButton from 'react-bootstrap/DropdownButton'
-import Dropdown from 'react-bootstrap/Dropdown'
+import JoinSquad from "../Squads/JoinSquad";
+import CreateSquad from "../Squads/CreateSquad";
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
@@ -38,20 +39,10 @@ function Navigation({ isLoaded }) {
                 <div className="menu-btn">
                     {isLoaded && sessionLinks}
                 </div>
-                <div>
-                    <PlusMenu />
-                </div>
                 <DropdownButton id="dropdown-basic-button" title="Dropdown button">
-                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                    <CreateSquad />
+                    <JoinSquad />
                 </DropdownButton>
-                {/* <div className="plus-dropdown">
-                    <button type="button"><img className="nav-plus-btn" src="/images/add-button.png" /></button>
-                </div>
-                <div className="profile">
-                    <button type="button">Pic</button>
-                </div> */}
             </div>
         </div>
     );

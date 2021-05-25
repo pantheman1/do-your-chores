@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button'
 
 
 export default function CreateSquad() {
@@ -11,7 +12,7 @@ export default function CreateSquad() {
     return (
         <>
             <div className="squad__container-create">
-                <button type="button" onClick={handleCreateSquad}>Create a squad!</button>
+                <Button type="submit" onClick={handleCreateSquad} variant="primary">Create a squad!</Button>
             </div>
         </>
     )
