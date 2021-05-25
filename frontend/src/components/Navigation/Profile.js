@@ -16,7 +16,7 @@ function Profile({ user }) {
         <>
             <DropdownButton
                 title={
-                    <span><i class="fas fa-user"></i></span>
+                    <span><i className="fas fa-user"></i></span>
                 }
             >
                 {
