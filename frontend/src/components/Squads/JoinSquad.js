@@ -13,9 +13,6 @@ export default function JoinSquad() {
         // they should then see the squad on their squads list
     }
 
-    const handleJoinMenu = (e) => {
-        e.preventDefault();
-    }
 
     return (
         <>
@@ -24,7 +21,7 @@ export default function JoinSquad() {
                 <InputGroup className="mb-3">
                     <input
                         className="squad__container-join--input"
-                        onChange={handleJoinMenu}
+                        onChange={e => setJoinCode(e.target.value)}
                         value={joinCode}
                         placeholder="Enter code..."
                     />
