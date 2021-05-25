@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, Redirect, Route, useHistory } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-import { allUserZones } from "../../store/zones"
+// import { allUserZones } from "../../store/zones"
 import Chores from '../Chores';
 import { nanoid } from 'nanoid';
 import './zones.css';
@@ -12,9 +12,9 @@ const ZonePage = () => {
     const zones = useSelector(state => state.zones.Zones);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(allUserZones(sessionUser.id))
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(allUserZones(sessionUser.id))
+    // }, [dispatch])
 
     if (!sessionUser) {
         return <Redirect to='/login' />

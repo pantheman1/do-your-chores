@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
-import { NavLink, useHistory } from 'react-router-dom';
+import { Redirect, useHistory, NavLink } from 'react-router-dom';
 import './LoginForm.css';
 
 
@@ -15,7 +14,7 @@ function LoginFormPage() {
     const history = useHistory();
 
     if (sessionUser) return (
-        <Redirect to="/zones" />
+        <Redirect to="/squads" />
     );
 
     const handleSubmit = (e) => {

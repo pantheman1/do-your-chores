@@ -35,7 +35,6 @@ export const incompleteChores = zoneId => async (dispatch) => {
 }
 
 const CompletedChoresReducer = (state = {}, action) => {
-    console.log("-->>pepep", action.allChores)
     switch (action.type) {
         case COMPLETED_CHORES:
             const allChores = {};

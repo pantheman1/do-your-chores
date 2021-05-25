@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
@@ -10,19 +10,23 @@ import Zones from './components/Zones';
 import Chores from './components/Chores';
 import CompletedChores from "./components/Chores/CompleteChores";
 import Squads from "./components/Squads";
+import { getOwnerSquads } from "./store/squads";
 // import IncompleteChores from "./components/Chores/IncompleteChores"; //make this
 
 function App() {
   const dispatch = useDispatch();
+  const user = useSelector(state => state.session.user)
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   // dispatch a thunk to get all of the user's squads
-  // }, [dispatch])
+  useEffect(() => {
+    if (user?.id) {
+      dispatch(getOwnerSquads(user.id))
+    }
+  }, [dispatch, user?.id])
 
   return (
     <>
@@ -34,7 +38,8 @@ function App() {
           <Route path='/signup'>
             <SignupFormPage />
           </Route>
-          <Route path='/:userId/squads'>
+          <Route path='/squads'>
+            <Navigation isLoaded={isLoaded} />
             <Squads />
           </Route>
           <Route exact path='/'>

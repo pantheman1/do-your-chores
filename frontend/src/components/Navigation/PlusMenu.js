@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
+import CreateSquad from "../Squads/CreateSquad";
+import JoinSquad from "../Squads/JoinSquad";
 
 function PlusMenu() {
     const dispatch = useDispatch();
@@ -29,8 +31,8 @@ function PlusMenu() {
             </button>
             {showMenu && (
                 <ul className="profile-dropdown">
-                    <li>Create a New Squad</li>
-                    <li>Join a Squad</li>
+                    <CreateSquad />
+                    <JoinSquad />
                 </ul>
             )}
         </>
