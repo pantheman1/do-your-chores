@@ -4,10 +4,10 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import HomePage from '../HomePage';
-import PlusMenu from './PlusMenu';
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import JoinSquad from "../Squads/JoinSquad";
 import CreateSquad from "../Squads/CreateSquad";
+import Profile from './Profile';
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
@@ -15,7 +15,8 @@ function Navigation({ isLoaded }) {
     let sessionLinks;
     if (sessionUser) {
         sessionLinks = (
-            <ProfileButton user={sessionUser} />
+            // <ProfileButton user={sessionUser} />
+            <Profile user={sessionUser} />
         );
     } else {
         history.push('/login');
