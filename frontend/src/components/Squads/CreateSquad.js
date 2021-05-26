@@ -7,9 +7,12 @@ import { Modal } from 'react-responsive-modal';
 
 export default function CreateSquad() {
     const user = useSelector(state => state.session.user)
+    const squads = useSelector(state => Object.values(state.ownerSquads));
     const dispatch = useDispatch()
     const [open, setOpen] = useState(false);
+    const [openSecond, setOpenSecond] = useState(false);
     const [crew, setCrew] = useState("");
+    const [code, setCode] = useState("");
 
     const onOpenModal = () => setOpen(true);
     const onCloseModal = () => setOpen(false);
@@ -22,6 +25,9 @@ export default function CreateSquad() {
         }
         await dispatch(createSquad(data))
         await dispatch(getOwnerSquads(user.id))
+        await setCode(`${crew}-${user.id}-${squads[squads.length - 1].id}`)
+        console.log("squads last i---", squads[squads.length - 1])
+        await setOpenSecond(true)
     }
 
     return (
@@ -38,6 +44,10 @@ export default function CreateSquad() {
                     <div className="squad__container-create">
                         <Button type="submit" onClick={handleCreateSquad} variant="primary">Submit</Button>
                     </div>
+                </Modal>
+                <Modal open={openSecond} onClose={() => setOpenSecond(false)} center>
+                    <p>Second modal</p>
+                    {code}
                 </Modal>
             </div>
         </>

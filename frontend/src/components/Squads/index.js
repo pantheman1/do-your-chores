@@ -7,7 +7,7 @@ import CreateSquad from "./CreateSquad";
 //this will be the dropdown
 
 const Squads = () => {
-    const squads = useSelector(state => Object.values(state.squads));
+    const squads = useSelector(state => Object.values(state.ownerSquads));
     const dispatch = useDispatch();
 
     // show a list of squads
