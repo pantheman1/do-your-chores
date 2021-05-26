@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Button from 'react-bootstrap/Button'
 import { useDispatch, useSelector } from 'react-redux';
 import { createSquad, getOwnerSquads } from '../../store/ownerSquads';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
+import CopyToClipElement from './CopyToClipElement';
 
 export default function CreateSquad() {
     const user = useSelector(state => state.session.user)
     const squads = useSelector(state => Object.values(state.ownerSquads));
     const dispatch = useDispatch()
+    const ref = useRef();
     const [open, setOpen] = useState(false);
     const [openSecond, setOpenSecond] = useState(false);
     const [crew, setCrew] = useState("");
@@ -30,6 +32,11 @@ export default function CreateSquad() {
         setCrew("");
     }
 
+    let copySuccess;
+    const handleCopy = e => {
+        copySuccess = "Text copied successfully"
+    }
+
     return (
         <>
             <div>
@@ -46,8 +53,20 @@ export default function CreateSquad() {
                     </div>
                 </Modal>
                 <Modal open={openSecond} onClose={() => setOpenSecond(false)} center>
-                    <p>Second modal</p>
+                    <h3>Share this code with your cleaning crew!</h3>
+                    <div>
+                        {copySuccess}
+                    </div>
                     {code}
+                    <div>
+                        <Button
+                            variant="secondary"
+                            onClick={handleCopy}
+                        >
+                            Click to copy!
+                        </Button>
+                        <CopyToClipElement text={code} />
+                    </div>
                 </Modal>
             </div>
         </>
