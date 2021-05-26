@@ -20,14 +20,14 @@ export default function CreateSquad() {
     const handleCreateSquad = async (e) => {
         e.preventDefault();
         const data = {
-            name: "house",
+            name: crew,
             userId: user.id,
         }
         await dispatch(createSquad(data))
         await dispatch(getOwnerSquads(user.id))
         await setCode(`${crew}-${user.id}-${squads[squads.length - 1].id}`)
-        console.log("squads last i---", squads[squads.length - 1])
         await setOpenSecond(true)
+        setCrew("");
     }
 
     return (
