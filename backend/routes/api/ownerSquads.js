@@ -15,5 +15,22 @@ router.get('/:id', asyncHandler(async (req, res) => {
     return res.json({ squads })
 }))
 
+// Create a post route which will allow a new user to create a new Squad
+// localhost:5000/api/squads
+router.post('/', asyncHandler(async (req, res) => {
+    const { name, userId } = req.body;
+    const newSquad = await Squad.create({ name });
+    console.log("NEW SQUAD-------", newSquad)
+
+
+
+    // const newSquadId = await Squad.find
+    return res.json(newSquad);
+}));
+
+router.post('/:id', asyncHandler(async (req, res) => {
+    // needs both the id for the user/owner and for the squad
+}))
+
 
 module.exports = router;
