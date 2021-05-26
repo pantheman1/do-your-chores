@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button'
 import { useDispatch, useSelector } from 'react-redux';
 import { createSquad, getOwnerSquads } from '../../store/ownerSquads';
@@ -8,7 +8,7 @@ export default function CreateSquad() {
     const user = useSelector(state => state.session.user)
     const dispatch = useDispatch()
 
-    const handleCreateSquad = (e) => {
+    const handleCreateSquad = async (e) => {
         e.preventDefault();
         // create a squad
         // when the button is clicked we want to:
@@ -18,8 +18,8 @@ export default function CreateSquad() {
             name: "house",
             userId: user.id,
         }
-        dispatch(createSquad(data))
-        dispatch(getOwnerSquads(user.id))
+        await dispatch(createSquad(data))
+        await dispatch(getOwnerSquads(user.id))
     }
 
     return (
