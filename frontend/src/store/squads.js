@@ -8,6 +8,11 @@ const getSquadAction = (data) => ({
     data
 });
 
+const addSquadAction = (data) => ({
+    type: CREATE_SQUAD,
+    data
+})
+
 //Thunk that will fetch all OWNER Squads
 
 export const getOwnerSquads = (userId) => async dispatch => {
@@ -19,8 +24,18 @@ export const getOwnerSquads = (userId) => async dispatch => {
 }
 
 // this thunk will create a new squad on the Squad table
-export const createSquad = (name) => async dispatch => {
-    let res = await fetch(`/api/squads`)
+export const createSquad = (data) => async dispatch => {
+    const { name } = data;
+    console.log("NAME---", name)
+    let res = await csrfFetch(`/api/squads`, {
+        method: "POST",
+        body: JSON.stringify(data)
+    })
+    if (res.ok) {
+        const data = await res.json();
+        console.log("DATA-THUNK---", data)
+        dispatch(addSquadAction(data));
+    }
 }
 
 
@@ -33,6 +48,9 @@ export default function SquadsReducer(state = {}, action) {
             action.data.forEach(item => {
                 newState[item.id] = item;
             })
+            return newState;
+        case CREATE_SQUAD:
+            newState[action.data.id] = action.data
             return newState;
         default:
             return state;

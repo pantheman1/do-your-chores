@@ -1,17 +1,17 @@
 import { csrfFetch } from './csrf';
 
-const GET_SQUADS = 'squads/GET_SQUADS';
-const CREATE_SQUAD = 'squads/CREATE_SQUAD';
+const GET_USER_SQUADS = 'squads/GET_USER_SQUADS';
+const CREATE_USER_SQUAD = 'squads/CREATE_USER_SQUAD';
 
 const getSquadAction = (data) => ({
-    type: GET_SQUADS,
+    type: GET_USER_SQUADS,
     data
 });
 
 //Thunk that will fetch all OWNER Squads
 
-export const getOwnerSquads = (userId) => async dispatch => {
-    let res = await fetch(`/api/ownerSquads/${userId}`)
+export const getUserSquads = (userId) => async dispatch => {
+    let res = await csrfFetch(`/api/userSquads/${userId}`)
     if (res.ok) {
         const data = await res.json()
         dispatch(getSquadAction(data.squads));
@@ -19,17 +19,17 @@ export const getOwnerSquads = (userId) => async dispatch => {
 }
 
 // this thunk will create a new squad on the Squad table
-export const createSquad = (name) => async dispatch => {
-    let res = await fetch(`/api/squads`)
+export const createUserSquad = (name) => async dispatch => {
+    let res = await csrfFetch(`/api/squads`)
 }
 
 
 // Reducer
 
-export default function SquadsReducer(state = {}, action) {
+export default function UserSquadsReducer(state = {}, action) {
     let newState = {};
     switch (action.type) {
-        case GET_SQUADS:
+        case GET_USER_SQUADS:
             action.data.forEach(item => {
                 newState[item.id] = item;
             })

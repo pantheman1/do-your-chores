@@ -14,7 +14,7 @@ const Squads = () => {
     // click on a squad and it will take you to the list of zones available for that squad
     // if no squads, then have user join/create squad
 
-
+    console.log("squads component index-----", squads)
     if (squads.length) {
         return (
             <>
