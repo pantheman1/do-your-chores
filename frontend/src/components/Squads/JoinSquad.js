@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import InputGroup from 'react-bootstrap/InputGroup'
+import FormControl from 'react-bootstrap/FormControl'
+import Button from 'react-bootstrap/Button'
 
 export default function JoinSquad() {
     const [joinCode, setJoinCode] = useState("");
@@ -10,21 +13,22 @@ export default function JoinSquad() {
         // they should then see the squad on their squads list
     }
 
-    const handleJoinMenu = (e) => {
-        e.preventDefault();
-    }
 
     return (
         <>
             <div className="squad__container-join">
                 <label>Join a squad!</label>
-                <input
-                    className="squad__container-join--input"
-                    onChange={handleJoinMenu}
-                    value={joinCode}
-                    placeholder="Enter code..."
-                />
-                <button type="button" onClick={handleJoinSquad}>Submit</button>
+                <InputGroup className="mb-3">
+                    <input
+                        className="squad__container-join--input"
+                        onChange={e => setJoinCode(e.target.value)}
+                        value={joinCode}
+                        placeholder="Enter code..."
+                    />
+                    <InputGroup.Append>
+                        <Button variant="outline-secondary" onClick={handleJoinSquad}>Submit</Button>
+                    </InputGroup.Append>
+                </InputGroup>
             </div>
         </>
     )

@@ -6,6 +6,8 @@ import ChoresReducer from './chores';
 import UsersReducer from './user';
 import CompletedChoresReducer from './completionStatus';
 import SquadsReducer from './squads';
+import OwnerSquadsReducer from './ownerSquads';
+import UserSquadsReducer from './userSquads';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
@@ -14,6 +16,8 @@ const rootReducer = combineReducers({
     users: UsersReducer,
     completionStatus: CompletedChoresReducer,
     squads: SquadsReducer,
+    owner: OwnerSquadsReducer,
+    userSquads: UserSquadsReducer,
 });
 
 let enhancer;
