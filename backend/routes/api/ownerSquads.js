@@ -20,17 +20,14 @@ router.get('/:id', asyncHandler(async (req, res) => {
 router.post('/', asyncHandler(async (req, res) => {
     const { name, userId } = req.body;
     const newSquad = await Squad.create({ name });
-    console.log("NEW SQUAD-------", newSquad)
+    const newSquadId = newSquad.dataValues.id
 
-
-
-    // const newSquadId = await Squad.find
+    await OwnerSquad.create({
+        userId,
+        squadId: newSquadId,
+    })
     return res.json(newSquad);
 }));
-
-router.post('/:id', asyncHandler(async (req, res) => {
-    // needs both the id for the user/owner and for the squad
-}))
 
 
 module.exports = router;

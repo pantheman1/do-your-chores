@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
     users: UsersReducer,
     completionStatus: CompletedChoresReducer,
     squads: SquadsReducer,
-    owner: OwnerSquadsReducer,
+    ownerSquads: OwnerSquadsReducer,
     userSquads: UserSquadsReducer,
 });
 

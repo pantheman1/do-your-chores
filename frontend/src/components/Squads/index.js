@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import JoinSquad from "./JoinSquad";
@@ -7,14 +7,13 @@ import CreateSquad from "./CreateSquad";
 //this will be the dropdown
 
 const Squads = () => {
-    const squads = useSelector(state => Object.values(state.squads));
+    const squads = useSelector(state => Object.values(state.ownerSquads));
     const dispatch = useDispatch();
 
     // show a list of squads
     // click on a squad and it will take you to the list of zones available for that squad
     // if no squads, then have user join/create squad
 
-    console.log("squads component index-----", squads)
     if (squads.length) {
         return (
             <>
