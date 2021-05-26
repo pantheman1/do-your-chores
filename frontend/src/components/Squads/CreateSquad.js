@@ -25,7 +25,7 @@ export default function CreateSquad() {
         }
         await dispatch(createSquad(data))
         await dispatch(getOwnerSquads(user.id))
-        await setCode(`${crew}-${user.id}-${squads[squads.length - 1].id}`)
+        await setCode(`${crew.replace(/\s+/g, '-').toLowerCase()}-${user.id}-${squads[squads.length - 1].id}`)
         await setOpenSecond(true)
         setCrew("");
     }
