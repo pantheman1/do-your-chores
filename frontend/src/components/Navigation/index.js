@@ -10,6 +10,7 @@ import Profile from './Profile';
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
     const history = useHistory();
+
     let sessionLinks;
     if (sessionUser) {
         sessionLinks = (
