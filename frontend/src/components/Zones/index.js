@@ -6,10 +6,10 @@ import { nanoid } from 'nanoid';
 import './zones.css';
 
 const ZonePage = () => {
-    const sessionUser = useSelector(state => state.session.user);
-    const squads = useSelector(state => Object.values(state.ownerSquads).filter(squad => squad.userId === sessionUser.id));
-    const zones = useSelector(state => Object.values(state.zones));
     const { squadId } = useParams();
+    const sessionUser = useSelector(state => state.session.user);
+    const squads = useSelector(state => Object.values(state.ownerSquads).filter(squad => squad.squadId === Number(squadId)));
+    const zones = useSelector(state => Object.values(state.zones));
     const dispatch = useDispatch();
 
     console.log("zones---->>", zones)
@@ -70,8 +70,12 @@ const ZonePage = () => {
     }
 
     return (
+        squads.length > 0 &&
         <div className="outermost-container">
             <div className="inner-container">
+                <div className="container__crewName">
+                    <h1>{squads[0].Squad.name}</h1>
+                </div>
                 <div className="section-header">
                     <div className="header-text">Pick a Zone to Clean and Let's Get to Work!</div>
                 </div>

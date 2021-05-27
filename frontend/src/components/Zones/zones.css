@@ -22,6 +22,10 @@
   flex-direction: column;
 }
 
+.container__crewName {
+  text-align: center;
+}
+
 .section-header {
   display: flex;
   flex-direction: column;
