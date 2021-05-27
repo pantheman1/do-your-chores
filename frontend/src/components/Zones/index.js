@@ -8,13 +8,12 @@ import './zones.css';
 const ZonePage = () => {
     const sessionUser = useSelector(state => state.session.user);
     const squads = useSelector(state => Object.values(state.ownerSquads).filter(squad => squad.userId === sessionUser.id));
-    const zones = useSelector(state => state.zones.Zones);
+    const zones = useSelector(state => Object.values(state.zones));
     const { squadId } = useParams();
     const dispatch = useDispatch();
 
     console.log("zones---->>", zones)
     console.log("squads---->>", squads)
-    console.log("squadId--->>", squadId)
 
     useEffect(() => {
         dispatch(squadZones(squadId))

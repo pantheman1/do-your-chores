@@ -15,7 +15,6 @@ router.get('/zone/:zoneId', asyncHandler(async (req, res) => {
 // this query finds Zones by squadId
 router.get('/:squadId', asyncHandler(async (req, res) => {
     const { squadId } = req.params
-    console.log("SquadId---->>", squadId);
 
     const zones = await Zone.findAll({
         where: {

@@ -33,7 +33,7 @@ export const squadZones = (squadId) => async (dispatch) => {
 
     if (res.ok) {
         const data = await res.json();
-        dispatch(displayZones(data.squad)) //the route sends us an object with a zones k/v pair
+        dispatch(displayZones(data.zones)) //the route sends us an object with a zones k/v pair
     }
 }
 // 
@@ -66,9 +66,12 @@ export const getUserByZone = (id) => async dispatch => {
 }
 
 const ZonesReducer = (state = {}, action) => {
+    let newState = {};
     switch (action.type) {
         case DISPLAY_ZONES:
-            const newState = { ...state, ...action.zoneList }
+            action.zoneList.forEach(zone => {
+                newState[zone.id] = zone;
+            })
             return newState;
         case USER_BY_ZONE:
             return {
