@@ -47,7 +47,6 @@ function App() {
             <Squads />
           </Route>
           <Route exact path='/:squadId/zones'>
-            <h2>Squad zones</h2>
             <Zones />
           </Route>
           <Route exact path='/zones'>

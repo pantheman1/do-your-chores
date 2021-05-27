@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink, Redirect, Route, useHistory } from "react-router-dom";
-import * as sessionActions from "../../store/session";
-// import { allUserZones } from "../../store/zones"
-import Chores from '../Chores';
+import { NavLink, Redirect, useParams } from "react-router-dom";
+// import { squadZones } from "../../store/zones"
 import { nanoid } from 'nanoid';
 import './zones.css';
 
 const ZonePage = () => {
     const sessionUser = useSelector(state => state.session.user);
+    const squads = useSelector(state => Object.values(state.ownerSquads).filter(squad => squad.userId === sessionUser.id));
     const zones = useSelector(state => state.zones.Zones);
+    const { squadId } = useParams();
     const dispatch = useDispatch();
 
     console.log("zones---->>", zones)
+    console.log("squads---->>", squads)
+    console.log("squadId--->>", squadId)
+
     // useEffect(() => {
-    //     dispatch(allUserZones(sessionUser.id))
+    //     dispatch(squadZones(id))
     // }, [dispatch])
 
     if (!sessionUser) {
