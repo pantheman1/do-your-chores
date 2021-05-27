@@ -68,8 +68,8 @@ module.exports = (sequelize, DataTypes) => {
     User.belongsToMany(models.Squad, columnMappingOwnerSquad)
   };
   User.prototype.toSafeObject = function () {
-    const { id, username, email, squad_id, name } = this;
-    return { id, username, email, squad_id, name };
+    const { id, username, email, squadId, name } = this;
+    return { id, username, email, squadId, name };
   };
   User.prototype.validatePassword = function (password) {
     return bcrypt.compareSync(password, this.hashedPassword.toString());

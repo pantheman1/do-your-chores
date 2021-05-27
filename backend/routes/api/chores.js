@@ -15,13 +15,13 @@ router.get('/', asyncHandler(async (req, res) => {
     let chores = await Chore.findAll();
     if (req.query.zone !== undefined) {
         chores = chores.filter(chore => {
-            return req.query.zone == chore.dataValues.zone_id
+            return req.query.zone == chore.dataValues.zoneId
         })
     }
 
     if (req.query.user !== undefined) {
         chores = chores.filter(chore => {
-            return req.query.user == chore.dataValues.user_id
+            return req.query.user == chore.dataValues.userId
         })
     }
     return res.json(chores);
@@ -41,13 +41,13 @@ router.patch('/:id', asyncHandler(async (req, res) => {
     let chores = await Chore.findAll();
     if (req.query.zone !== undefined) {
         chores = chores.filter(chore => {
-            return req.query.zone == chore.dataValues.zone_id
+            return req.query.zone == chore.dataValues.zoneId
         })
     }
 
     if (req.query.user !== undefined) {
         chores = chores.filter(chore => {
-            return req.query.user == chore.dataValues.user_id
+            return req.query.user == chore.dataValues.userId
         })
     }
     return res.json(chores)
@@ -67,7 +67,7 @@ router.get('/:id/completed', asyncHandler(async function (req, res) {
     const isCompleteChore = await Chore.findAll({
         where: {
             'isComplete': true,
-            'zone_id': req.params.id
+            'zoneId': req.params.id
         }
     });
     // console.log("____>>>>>", isCompleteChore)
@@ -80,7 +80,7 @@ router.get('/:id/incomplete', asyncHandler(async function (req, res) {
     const isIncompleteChore = await Chore.findAll({
         where: {
             'isComplete': false,
-            'zone_id': req.params.id
+            'zoneId': req.params.id
         }
     });
     return res.json(isIncompleteChore)

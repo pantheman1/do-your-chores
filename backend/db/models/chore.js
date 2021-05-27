@@ -2,12 +2,12 @@
 module.exports = (sequelize, DataTypes) => {
   const Chore = sequelize.define('Chore', {
     name: DataTypes.STRING,
-    due_date: DataTypes.DATE,
+    dueDate: DataTypes.DATE,
     description: DataTypes.TEXT,
     estimated_time: DataTypes.INTEGER,
     isComplete: DataTypes.BOOLEAN,
-    zone_id: DataTypes.INTEGER,
-    user_id: DataTypes.INTEGER
+    zoneId: DataTypes.INTEGER,
+    userId: DataTypes.INTEGER
   }, {});
   Chore.associate = function (models) {
     Chore.belongsTo(models.User, { foreignKey: "userId" });

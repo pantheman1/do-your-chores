@@ -28,8 +28,8 @@ const updateChoreContent = (zoneId, choreId, newValue) => ({
 // Create action for adding a zone--------------
 // const addZone = 
 
-export const allUserZones = (id) => async (dispatch) => {
-    const res = await csrfFetch(`/api/zones/${id}`);
+export const squadZones = (squadId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/zones/${squadId}`);
 
     if (res.ok) {
         const data = await res.json();

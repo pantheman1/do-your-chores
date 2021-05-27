@@ -48,7 +48,7 @@ const ChoresPage = () => {
     // This turns a normalized object of all chores into an array
     const choreArr = Object.values(chores)
     // This filters the list into only those chores for this zone
-    const choresList = choreArr?.filter(chore => chore.zone_id.toString() === zoneId)
+    const choresList = choreArr?.filter(chore => chore.zoneId.toString() === zoneId)
     const completedChoresList = choresList?.filter(chore => chore.isComplete === true)
     const incompleteChoresList = choresList?.filter(chore => chore.isComplete === false)
     // console.log('--->>>', choresList)

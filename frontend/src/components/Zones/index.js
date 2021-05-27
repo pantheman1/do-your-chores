@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Redirect, useParams } from "react-router-dom";
-// import { squadZones } from "../../store/zones"
+import { squadZones } from "../../store/zones"
 import { nanoid } from 'nanoid';
 import './zones.css';
 
@@ -16,9 +16,9 @@ const ZonePage = () => {
     console.log("squads---->>", squads)
     console.log("squadId--->>", squadId)
 
-    // useEffect(() => {
-    //     dispatch(squadZones(id))
-    // }, [dispatch])
+    useEffect(() => {
+        dispatch(squadZones(squadId))
+    }, [dispatch])
 
     if (!sessionUser) {
         return <Redirect to='/login' />

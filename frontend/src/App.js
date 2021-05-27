@@ -47,6 +47,7 @@ function App() {
             <Squads />
           </Route>
           <Route exact path='/:squadId/zones'>
+            <Navigation isLoaded={isLoaded} />
             <Zones />
           </Route>
           <Route exact path='/zones'>
