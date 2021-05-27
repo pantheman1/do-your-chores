@@ -12,6 +12,7 @@ const ZonePage = () => {
     const zones = useSelector(state => state.zones.Zones);
     const dispatch = useDispatch();
 
+    console.log("zones---->>", zones)
     // useEffect(() => {
     //     dispatch(allUserZones(sessionUser.id))
     // }, [dispatch])

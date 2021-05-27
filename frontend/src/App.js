@@ -39,12 +39,16 @@ function App() {
           <Route path='/signup'>
             <SignupFormPage />
           </Route>
+          <Route exact path='/'>
+            <Navigation isLoaded={isLoaded} />
+          </Route>
           <Route path='/squads'>
             <Navigation isLoaded={isLoaded} />
             <Squads />
           </Route>
-          <Route exact path='/'>
-            <Navigation isLoaded={isLoaded} />
+          <Route exact path='/:squadId/zones'>
+            <h2>Squad zones</h2>
+            <Zones />
           </Route>
           <Route exact path='/zones'>
             <Navigation isLoaded={isLoaded} />
