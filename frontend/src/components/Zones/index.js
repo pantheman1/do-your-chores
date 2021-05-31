@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Redirect, useParams } from "react-router-dom";
 import { addZone, squadZones } from "../../store/zones"
-import { nanoid } from 'nanoid';
 import './zones.css';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
@@ -17,9 +16,13 @@ const ZonePage = () => {
     const [location, setLocation] = useState("");
     const dispatch = useDispatch();
 
-    const onOpenModal = () => setOpen(true);
+    const onOpenModal = (e) => {
+        e.preventDefault();
+        setOpen(true);
+    }
     const onCloseModal = () => {
         setOpen(false);
+        setLocation("");
     }
 
     useEffect(() => {
@@ -34,10 +37,10 @@ const ZonePage = () => {
         e.preventDefault();
         const data = {
             squadId,
-            location: "Basement",
+            location,
         }
         dispatch(addZone(data));
-        // modal popup with add a zone form
+        setOpen(false);
     }
 
     const images = [
@@ -68,14 +71,15 @@ const ZonePage = () => {
     let zoneLinks;
     if (zones?.length > 0) {
         zoneLinks = (
-            <div className="zone-container">
-                {zones.map(zone => (
-                    <div className="outer-tile-container" key={nanoid()}>
-                        <NavLink to={`/zones/${zone.id}`}>{imageGenerator()}{zone.location}</NavLink>
-                    </div>
-                ))}
-
-            </div>
+            <>
+                {
+                    zones.map(zone => (
+                        <div className="outer-tile-container" key={zone.id}>
+                            <NavLink to={`/zones/${zone.id}`}>{imageGenerator()}{zone.location}</NavLink>
+                        </div>
+                    ))
+                }
+            </>
         )
     } else {
         zoneLinks = (
@@ -93,10 +97,12 @@ const ZonePage = () => {
                 <div className="section-header">
                     <div className="header-text">Pick a Zone to Clean and Let's Get to Work!</div>
                 </div>
-                {zoneLinks}
-            </div>
-            <div className="outer-tile-container">
-                <button onClick={onOpenModal}><img className="tile-img" src="/images/add-button.png" />Create a squad</button>
+                <div className="zone-container">
+                    {zoneLinks}
+                    <div className="outer-tile-container">
+                        <button className="addZone-btn" onClick={onOpenModal}><img className="tile-img" src="/images/add-button.png" />Create a squad</button>
+                    </div>
+                </div>
             </div>
             <Modal open={open} onClose={onCloseModal} center>
                 <h2>Zone location: </h2>

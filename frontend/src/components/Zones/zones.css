@@ -91,3 +91,8 @@ a {
 .header-text {
   font-size: 30px;
 }
+
+button.addZone-btn {
+  border: none;
+  background: white;
+}
