@@ -4,13 +4,23 @@ import { NavLink, Redirect, useParams } from "react-router-dom";
 import { addZone, squadZones } from "../../store/zones"
 import { nanoid } from 'nanoid';
 import './zones.css';
+import 'react-responsive-modal/styles.css';
+import { Modal } from 'react-responsive-modal';
+import Button from 'react-bootstrap/Button'
 
 const ZonePage = () => {
     const { squadId } = useParams();
     const sessionUser = useSelector(state => state.session.user);
     const squads = useSelector(state => Object.values(state.ownerSquads).filter(squad => squad.squadId === Number(squadId)));
     const zones = useSelector(state => Object.values(state.zones));
+    const [open, setOpen] = useState(false);
+    const [location, setLocation] = useState("");
     const dispatch = useDispatch();
+
+    const onOpenModal = () => setOpen(true);
+    const onCloseModal = () => {
+        setOpen(false);
+    }
 
     useEffect(() => {
         dispatch(squadZones(squadId))
@@ -64,10 +74,12 @@ const ZonePage = () => {
                         <NavLink to={`/zones/${zone.id}`}>{imageGenerator()}{zone.location}</NavLink>
                     </div>
                 ))}
-                <div className="outer-tile-container">
-                    <button type="button" className="img-links" onClick={handleAddZone}><img className="tile-img" src="/images/add-button.png" />Add a Zone</button>
-                </div>
+
             </div>
+        )
+    } else {
+        zoneLinks = (
+            <h2>Create your first zone!</h2>
         )
     }
 
@@ -83,6 +95,20 @@ const ZonePage = () => {
                 </div>
                 {zoneLinks}
             </div>
+            <div className="outer-tile-container">
+                <button onClick={onOpenModal}><img className="tile-img" src="/images/add-button.png" />Create a squad</button>
+            </div>
+            <Modal open={open} onClose={onCloseModal} center>
+                <h2>Zone location: </h2>
+                <input
+                    className=""
+                    value={location}
+                    onChange={e => setLocation(e.target.value)}
+                />
+                <div className="squad__container-create">
+                    <Button type="button" className="img-links" onClick={handleAddZone}>Add a Zone</Button>
+                </div>
+            </Modal>
         </div>
     )
 }
