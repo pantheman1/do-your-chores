@@ -12,9 +12,6 @@ const ZonePage = () => {
     const zones = useSelector(state => Object.values(state.zones));
     const dispatch = useDispatch();
 
-    console.log("zones---->>", zones)
-    console.log("squads---->>", squads)
-
     useEffect(() => {
         dispatch(squadZones(squadId))
     }, [dispatch])

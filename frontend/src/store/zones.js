@@ -33,6 +33,7 @@ export const addZone = (data) => async (dispatch) => {
     });
     if (res.ok) {
         const newData = await res.json();
+        console.log("newzone---->", newData)
         dispatch(addZoneAction(newData));
     };
 }
@@ -66,8 +67,8 @@ const ZonesReducer = (state = {}, action) => {
             })
             return newState;
         case ADD_ZONE:
-
-            return newState;
+            newState[action.newZone.id] = action.newZone;
+            return { ...state, ...newState };
         default:
             return state
     }
