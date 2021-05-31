@@ -25,7 +25,6 @@ export const getOwnerSquads = (userId) => async dispatch => {
 
 // this thunk will create a new squad on the Squad table
 export const createSquad = (data) => async dispatch => {
-    const { name } = data;
     let res = await csrfFetch(`/api/squads`, {
         method: "POST",
         body: JSON.stringify(data)

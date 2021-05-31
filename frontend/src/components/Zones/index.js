@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Redirect, useParams } from "react-router-dom";
-import { squadZones } from "../../store/zones"
+import { addZone, squadZones } from "../../store/zones"
 import { nanoid } from 'nanoid';
 import './zones.css';
 
@@ -25,6 +25,11 @@ const ZonePage = () => {
 
     const handleAddZone = (e) => {
         e.preventDefault();
+        const data = {
+            squadId,
+            location: "Basement",
+        }
+        dispatch(addZone(data));
         // modal popup with add a zone form
     }
 

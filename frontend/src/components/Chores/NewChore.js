@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid';
 import NumericInput from 'react-numeric-input';
 import './chores.css'
 import { getUsers } from "../../store/user";
-import { getUserByZone } from '../../store/zones';
+// import { getUserByZone } from '../../store/zones';
 import { postNewChore } from '../../store/chores';
 
 
@@ -24,9 +24,9 @@ const NewChore = ({ setSelectedChore }) => {
     // const [errors, setErrors] = useState([])
     const { zoneId } = useParams()
 
-    useEffect(() => {
-        dispatch(getUserByZone(sessionUser.id))
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getUserByZone(sessionUser.id))
+    // }, [dispatch])
 
     const handleSelectedUser = (e) => {
         setAssignee(e.target.value)

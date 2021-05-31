@@ -26,6 +26,24 @@ router.get('/:squadId', asyncHandler(async (req, res) => {
 }));
 
 // localhost:5000/api/zones/:id
+// add a zone
+router.post('/', asyncHandler(async (req, res) => {
+    const {
+        location,
+        squadId,
+    } = req.body;
+
+    const newZone = await Zone.create({
+        location,
+        squadId,
+    });
+
+    return res.json(newZone);
+}))
+
+
+// localhost:5000/api/zones/:id
+// creates a new chore...should be in the chores.js route
 router.post('/:zoneId', asyncHandler(async (req, res) => {
     const {
         name,
