@@ -41,7 +41,9 @@ function Navigation({ isLoaded }) {
                     <div className="menu-btn">
                         {isLoaded && sessionLinks}
                     </div>
-                    <DropdownButton id="dropdown-basic-button" title="Dropdown button">
+                    <DropdownButton id="dropdown-basic-button" title={
+                        <span><i className="fas fa-plus-circle"></i></span>
+                    }>
                         <CreateSquad />
                         <JoinSquad />
                     </DropdownButton>

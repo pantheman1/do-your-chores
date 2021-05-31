@@ -11,35 +11,52 @@ router.get('/zone/:zoneId', asyncHandler(async (req, res) => {
     return res.json({ zone })
 }))
 
-router.get('/:userId', asyncHandler(async function (req, res) {
-    // this query finds the USER'S squad id
-    const squadId = await User.findByPk(req.params.userId, {
-        attributes: ['squad_id']
-    });
-    // this query takes the user's squad id and finds the zones and 
-    const squad = await Squad.findByPk(squadId.dataValues.squad_id, {
-        include: {
-            model: Zone,
-            include: Chore
+// localhost:5000/api/zones/:squadId
+// this query finds Zones by squadId
+router.get('/:squadId', asyncHandler(async (req, res) => {
+    const { squadId } = req.params
+
+    const zones = await Zone.findAll({
+        where: {
+            squadId,
         }
     })
-    return res.json({ squad });
+
+    return res.json({ zones });
 }));
 
 // localhost:5000/api/zones/:id
+// add a zone
+router.post('/', asyncHandler(async (req, res) => {
+    const {
+        location,
+        squadId,
+    } = req.body;
+
+    const newZone = await Zone.create({
+        location,
+        squadId,
+    });
+
+    return res.json(newZone);
+}))
+
+
+// localhost:5000/api/zones/:id
+// creates a new chore...should be in the chores.js route
 router.post('/:zoneId', asyncHandler(async (req, res) => {
     const {
         name,
-        user_id,
-        zone_id,
+        userId,
+        zoneId,
         estimated_time,
         description
     } = req.body;
 
     const newChore = await Chore.create({
         name: name,
-        user_id: user_id,
-        zone_id: zone_id,
+        userId,
+        zoneId: zoneId,
         estimated_time: estimated_time,
         description: description
     })

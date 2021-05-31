@@ -25,7 +25,7 @@ export const getOwnerSquads = (userId) => async dispatch => {
 }
 
 // this thunk will create a new squad on the Squad table
-// this thunk will also create a new ownerSquad on the Squad table
+// this thunk will also create a new ownerSquad 
 export const createSquad = (data) => async dispatch => {
     let res = await csrfFetch(`/api/ownerSquads`, {
         method: "POST",

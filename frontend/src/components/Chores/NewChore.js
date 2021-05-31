@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid';
 import NumericInput from 'react-numeric-input';
 import './chores.css'
 import { getUsers } from "../../store/user";
-import { getUserByZone } from '../../store/zones';
+// import { getUserByZone } from '../../store/zones';
 import { postNewChore } from '../../store/chores';
 
 
@@ -24,28 +24,28 @@ const NewChore = ({ setSelectedChore }) => {
     // const [errors, setErrors] = useState([])
     const { zoneId } = useParams()
 
-    useEffect(() => {
-        dispatch(getUserByZone(sessionUser.id))
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getUserByZone(sessionUser.id))
+    // }, [dispatch])
 
     const handleSelectedUser = (e) => {
         setAssignee(e.target.value)
     }
 
     const objArray = Object.values(users)
-    const squadUsers = objArray.filter(user => sessionUser.squad_id === user.squad_id)
+    const squadUsers = objArray.filter(user => sessionUser.squadId === user.squadId)
 
     const onSubmit = async (e) => {
         e.preventDefault()
-        const user_idString = assignee.split("-")[1];
-        const user_id = Number(user_idString);
-        const zone_id = Number(zoneId)
+        const userIdString = assignee.split("-")[1];
+        const userId = Number(userIdString);
+        const zoneId = Number(zoneId)
 
         const newUser = {
             name: name,
-            user_id: user_id,
+            userId: userId,
             estimated_time: estimatedTime,
-            zone_id: zone_id,
+            zoneId,
             description: description
         }
         // chore is getting duplicated ////////////////////////bugbugbug
@@ -55,9 +55,9 @@ const NewChore = ({ setSelectedChore }) => {
         // setSelectedChore("")
         // newUser = {
         //     name: "",
-        //     user_id: "",
+        //     userId: "",
         //     estimated_time: "",
-        //     zone_id: "",
+        //     zoneId: "",
         //     description: "",
         // };
     }

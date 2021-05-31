@@ -2,16 +2,16 @@ import { csrfFetch } from './csrf';
 
 const DISPLAY_ZONES = 'zones/DISPLAY_ZONES';
 const UPDATE_CHORE = 'chores/UPDATE_CHORE';
-const USER_BY_ZONE = 'user/USER_BY_ZONE';
+const ADD_ZONE = 'zones/ADD_ZONE';
 
 const displayZones = zoneList => ({
     type: DISPLAY_ZONES,
     zoneList
 })
 
-const grabUserData = zoneList => ({
-    type: USER_BY_ZONE,
-    zoneList
+const addZoneAction = newZone => ({
+    type: ADD_ZONE,
+    newZone
 })
 
 //update chore
@@ -25,18 +25,28 @@ const updateChoreContent = (zoneId, choreId, newValue) => ({
 });
 
 
-// Create action for adding a zone--------------
-// const addZone = 
+// Adds a zone to the squad
+export const addZone = (data) => async (dispatch) => {
+    let res = await csrfFetch(`/api/zones`, {
+        method: "POST",
+        body: JSON.stringify(data)
+    });
+    if (res.ok) {
+        const newData = await res.json();
+        console.log("newzone---->", newData)
+        dispatch(addZoneAction(newData));
+    };
+}
 
-export const allUserZones = (id) => async (dispatch) => {
-    const res = await csrfFetch(`/api/zones/${id}`);
+export const squadZones = (squadId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/zones/${squadId}`);
 
     if (res.ok) {
         const data = await res.json();
-        dispatch(displayZones(data.squad)) //the route sends us an object with a zones k/v pair
+        dispatch(displayZones(data.zones)) //the route sends us an object with a zones k/v pair
     }
 }
-// 
+
 export const updateDbFromStore = (choreId, newValue) => async dispatch => {
     //     const res = await csrfFetch(`/api/chores/${choreId}`, {
     //         method: 'PATCH',
@@ -48,33 +58,17 @@ export const updateDbFromStore = (choreId, newValue) => async dispatch => {
     //     dispatch(updateChore());
 }
 
-export const getUserByZone = (id) => async dispatch => {
-    const res = await csrfFetch(`/api/zones/${id}`);
-    const data = await res.json();
-    const obj = {};
-    //normalized zones data
-    data.squad.Zones.forEach(zone => {
-        obj[zone.id] = zone;
-    })
-    const zonesArr = Object.values(obj);
-    const zonesObj = {};
-    zonesArr.forEach(zone => {
-        zonesObj[zone.id] = zone
-    })
-    // const chores = zonesObj?.find(zone => zone.id.toString() === zoneId).Chores
-    dispatch(grabUserData(zonesObj)) //the route sends us an object with a zones k/v pair
-}
-
 const ZonesReducer = (state = {}, action) => {
+    let newState = {};
     switch (action.type) {
         case DISPLAY_ZONES:
-            const newState = { ...state, ...action.zoneList }
+            action.zoneList.forEach(zone => {
+                newState[zone.id] = zone;
+            })
             return newState;
-        case USER_BY_ZONE:
-            return {
-                ...state,
-                ...action.zoneList
-            }
+        case ADD_ZONE:
+            newState[action.newZone.id] = action.newZone;
+            return { ...state, ...newState };
         default:
             return state
     }

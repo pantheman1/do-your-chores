@@ -1,23 +1,24 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button'
 import { useDispatch, useSelector } from 'react-redux';
 import { createSquad, getOwnerSquads } from '../../store/ownerSquads';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
-import CopyToClipElement from './CopyToClipElement';
 
 export default function CreateSquad() {
     const user = useSelector(state => state.session.user)
     const squads = useSelector(state => Object.values(state.ownerSquads));
     const dispatch = useDispatch()
-    const ref = useRef();
     const [open, setOpen] = useState(false);
     const [openSecond, setOpenSecond] = useState(false);
     const [crew, setCrew] = useState("");
     const [code, setCode] = useState("");
+    const [copySuccess, setCopySuccess] = useState("Click to copy");
 
     const onOpenModal = () => setOpen(true);
-    const onCloseModal = () => setOpen(false);
+    const onCloseModal = () => {
+        setOpen(false);
+    }
 
     const handleCreateSquad = async (e) => {
         e.preventDefault();
@@ -32,9 +33,9 @@ export default function CreateSquad() {
         setCrew("");
     }
 
-    let copySuccess;
     const handleCopy = e => {
-        copySuccess = "Text copied successfully"
+        setCopySuccess("Copied!");
+        navigator.clipboard.writeText(code)
     }
 
     return (
@@ -52,20 +53,19 @@ export default function CreateSquad() {
                         <Button type="submit" onClick={handleCreateSquad} variant="primary">Submit</Button>
                     </div>
                 </Modal>
-                <Modal open={openSecond} onClose={() => setOpenSecond(false)} center>
+                <Modal open={openSecond} onClose={() => {
+                    setOpenSecond(false)
+                    setCopySuccess("Click to copy")
+                }} center>
                     <h3>Share this code with your cleaning crew!</h3>
-                    <div>
-                        {copySuccess}
-                    </div>
                     {code}
                     <div>
                         <Button
                             variant="secondary"
                             onClick={handleCopy}
                         >
-                            Click to copy!
+                            {copySuccess === "Click to copy" ? copySuccess : copySuccess}
                         </Button>
-                        <CopyToClipElement text={code} />
                     </div>
                 </Modal>
             </div>

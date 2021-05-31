@@ -11,8 +11,10 @@ const Squads = () => {
     const dispatch = useDispatch();
 
     // show a list of squads
-    // click on a squad and it will take you to the list of zones available for that squad
     // if no squads, then have user join/create squad
+    // click on a squad and it will take you to the list of zones available for that squad
+    // if user is the owner, then you can create a zone
+    // if user is not the owner, then they will see the list of zones, or a message saying no zones are available for this squad
 
     if (squads.length) {
         return (
@@ -24,7 +26,7 @@ const Squads = () => {
                     <div className="squad__container-squads">
                         {squads.map(squad => (
                             <div key={squad.id} className="squad__container-squads--squad">
-                                <NavLink to={`/squads/${squad.id}`}>{squad.Squad.name}</NavLink>
+                                <NavLink to={`/${squad.id}/zones`}>{squad.Squad.name}</NavLink>
                             </div>
                         ))}
                     </div>

@@ -12,7 +12,7 @@ const ChoreDetails = ({ chore }) => {
     const dispatch = useDispatch();
     const { zoneId } = useParams()
     const [name, setName] = useState(chore.name);
-    const [assignee, setAssignee] = useState(users[chore.user_id])
+    const [assignee, setAssignee] = useState(users[chore.userId])
     const [estimatedTime, setEstimatedTime] = useState(chore.estimated_time)
     const [description, setDescription] = useState(chore.description)
 
@@ -20,7 +20,7 @@ const ChoreDetails = ({ chore }) => {
 
     useEffect(() => {
         setName(chore.name);
-        setAssignee(users[chore.user_id]);
+        setAssignee(users[chore.userId]);
         setDescription(chore.description);
         setEstimatedTime(chore.estimated_time);
     }, [chore, users])
@@ -35,7 +35,7 @@ const ChoreDetails = ({ chore }) => {
     }
 
     const objArray = Object.values(users)
-    const squadUsers = objArray?.filter(user => sessionUser.squad_id === user.squad_id)
+    const squadUsers = objArray?.filter(user => sessionUser.squadId === user.squadId)
 
     if (!chore || !users) return null
 

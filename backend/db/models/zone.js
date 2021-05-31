@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     squadId: DataTypes.INTEGER,
   }, {});
   Zone.associate = function (models) {
-    Zone.belongsTo(models.Squad, { foreignKey: 'squad_id' });
-    Zone.hasMany(models.Chore, { foreignKey: 'zone_id' });
+    Zone.belongsTo(models.Squad, { foreignKey: 'squadId' });
+    Zone.hasMany(models.Chore, { foreignKey: 'zoneId' });
   };
 
   return Zone;
