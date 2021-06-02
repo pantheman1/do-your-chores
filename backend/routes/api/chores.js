@@ -4,15 +4,18 @@ const { Chore, Zone, User } = require('../../db/models')
 
 //test comment
 
-// localhost:5000/api/chores
-// localhost:5000/api/chores?zone=3
-// localhost:5000/api/chores?user=1
-// localhost:5000/api/chores?user=1&zone=3
-router.get('/', asyncHandler(async (req, res) => {
+// localhost:5000/api/chores/:zoneId
+router.get('/:zoneId', asyncHandler(async (req, res) => {
     //if user gives us a zone then we'll filter chores by that zone
     //else return all chores regardless of zone
+    const { zoneId } = req.params;
+    console.log("zoneId--", zoneId)
 
-    let chores = await Chore.findAll();
+    let chores = await Chore.findAll({
+        where: {
+            zoneId
+        }
+    });
     if (req.query.zone !== undefined) {
         chores = chores.filter(chore => {
             return req.query.zone == chore.dataValues.zoneId

@@ -49,7 +49,7 @@ router.post('/:zoneId', asyncHandler(async (req, res) => {
         name,
         userId,
         zoneId,
-        estimated_time,
+        estimatedTime,
         description
     } = req.body;
 
@@ -57,7 +57,7 @@ router.post('/:zoneId', asyncHandler(async (req, res) => {
         name: name,
         userId,
         zoneId: zoneId,
-        estimated_time: estimated_time,
+        estimatedTime: estimatedTime,
         description: description
     })
     res.json({ newChore })
