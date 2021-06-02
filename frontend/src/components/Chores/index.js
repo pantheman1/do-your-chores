@@ -10,7 +10,7 @@ import NewChore from './NewChore';
 
 const ChoresPage = () => {
     const sessionUser = useSelector(state => state.session.user);
-    const chores = useSelector(state => state.chores);
+    const chores = useSelector(state => Object.values(state.chores));
     const compChores = useSelector(state => state.completionStatus)
     const { zoneId } = useParams();
     //zone is only bringing in the location of the zone
@@ -20,9 +20,14 @@ const ChoresPage = () => {
     const [complete, setComplete] = useState(false);
     const [selectedButton, setSelectedButton] = useState('all');
 
+    console.log("chores----", chores)
+    let completedChores = chores.filter(chore => chore.isComplete === "true");
+    let incompleteChores = chores.filter(chore => chore.isComplete === "false");
+
     // Will initiate a fetch to grab all chores in this zoneId
-    // useEffect(() => {
-    // }, [dispatch, zoneId])
+    useEffect(() => {
+        dispatch(getAllChores(zoneId))
+    }, [dispatch])
 
     // should get all chores based on the zoneId
     const handleAllChores = () => {
@@ -34,25 +39,12 @@ const ChoresPage = () => {
     const handleCompleteChores = () => {
         setSelectedButton('completed');
         // dispatch(completedChores(zoneId))
-
     }
 
     // Will initiate a fetch to grab all incomplete chores in this zoneId
     const handleIncompleteChores = () => {
         setSelectedButton('incomplete');
     }
-
-    //This turns the normalized object of chores (already specific to this zone) into an array
-    const completedChoresArr = Object.values(compChores);
-    console.log("COMPLETED CHORES-->>", completedChoresArr)
-
-    // This turns a normalized object of all chores into an array
-    const choreArr = Object.values(chores)
-    // This filters the list into only those chores for this zone
-    const choresList = choreArr?.filter(chore => chore.zoneId.toString() === zoneId)
-    const completedChoresList = choresList?.filter(chore => chore.isComplete === true)
-    const incompleteChoresList = choresList?.filter(chore => chore.isComplete === false)
-    // console.log('--->>>', choresList)
 
     if (!sessionUser) {
         return <Redirect to='/login' />
@@ -66,27 +58,27 @@ const ChoresPage = () => {
     console.log("selectedButton-->", selectedButton)
 
     let choreList;
-    if (choresList?.length > 0 && selectedButton === "all") {
+    if (chores?.length > 0 && selectedButton === "all") {
         choreList = (
             <div className="chores-container">
-                {choresList.map(chore => (
-                    <ChoreBlocks key={nanoid()} complete={complete} setComplete={setComplete} setSelectedChore={setSelectedChore} chore={chore} />
+                {chores.map(chore => (
+                    <ChoreBlocks key={chore.id} complete={complete} setComplete={setComplete} setSelectedChore={setSelectedChore} chore={chore} />
                 ))}
             </div>
         )
-    } else if (completedChoresList?.length > 0 && selectedButton === "completed") {
+    } else if (chores?.length > 0 && selectedButton === "completed") {
         choreList = (
             <div className="chores-container">
-                {completedChoresList.map(chore => (
-                    <ChoreBlocks key={nanoid()} complete={complete} setComplete={setComplete} setSelectedChore={setSelectedChore} chore={chore} />
+                {completedChores.map(chore => (
+                    <ChoreBlocks key={chore.id} complete={complete} setComplete={setComplete} setSelectedChore={setSelectedChore} chore={chore} />
                 ))}
             </div>
         )
-    } else if (incompleteChoresList?.length > 0 && selectedButton === "incomplete") {
+    } else if (chores?.length > 0 && selectedButton === "incomplete") {
         choreList = (
             <div className="chores-container">
-                {incompleteChoresList.map(chore => (
-                    <ChoreBlocks key={nanoid()} complete={complete} setComplete={setComplete} setSelectedChore={setSelectedChore} chore={chore} />
+                {incompleteChores.map(chore => (
+                    <ChoreBlocks key={chore.id} complete={complete} setComplete={setComplete} setSelectedChore={setSelectedChore} chore={chore} />
                 ))}
             </div>
         )
@@ -107,7 +99,7 @@ const ChoresPage = () => {
             {selectedButton && selectedButton === "all" ? choreList : selectedButton && selectedButton === "completed" ? choreList : selectedButton && selectedButton === "incomplete" ? choreList : 'All'}
             {/* {selectedButton && selectedButton === "all" ? choreList : 'All'} */}
             <button type="button" className="add-a-chore" onClick={addAChore}>Add a Chore</button>
-            {Object.keys(selectedChore).length === 0 ? <NewChore choresList={choresList} setSelectedChore={setSelectedChore} /> : <ChoreDetails choresList={choresList} chore={selectedChore} />}
+            {Object.keys(selectedChore).length === 0 ? <NewChore chores={chores} setSelectedChore={setSelectedChore} /> : <ChoreDetails chores={chores} chore={selectedChore} />}
         </div>
     )
 }
