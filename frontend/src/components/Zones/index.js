@@ -72,13 +72,11 @@ const ZonePage = () => {
     if (zones?.length > 0) {
         zoneLinks = (
             <>
-                {
-                    zones.map(zone => (
-                        <div className="outer-tile-container" key={zone.id}>
-                            <NavLink to={`/zones/${zone.id}`}>{imageGenerator()}{zone.location}</NavLink>
-                        </div>
-                    ))
-                }
+                {zones?.map(zone => (
+                    <div className="outer-tile-container" key={zone.id}>
+                        <NavLink to={`/${squadId}/${zone.id}/chores`}>{imageGenerator()}{zone.location}</NavLink>
+                    </div>
+                ))}
             </>
         )
     } else {
@@ -88,7 +86,7 @@ const ZonePage = () => {
     }
 
     return (
-        squads.length > 0 &&
+        zones.length > 0 &&
         <div className="outermost-container">
             <div className="inner-container">
                 <div className="container__crewName">

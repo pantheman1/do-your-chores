@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Route, Redirect, useHistory, useParams, Link } from "react-router-dom";
-import { getSimpleList } from '../../store/chores';
+import { getAllChores } from '../../store/chores';
 import { nanoid } from 'nanoid';
 import './chores.css'
 import ChoreBlocks from './ChoreBlocks';
@@ -12,20 +12,21 @@ const ChoresPage = () => {
     const sessionUser = useSelector(state => state.session.user);
     const chores = useSelector(state => state.chores);
     const compChores = useSelector(state => state.completionStatus)
+    const { zoneId } = useParams();
     //zone is only bringing in the location of the zone
-    const zone = useSelector(state => state.singleZone.zone)
+    const zone = useSelector(state => Object.values(state.zones).filter(zone => zone.id === Number(zoneId)));
     const dispatch = useDispatch();
     const [selectedChore, setSelectedChore] = useState({});
     const [complete, setComplete] = useState(false);
     const [selectedButton, setSelectedButton] = useState('all');
-    const { zoneId } = useParams();
 
     // Will initiate a fetch to grab all chores in this zoneId
     // useEffect(() => {
     // }, [dispatch, zoneId])
 
+    // should get all chores based on the zoneId
     const handleAllChores = () => {
-        dispatch(getSimpleList(sessionUser.id))
+        dispatch(getAllChores(zoneId))
         setSelectedButton('all');
     }
 
@@ -52,11 +53,6 @@ const ChoresPage = () => {
     const completedChoresList = choresList?.filter(chore => chore.isComplete === true)
     const incompleteChoresList = choresList?.filter(chore => chore.isComplete === false)
     // console.log('--->>>', choresList)
-
-    // Loads chores upon render
-    useEffect(() => {
-        dispatch(getSimpleList())
-    }, [dispatch])
 
     if (!sessionUser) {
         return <Redirect to='/login' />
@@ -105,7 +101,7 @@ const ChoresPage = () => {
                 <button type="button" className="completed-chores" onClick={handleCompleteChores}>Completed</button>
                 <button type="button" className="incomplete-chores" onClick={handleIncompleteChores}>Incomplete</button>
                 <button type="button" className="all-chores" onClick={handleAllChores}>All</button>
-                <h1>{zone?.location}</h1>
+                <h1>{zone[0]?.location}</h1>
             </div>
             {/* {choreList} */}
             {selectedButton && selectedButton === "all" ? choreList : selectedButton && selectedButton === "completed" ? choreList : selectedButton && selectedButton === "incomplete" ? choreList : 'All'}

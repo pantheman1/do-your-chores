@@ -13,7 +13,7 @@ const ChoreDetails = ({ chore }) => {
     const { zoneId } = useParams()
     const [name, setName] = useState(chore.name);
     const [assignee, setAssignee] = useState(users[chore.userId])
-    const [estimatedTime, setEstimatedTime] = useState(chore.estimated_time)
+    const [estimatedTime, setEstimatedTime] = useState(chore.estimatedTime)
     const [description, setDescription] = useState(chore.description)
 
     // this page needs to update the store and the database with any changes to the forms
@@ -22,7 +22,7 @@ const ChoreDetails = ({ chore }) => {
         setName(chore.name);
         setAssignee(users[chore.userId]);
         setDescription(chore.description);
-        setEstimatedTime(chore.estimated_time);
+        setEstimatedTime(chore.estimatedTime);
     }, [chore, users])
 
     const handleNameChange = (e) => {
@@ -71,7 +71,7 @@ const ChoreDetails = ({ chore }) => {
                     </div>
                     <div className="estimated-time">
                         <label>How many minutes will this chore take?</label>
-                        <NumericInput onChange={e => setEstimatedTime(e)} min={0} max={90} value={chore.estimated_time} step={5} />
+                        <NumericInput onChange={e => setEstimatedTime(e)} min={0} max={90} value={chore.estimatedTime} step={5} />
                     </div>
                     <div className="description-detailed">
                         <label>Description</label>

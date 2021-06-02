@@ -44,7 +44,7 @@ const NewChore = ({ setSelectedChore }) => {
         const newUser = {
             name: name,
             userId: userId,
-            estimated_time: estimatedTime,
+            estimatedTime: estimatedTime,
             zoneId,
             description: description
         }
@@ -56,7 +56,7 @@ const NewChore = ({ setSelectedChore }) => {
         // newUser = {
         //     name: "",
         //     userId: "",
-        //     estimated_time: "",
+        //     estimatedTime: "",
         //     zoneId: "",
         //     description: "",
         // };
