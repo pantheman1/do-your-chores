@@ -18,6 +18,15 @@ export const getUserSquads = (userId) => async dispatch => {
     }
 }
 
+export const getUsersBySquad = (squadId) => async dispatch => {
+    let res = await csrfFetch(`/api/userSquads/${squadId}`)
+    console.log("---store---squadId", squadId)
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(getSquadAction(data.squads));
+    }
+}
+
 // this thunk will create a new squad on the Squad table
 export const createUserSquad = (name) => async dispatch => {
     let res = await csrfFetch(`/api/squads`)
