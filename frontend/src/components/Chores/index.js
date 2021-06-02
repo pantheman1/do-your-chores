@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Route, Redirect, useHistory, useParams, Link } from "react-router-dom";
+import { Redirect, useHistory, useParams } from "react-router-dom";
 import { getAllChores } from '../../store/chores';
 import './chores.css'
 import ChoreBlocks from './ChoreBlocks';
 import ChoreDetails from './choreDetails';
 import NewChore from './NewChore';
+import Button from 'react-bootstrap/Button';
 
 const ChoresPage = () => {
     const sessionUser = useSelector(state => state.session.user);
@@ -29,7 +30,8 @@ const ChoresPage = () => {
         return <Redirect to='/login' />
     }
 
-    const addAChore = (e) => {
+    // This does not post a chore--it toggles to show an empty create chore form
+    const handleAddChore = (e) => {
         e.preventDefault();
         setSelectedChore({})
     }
@@ -88,14 +90,14 @@ const ChoresPage = () => {
                 <h1>{zone[0]?.location}</h1>
             </div>
             <div className="chores-header">
-                <button type="button" className="completed-chores" onClick={handleComplete}>Completed</button>
-                <button type="button" className="incomplete-chores" onClick={handleIncomplete}>Incomplete</button>
-                <button type="button" className="all-chores" onClick={handleAll}>All</button>
+                <Button variant="success" type="button" className="completed-chores" onClick={handleComplete}>Completed</Button>
+                <Button variant="success" type="button" className="incomplete-chores" onClick={handleIncomplete}>Incomplete</Button>
+                <Button variant="success" type="button" className="all-chores" onClick={handleAll}>All</Button>
             </div>
             <div className="chores-container">
                 {selectedButton && selectedButton === "all" ? choreList : selectedButton && selectedButton === "completed" ? choreList : selectedButton && selectedButton === "incomplete" ? choreList : 'All'}
             </div>
-            <button type="button" className="add-a-chore" onClick={addAChore}>Add a Chore</button>
+            <button type="button" className="add-a-chore" onClick={handleAddChore}>Add a Chore</button>
             {Object.keys(selectedChore).length === 0 ? <NewChore chores={chores} setSelectedChore={setSelectedChore} /> : <ChoreDetails chores={chores} chore={selectedChore} />}
         </div>
     )

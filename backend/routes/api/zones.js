@@ -41,26 +41,4 @@ router.post('/', asyncHandler(async (req, res) => {
     return res.json(newZone);
 }))
 
-
-// localhost:5000/api/zones/:id
-// creates a new chore...should be in the chores.js route
-router.post('/:zoneId', asyncHandler(async (req, res) => {
-    const {
-        name,
-        userId,
-        zoneId,
-        estimatedTime,
-        description
-    } = req.body;
-
-    const newChore = await Chore.create({
-        name: name,
-        userId,
-        zoneId: zoneId,
-        estimatedTime: estimatedTime,
-        description: description
-    })
-    res.json({ newChore })
-}))
-
 module.exports = router;

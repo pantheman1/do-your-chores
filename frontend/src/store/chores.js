@@ -44,7 +44,7 @@ export const toggleIsComplete = (chore) => async dispatch => {
 }
 
 export const postNewChore = (chore) => async dispatch => {
-    const res = await csrfFetch(`/api/zones/${chore.zoneId}`, {
+    const res = await csrfFetch(`/api/chores/${chore.zoneId}`, {
         method: 'POST',
         body: JSON.stringify(chore)
     })
