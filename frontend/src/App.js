@@ -54,6 +54,14 @@ function App() {
             <Navigation isLoaded={isLoaded} />
             <Chores />
           </Route>
+          <Route exact path='/:squadId/:zoneId/chores/complete'>
+            <Navigation isLoaded={isLoaded} />
+            <Chores />
+          </Route>
+          <Route exact path='/:squadId/:zoneId/chores/incomplete'>
+            <Navigation isLoaded={isLoaded} />
+            <Chores />
+          </Route>
         </Switch>
       )}
     </>

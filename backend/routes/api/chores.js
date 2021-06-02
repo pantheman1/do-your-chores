@@ -33,6 +33,7 @@ router.get('/:zoneId', asyncHandler(async (req, res) => {
 // localhost:5000/api/chores/:id
 router.patch('/:id', asyncHandler(async (req, res) => {
     const { id } = req.params;
+    console.log("id--->>", id)
     const chore = await Chore.findByPk(id);
     const { isComplete } = req.body;
 

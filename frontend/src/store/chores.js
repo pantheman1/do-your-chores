@@ -33,10 +33,11 @@ export const getAllChores = (zoneId) => async (dispatch) => {
     }
 }
 
-export const toggleIsComplete = (chore) => async dispatch => {
-    const res = await csrfFetch(`/api/chores/${chore.id}`, {
+export const toggleIsComplete = (data) => async dispatch => {
+    console.log("chore---store--->", data)
+    const res = await csrfFetch(`/api/chores/${data.chore.id}`, {
         method: 'PATCH',
-        body: JSON.stringify(chore)
+        body: JSON.stringify(data)
     })
 
     if (res.ok) {
