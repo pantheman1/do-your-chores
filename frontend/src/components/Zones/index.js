@@ -74,7 +74,7 @@ const ZonePage = () => {
             <>
                 {zones?.map(zone => (
                     <div className="outer-tile-container" key={zone.id}>
-                        <NavLink to={`/${squadId}/${zone.id}/chores`}>{imageGenerator()}{zone.location}</NavLink>
+                        <NavLink to={`/${squadId}/${zone.id}/chores/all`}>{imageGenerator()}{zone.location}</NavLink>
                     </div>
                 ))}
             </>
