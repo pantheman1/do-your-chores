@@ -26,6 +26,10 @@ const ChoresPage = () => {
         dispatch(getAllChores(zoneId))
     }, [dispatch, selectedButton])
 
+    // useEffect(() => {
+    //     dispatch()
+    // }, [])
+
     if (!sessionUser) {
         return <Redirect to='/login' />
     }

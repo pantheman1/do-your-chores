@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const asyncHandler = require('express-async-handler');
-const { Squad, OwnerSquad } = require('../../db/models');
+const { Squad, OwnerSquad, UserSquad } = require('../../db/models');
 
 // get request to get the ID and name from the OWNER's squads
 // localhost:5000/api/squads/:id
@@ -16,6 +16,7 @@ router.get('/:id', asyncHandler(async (req, res) => {
 }))
 
 // Create a post route which will allow a new user to create a new Squad
+// We create an owner squad to make the user the owner, and a user squad to make sure the owner is also a user
 // localhost:5000/api/squads
 router.post('/', asyncHandler(async (req, res) => {
     const { name, userId } = req.body;
@@ -25,7 +26,13 @@ router.post('/', asyncHandler(async (req, res) => {
     await OwnerSquad.create({
         userId,
         squadId: newSquadId,
-    })
+    });
+
+    await UserSquad.create({
+        userId,
+        squadId: newSquadId,
+    });
+
     return res.json(newSquad);
 }));
 
