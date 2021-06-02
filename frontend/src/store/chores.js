@@ -24,20 +24,17 @@ const newChorePost = (newChore) => ({
 // Thunk Action Creators
 
 export const getAllChores = (zoneId) => async (dispatch) => {
-    console.log("before-----")
     const res = await csrfFetch(`/api/chores/${zoneId}`);
-    console.log("after-----")
     if (res.ok) {
         const chores = await res.json();
         dispatch(getAllChoresAction(chores))
     }
 }
 
-export const toggleIsComplete = (data) => async dispatch => {
-    console.log("chore---store--->", data)
-    const res = await csrfFetch(`/api/chores/${data.chore.id}`, {
+export const toggleIsComplete = (chore) => async dispatch => {
+    const res = await csrfFetch(`/api/chores/${chore.id}`, {
         method: 'PATCH',
-        body: JSON.stringify(data)
+        body: JSON.stringify(chore)
     })
 
     if (res.ok) {

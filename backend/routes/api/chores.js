@@ -32,28 +32,17 @@ router.get('/:zoneId', asyncHandler(async (req, res) => {
 
 // localhost:5000/api/chores/:id
 router.patch('/:id', asyncHandler(async (req, res) => {
-    const { id } = req.params;
-    console.log("id--->>", id)
+    const { isComplete, id, zoneId } = req.body;
     const chore = await Chore.findByPk(id);
-    const { isComplete } = req.body;
 
     chore.isComplete = !isComplete
     await chore.save();
 
-
-    //is there a way to do this without sending back ALL of the chores?////////////////
-    let chores = await Chore.findAll();
-    if (req.query.zone !== undefined) {
-        chores = chores.filter(chore => {
-            return req.query.zone == chore.dataValues.zoneId
-        })
-    }
-
-    if (req.query.user !== undefined) {
-        chores = chores.filter(chore => {
-            return req.query.user == chore.dataValues.userId
-        })
-    }
+    let chores = await Chore.findAll({
+        where: {
+            zoneId
+        }
+    });
     return res.json(chores)
 }))
 
