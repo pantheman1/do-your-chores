@@ -18,7 +18,7 @@ export default function CompletedChoreButton({ chore, complete, setComplete }) {
 
     // This function is ran when the button is clicked and sets the class to selected when true
     const getButtonHTML = () => {
-        return "isComplete-btn " + (chore.isComplete ? " selected" : "")
+        return "isComplete-btn " + (chore?.isComplete ? " selected" : "")
     }
 
     return (

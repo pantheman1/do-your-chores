@@ -20,15 +20,11 @@ const NewChore = ({ setSelectedChore }) => {
     const { zoneId, squadId } = useParams();
 
     const handleSelectedUser = (e) => {
-        setAssignee(e.target.value)
+        setAssignee(e.target.value);
     }
-
-    console.log("SQUAD USERS--component", squadUsers)
 
     const onSubmit = async (e) => {
         e.preventDefault()
-        const userIdString = assignee.split("-")[1];
-        const userId = Number(userIdString);
 
         const newChore = {
             name,
@@ -38,6 +34,7 @@ const NewChore = ({ setSelectedChore }) => {
             description,
             isComplete: false,
         }
+        console.log("newCHORE_-----", newChore)
         await dispatch(postNewChore(newChore))
         // setSelectedChore("")
         // newUser = {
@@ -84,7 +81,7 @@ const NewChore = ({ setSelectedChore }) => {
                         >
                             <option value='' disabled>Select someone...</option>
                             {squadUsers && squadUsers.map(squadUser => (
-                                <option key={squadUser.userId}>{`${squadUser.User.name}`}</option>
+                                <option value={`${squadUser.User.id}`} key={squadUser.userId}>{`${squadUser.User.name}`}</option>
                             ))}
                         </select>
                     </div>

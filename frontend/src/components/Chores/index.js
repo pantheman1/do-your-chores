@@ -42,8 +42,8 @@ const ChoresPage = () => {
     if (chores?.length > 0 && selectedButton === "all") {
         choreList = (
             <>
-                {chores.map(chore => (
-                    <ChoreBlocks key={chore.id} complete={complete} setComplete={setComplete} setSelectedChore={setSelectedChore} chore={chore} />
+                {chores?.map(chore => (
+                    <ChoreBlocks key={chore?.id} complete={complete} setComplete={setComplete} setSelectedChore={setSelectedChore} chore={chore} />
                 ))}
             </>
         )
