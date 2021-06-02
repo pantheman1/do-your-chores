@@ -1,10 +1,15 @@
 import { csrfFetch } from './csrf';
 
-const GET_USER_SQUADS = 'squads/GET_USER_SQUADS';
-const CREATE_USER_SQUAD = 'squads/CREATE_USER_SQUAD';
+const GET_USER_SQUADS = 'userSquads/GET_USER_SQUADS';
+const USERS_BY_SQUADID = 'userSquads/USER_BY_SQUADID';
 
 const getSquadAction = (data) => ({
     type: GET_USER_SQUADS,
+    data
+});
+
+const getUsersBySquadAction = (data) => ({
+    type: USERS_BY_SQUADID,
     data
 });
 
@@ -15,6 +20,14 @@ export const getUserSquads = (userId) => async dispatch => {
     if (res.ok) {
         const data = await res.json()
         dispatch(getSquadAction(data.squads));
+    }
+}
+
+export const getUsersBySquad = (squadId) => async dispatch => {
+    let res = await csrfFetch(`/api/userSquads/users/${squadId}`)
+    if (res.ok) {
+        const data = await res.json()
+        dispatch(getUsersBySquadAction(data));
     }
 }
 
@@ -32,6 +45,11 @@ export default function UserSquadsReducer(state = {}, action) {
         case GET_USER_SQUADS:
             action.data.forEach(item => {
                 newState[item.id] = item;
+            })
+            return newState;
+        case USERS_BY_SQUADID:
+            action.data.forEach(item => {
+                newState[item.userId] = item;
             })
             return newState;
         default:

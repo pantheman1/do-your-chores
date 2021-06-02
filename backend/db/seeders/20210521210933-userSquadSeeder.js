@@ -9,11 +9,19 @@ module.exports = {
       },
       {
         squadId: 1,
+        userId: 1
+      },
+      {
+        squadId: 1,
         userId: 3
       },
       {
         squadId: 1,
         userId: 4
+      },
+      {
+        squadId: 2,
+        userId: 1
       },
       {
         squadId: 2,

@@ -26,7 +26,7 @@ const SimpleChoreView = ({ chore, setSelectedChore, complete, setComplete }) => 
                     className="chore-input-box"
                     key={nanoid()}
                     type="text"
-                    value={chore.name}
+                    value={chore?.name}
                     onChange={e => setChoreName(e.target.value)}
                     onBlur={e => updateDb(e.target.value)}
                 >

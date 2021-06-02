@@ -4,55 +4,59 @@ const { Chore, Zone, User } = require('../../db/models')
 
 //test comment
 
-// localhost:5000/api/chores
-// localhost:5000/api/chores?zone=3
-// localhost:5000/api/chores?user=1
-// localhost:5000/api/chores?user=1&zone=3
-router.get('/', asyncHandler(async (req, res) => {
+// localhost:5000/api/chores/:zoneId
+router.get('/:zoneId', asyncHandler(async (req, res) => {
     //if user gives us a zone then we'll filter chores by that zone
     //else return all chores regardless of zone
+    const { zoneId } = req.params;
 
-    let chores = await Chore.findAll();
-    if (req.query.zone !== undefined) {
-        chores = chores.filter(chore => {
-            return req.query.zone == chore.dataValues.zoneId
-        })
-    }
-
-    if (req.query.user !== undefined) {
-        chores = chores.filter(chore => {
-            return req.query.user == chore.dataValues.userId
-        })
-    }
+    let chores = await Chore.findAll({
+        where: {
+            zoneId
+        }
+    });
     return res.json(chores);
 }))
 
 // localhost:5000/api/chores/:id
 router.patch('/:id', asyncHandler(async (req, res) => {
-    const { id } = req.params;
+    const { isComplete, id, zoneId } = req.body;
     const chore = await Chore.findByPk(id);
-    const { isComplete } = req.body;
 
     chore.isComplete = !isComplete
     await chore.save();
 
-
-    //is there a way to do this without sending back ALL of the chores?////////////////
-    let chores = await Chore.findAll();
-    if (req.query.zone !== undefined) {
-        chores = chores.filter(chore => {
-            return req.query.zone == chore.dataValues.zoneId
-        })
-    }
-
-    if (req.query.user !== undefined) {
-        chores = chores.filter(chore => {
-            return req.query.user == chore.dataValues.userId
-        })
-    }
+    let chores = await Chore.findAll({
+        where: {
+            zoneId
+        }
+    });
     return res.json(chores)
 }))
 
+// localhost:5000/api/zones/:id
+// creates a new chore...should be in the chores.js route
+router.post('/:zoneId', asyncHandler(async (req, res) => {
+    const {
+        name,
+        userId,
+        zoneId,
+        estimatedTime,
+        description,
+        isComplete,
+    } = req.body;
+
+    const newChore = await Chore.create({
+        name,
+        userId,
+        zoneId,
+        estimatedTime,
+        description,
+        isComplete,
+    });
+
+    return res.json(newChore)
+}))
 
 
 // localhost:5000/api/chores/:id
@@ -60,31 +64,5 @@ router.get('/:id', asyncHandler(async (req, res) => {
     const chore = await Chore.findByPk(req.params.id);
     return res.json({ chore });
 }))
-
-// localhost:5000/api/chores/:zoneId/completed 
-// this will return all completed chores in a specific zone
-router.get('/:id/completed', asyncHandler(async function (req, res) {
-    const isCompleteChore = await Chore.findAll({
-        where: {
-            'isComplete': true,
-            'zoneId': req.params.id
-        }
-    });
-    // console.log("____>>>>>", isCompleteChore)
-    return res.json(isCompleteChore)
-}));
-
-// localhost:5000/api/chores/:zoneId/incomplete
-// this will return all incomplete chores in a specific zone
-router.get('/:id/incomplete', asyncHandler(async function (req, res) {
-    const isIncompleteChore = await Chore.findAll({
-        where: {
-            'isComplete': false,
-            'zoneId': req.params.id
-        }
-    });
-    return res.json(isIncompleteChore)
-}));
-
 
 module.exports = router;

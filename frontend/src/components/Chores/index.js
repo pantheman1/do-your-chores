@@ -1,99 +1,86 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Route, Redirect, useHistory, useParams, Link } from "react-router-dom";
-import { getSimpleList } from '../../store/chores';
-import { nanoid } from 'nanoid';
+import { Redirect, useHistory, useParams } from "react-router-dom";
+import { getAllChores } from '../../store/chores';
 import './chores.css'
 import ChoreBlocks from './ChoreBlocks';
 import ChoreDetails from './choreDetails';
 import NewChore from './NewChore';
+import Button from 'react-bootstrap/Button';
 
 const ChoresPage = () => {
     const sessionUser = useSelector(state => state.session.user);
-    const chores = useSelector(state => state.chores);
-    const compChores = useSelector(state => state.completionStatus)
-    //zone is only bringing in the location of the zone
-    const zone = useSelector(state => state.singleZone.zone)
+    const chores = useSelector(state => Object.values(state.chores));
+    const { zoneId, squadId } = useParams();
+    const zone = useSelector(state => Object.values(state.zones).filter(zone => zone.id === Number(zoneId)));
     const dispatch = useDispatch();
+    const history = useHistory();
     const [selectedChore, setSelectedChore] = useState({});
     const [complete, setComplete] = useState(false);
     const [selectedButton, setSelectedButton] = useState('all');
-    const { zoneId } = useParams();
 
-    // Will initiate a fetch to grab all chores in this zoneId
-    // useEffect(() => {
-    // }, [dispatch, zoneId])
+    let completedChores = chores.filter(chore => chore?.isComplete === true);
+    let incompleteChores = chores.filter(chore => chore?.isComplete === false);
 
-    const handleAllChores = () => {
-        dispatch(getSimpleList(sessionUser.id))
-        setSelectedButton('all');
-    }
 
-    // Will initiate a fetch to grab all completed chores in this zoneId
-    const handleCompleteChores = () => {
-        setSelectedButton('completed');
-        // dispatch(completedChores(zoneId))
-
-    }
-
-    // Will initiate a fetch to grab all incomplete chores in this zoneId
-    const handleIncompleteChores = () => {
-        setSelectedButton('incomplete');
-    }
-
-    //This turns the normalized object of chores (already specific to this zone) into an array
-    const completedChoresArr = Object.values(compChores);
-    console.log("COMPLETED CHORES-->>", completedChoresArr)
-
-    // This turns a normalized object of all chores into an array
-    const choreArr = Object.values(chores)
-    // This filters the list into only those chores for this zone
-    const choresList = choreArr?.filter(chore => chore.zoneId.toString() === zoneId)
-    const completedChoresList = choresList?.filter(chore => chore.isComplete === true)
-    const incompleteChoresList = choresList?.filter(chore => chore.isComplete === false)
-    // console.log('--->>>', choresList)
-
-    // Loads chores upon render
     useEffect(() => {
-        dispatch(getSimpleList())
-    }, [dispatch])
+        dispatch(getAllChores(zoneId))
+    }, [dispatch, selectedButton])
+
 
     if (!sessionUser) {
         return <Redirect to='/login' />
     }
 
-    const addAChore = (e) => {
+    // This does not post a chore--it toggles to show an empty create chore form
+    const handleAddChore = (e) => {
         e.preventDefault();
         setSelectedChore({})
     }
 
-    console.log("selectedButton-->", selectedButton)
-
     let choreList;
-    if (choresList?.length > 0 && selectedButton === "all") {
+    if (chores?.length > 0 && selectedButton === "all") {
         choreList = (
-            <div className="chores-container">
-                {choresList.map(chore => (
-                    <ChoreBlocks key={nanoid()} complete={complete} setComplete={setComplete} setSelectedChore={setSelectedChore} chore={chore} />
+            <>
+                {chores?.map(chore => (
+                    <ChoreBlocks key={chore?.id} complete={complete} setComplete={setComplete} setSelectedChore={setSelectedChore} chore={chore} />
                 ))}
-            </div>
+            </>
         )
-    } else if (completedChoresList?.length > 0 && selectedButton === "completed") {
+    } else if (completedChores?.length > 0 && selectedButton === "completed") {
         choreList = (
-            <div className="chores-container">
-                {completedChoresList.map(chore => (
-                    <ChoreBlocks key={nanoid()} complete={complete} setComplete={setComplete} setSelectedChore={setSelectedChore} chore={chore} />
+            <>
+                {completedChores.map(chore => (
+                    <ChoreBlocks key={chore.id} complete={complete} setComplete={setComplete} setSelectedChore={setSelectedChore} chore={chore} />
                 ))}
-            </div>
+            </>
         )
-    } else if (incompleteChoresList?.length > 0 && selectedButton === "incomplete") {
+    } else if (incompleteChores?.length > 0 && selectedButton === "incomplete") {
         choreList = (
-            <div className="chores-container">
-                {incompleteChoresList.map(chore => (
-                    <ChoreBlocks key={nanoid()} complete={complete} setComplete={setComplete} setSelectedChore={setSelectedChore} chore={chore} />
+            <>
+                {incompleteChores.map(chore => (
+                    <ChoreBlocks key={chore.id} complete={complete} setComplete={setComplete} setSelectedChore={setSelectedChore} chore={chore} />
                 ))}
-            </div>
+            </>
         )
+    }
+
+    const handleAll = (e) => {
+        e.preventDefault();
+        setSelectedButton("all");
+        history.push(`/${squadId}/${zoneId}/chores/all`)
+    }
+
+    const handleComplete = (e) => {
+        e.preventDefault();
+        setSelectedButton("completed");
+        history.push(`/${squadId}/${zoneId}/chores/complete`)
+    }
+
+    const handleIncomplete = (e) => {
+        e.preventDefault();
+        setSelectedButton("incomplete");
+        history.push(`/${squadId}/${zoneId}/chores/incomplete`)
     }
 
     // Trying to render the Choreblocks component on the CompleteChores page. Currently very broken. 
@@ -101,17 +88,19 @@ const ChoresPage = () => {
 
     return (
         <div className="body-chores">
-            <div className="chores-header">
-                <button type="button" className="completed-chores" onClick={handleCompleteChores}>Completed</button>
-                <button type="button" className="incomplete-chores" onClick={handleIncompleteChores}>Incomplete</button>
-                <button type="button" className="all-chores" onClick={handleAllChores}>All</button>
-                <h1>{zone?.location}</h1>
+            <div className="zone-location">
+                <h1>{zone[0]?.location}</h1>
             </div>
-            {/* {choreList} */}
-            {selectedButton && selectedButton === "all" ? choreList : selectedButton && selectedButton === "completed" ? choreList : selectedButton && selectedButton === "incomplete" ? choreList : 'All'}
-            {/* {selectedButton && selectedButton === "all" ? choreList : 'All'} */}
-            <button type="button" className="add-a-chore" onClick={addAChore}>Add a Chore</button>
-            {Object.keys(selectedChore).length === 0 ? <NewChore choresList={choresList} setSelectedChore={setSelectedChore} /> : <ChoreDetails choresList={choresList} chore={selectedChore} />}
+            <div className="chores-header">
+                <Button variant="success" type="button" className="completed-chores" onClick={handleComplete}>Completed</Button>
+                <Button variant="success" type="button" className="incomplete-chores" onClick={handleIncomplete}>Incomplete</Button>
+                <Button variant="success" type="button" className="all-chores" onClick={handleAll}>All</Button>
+            </div>
+            <div className="chores-container">
+                {selectedButton && selectedButton === "all" ? choreList : selectedButton && selectedButton === "completed" ? choreList : selectedButton && selectedButton === "incomplete" ? choreList : 'All'}
+            </div>
+            <button type="button" className="add-a-chore" onClick={handleAddChore}>Add a Chore</button>
+            {Object.keys(selectedChore).length === 0 ? <NewChore chores={chores} setSelectedChore={setSelectedChore} /> : <ChoreDetails chores={chores} chore={selectedChore} />}
         </div>
     )
 }

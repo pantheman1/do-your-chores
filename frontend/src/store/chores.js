@@ -1,13 +1,13 @@
 import { csrfFetch } from './csrf';
 
-const DISPLAY_SIMPLE_CHORE = 'chores/DISPLAY_SIMPLE_CHORE';
+const DISPLAY_CHORES = 'chores/DISPLAY_CHORES';
 const TOGGLE_ISCOMPLETE = 'chore/TOGGLE_ISCOMPLETE';
 const NEW_CHORE = 'chore/NEW_CHORE';
 
 // Action Creators
 
-const displaySimpleChore = choreList => ({
-    type: DISPLAY_SIMPLE_CHORE,
+const getAllChoresAction = choreList => ({
+    type: DISPLAY_CHORES,
     choreList
 });
 
@@ -23,12 +23,11 @@ const newChorePost = (newChore) => ({
 
 // Thunk Action Creators
 
-export const getSimpleList = () => async (dispatch) => {
-    const res = await csrfFetch(`/api/chores`);
-
+export const getAllChores = (zoneId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/chores/${zoneId}`);
     if (res.ok) {
         const chores = await res.json();
-        dispatch(displaySimpleChore(chores))
+        dispatch(getAllChoresAction(chores))
     }
 }
 
@@ -40,12 +39,12 @@ export const toggleIsComplete = (chore) => async dispatch => {
 
     if (res.ok) {
         const chores = await res.json();
-        dispatch(displaySimpleChore(chores))
+        dispatch(getAllChoresAction(chores))
     }
 }
 
 export const postNewChore = (chore) => async dispatch => {
-    const res = await csrfFetch(`/api/zones/${chore.zoneId}`, {
+    const res = await csrfFetch(`/api/chores/${chore.zoneId}`, {
         method: 'POST',
         body: JSON.stringify(chore)
     })
@@ -71,13 +70,13 @@ export const postNewChore = (chore) => async dispatch => {
 // }
 
 const ChoresReducer = (state = {}, action) => {
+    let newState = {};
     switch (action.type) {
-        case DISPLAY_SIMPLE_CHORE:
-            const allChores = {};
+        case DISPLAY_CHORES:
             action.choreList.forEach(chore => {
-                allChores[chore.id] = chore;
+                newState[chore.id] = chore;
             });
-            return { ...state, ...allChores }
+            return newState;
         case NEW_CHORE:
             return {
                 ...state,

@@ -1,69 +1,55 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Route, Redirect, useHistory, useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { nanoid } from 'nanoid';
 import NumericInput from 'react-numeric-input';
 import './chores.css'
-import { getUsers } from "../../store/user";
-// import { getUserByZone } from '../../store/zones';
+import { getUsersBySquad } from "../../store/userSquads";
 import { postNewChore } from '../../store/chores';
 
 
 const NewChore = ({ setSelectedChore }) => {
-    //logged in user
     const sessionUser = useSelector(state => state.session.user);
-    //need user state -- starts out as an empty object--how do I populate this so i can loop through and grab all the users?
-    const users = useSelector(state => state.users)
-    const zones = useSelector(state => state.zones.Zones)
+    const squadUsers = useSelector(state => Object.values(state?.userSquads))
     const dispatch = useDispatch();
-    //need select a zone state
     const [name, setName] = useState('');
-    const [assignee, setAssignee] = useState('')
-    const [estimatedTime, setEstimatedTime] = useState(0)
-    const [description, setDescription] = useState('')
-    // const [errors, setErrors] = useState([])
-    const { zoneId } = useParams()
-
-    // useEffect(() => {
-    //     dispatch(getUserByZone(sessionUser.id))
-    // }, [dispatch])
+    const [dueDate, setDueDate] = useState('');
+    const [description, setDescription] = useState('');
+    const [estimatedTime, setEstimatedTime] = useState(0);
+    const [assignee, setAssignee] = useState(sessionUser.id);
+    const { zoneId, squadId } = useParams();
 
     const handleSelectedUser = (e) => {
-        setAssignee(e.target.value)
+        setAssignee(e.target.value);
     }
-
-    const objArray = Object.values(users)
-    const squadUsers = objArray.filter(user => sessionUser.squadId === user.squadId)
 
     const onSubmit = async (e) => {
         e.preventDefault()
-        const userIdString = assignee.split("-")[1];
-        const userId = Number(userIdString);
-        const zoneId = Number(zoneId)
 
-        const newUser = {
-            name: name,
-            userId: userId,
-            estimated_time: estimatedTime,
+        const newChore = {
+            name,
+            userId: assignee,
+            estimatedTime,
             zoneId,
-            description: description
+            description,
+            isComplete: false,
         }
-        // chore is getting duplicated ////////////////////////bugbugbug
-        // Create chore now will duplicate the chore when you click the COMPLETE button
-        // The Create a new Chore form does not reset
-        await dispatch(postNewChore(newUser))
+        console.log("newCHORE_-----", newChore)
+        await dispatch(postNewChore(newChore))
         // setSelectedChore("")
         // newUser = {
         //     name: "",
         //     userId: "",
-        //     estimated_time: "",
+        //     estimatedTime: "",
         //     zoneId: "",
         //     description: "",
         // };
     }
 
-    useEffect(async () => {
-        await dispatch(getUsers())
+    useEffect(() => {
+        if (squadId) {
+            dispatch(getUsersBySquad(squadId));
+        }
     }, [dispatch])
 
     return (
@@ -94,8 +80,8 @@ const NewChore = ({ setSelectedChore }) => {
                             value={assignee}
                         >
                             <option value='' disabled>Select someone...</option>
-                            {squadUsers && squadUsers.map(user => (
-                                <option key={nanoid()}>{`${user.name}-${user.id}`}</option>
+                            {squadUsers && squadUsers.map(squadUser => (
+                                <option value={`${squadUser.User.id}`} key={squadUser.userId}>{`${squadUser.User.name}`}</option>
                             ))}
                         </select>
                     </div>

@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     dueDate: DataTypes.DATE,
     description: DataTypes.TEXT,
-    estimated_time: DataTypes.INTEGER,
+    estimatedTime: DataTypes.INTEGER,
     isComplete: DataTypes.BOOLEAN,
     zoneId: DataTypes.INTEGER,
     userId: DataTypes.INTEGER
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
 
   //Detailed Chore View
   //returns the user/owner --name
-  //returns chore --name, isComplete, due_date, description, estimated_time
+  //returns chore --name, isComplete, dueDate, description, estimatedTime
   //returns zone --location
   //returns squad --name
   return Chore;
