@@ -1,32 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Route, Redirect, useHistory, useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { nanoid } from 'nanoid';
 import NumericInput from 'react-numeric-input';
 import './chores.css'
-import { getUsers } from "../../store/user";
-// import { getUserByZone } from '../../store/zones';
+import { getUsersBySquad } from "../../store/userSquads";
 import { postNewChore } from '../../store/chores';
 
 
 const NewChore = ({ setSelectedChore }) => {
     const sessionUser = useSelector(state => state.session.user);
-    const users = useSelector(state => state.users)
-    const zones = useSelector(state => state.zones)
+    const squadUsers = useSelector(state => Object.values(state?.userSquads))
     const dispatch = useDispatch();
     const [name, setName] = useState('');
     const [dueDate, setDueDate] = useState('');
-    const [description, setDescription] = useState('')
-    const [estimatedTime, setEstimatedTime] = useState(0)
-    const [assignee, setAssignee] = useState(sessionUser.id)
-    const { zoneId } = useParams()
+    const [description, setDescription] = useState('');
+    const [estimatedTime, setEstimatedTime] = useState(0);
+    const [assignee, setAssignee] = useState(sessionUser.id);
+    const { zoneId, squadId } = useParams();
 
     const handleSelectedUser = (e) => {
         setAssignee(e.target.value)
     }
 
-    const objArray = Object.values(users)
-    const squadUsers = objArray.filter(user => sessionUser.squadId === user.squadId)
+    console.log("SQUAD USERS--component", squadUsers)
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -52,8 +49,10 @@ const NewChore = ({ setSelectedChore }) => {
         // };
     }
 
-    useEffect(async () => {
-        await dispatch(getUsers())
+    useEffect(() => {
+        if (squadId) {
+            dispatch(getUsersBySquad(squadId));
+        }
     }, [dispatch])
 
     return (
@@ -84,8 +83,8 @@ const NewChore = ({ setSelectedChore }) => {
                             value={assignee}
                         >
                             <option value='' disabled>Select someone...</option>
-                            {squadUsers && squadUsers.map(user => (
-                                <option key={nanoid()}>{`${user.name}-${user.id}`}</option>
+                            {squadUsers && squadUsers.map(squadUser => (
+                                <option key={squadUser.userId}>{`${squadUser.User.name}`}</option>
                             ))}
                         </select>
                     </div>

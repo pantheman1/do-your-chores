@@ -7,14 +7,12 @@ import ChoreBlocks from './ChoreBlocks';
 import ChoreDetails from './choreDetails';
 import NewChore from './NewChore';
 import Button from 'react-bootstrap/Button';
-import { getUsersBySquad } from "../../store/userSquads";
 
 const ChoresPage = () => {
     const sessionUser = useSelector(state => state.session.user);
     const chores = useSelector(state => Object.values(state.chores));
     const { zoneId, squadId } = useParams();
     const zone = useSelector(state => Object.values(state.zones).filter(zone => zone.id === Number(zoneId)));
-    const squadUsers = useSelector(state => Object.values(state.userSquads))
     const dispatch = useDispatch();
     const history = useHistory();
     const [selectedChore, setSelectedChore] = useState({});
@@ -24,15 +22,11 @@ const ChoresPage = () => {
     let completedChores = chores.filter(chore => chore?.isComplete === true);
     let incompleteChores = chores.filter(chore => chore?.isComplete === false);
 
-    console.log("SQUAD USERS--component", squadUsers)
 
     useEffect(() => {
         dispatch(getAllChores(zoneId))
     }, [dispatch, selectedButton])
 
-    useEffect(() => {
-        dispatch(getUsersBySquad(squadId));
-    }, [dispatch])
 
     if (!sessionUser) {
         return <Redirect to='/login' />
