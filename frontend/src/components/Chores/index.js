@@ -10,9 +10,10 @@ import NewChore from './NewChore';
 const ChoresPage = () => {
     const sessionUser = useSelector(state => state.session.user);
     const chores = useSelector(state => Object.values(state.chores));
-    const { zoneId } = useParams();
+    const { zoneId, squadId } = useParams();
     const zone = useSelector(state => Object.values(state.zones).filter(zone => zone.id === Number(zoneId)));
     const dispatch = useDispatch();
+    const history = useHistory();
     const [selectedChore, setSelectedChore] = useState({});
     const [complete, setComplete] = useState(false);
     const [selectedButton, setSelectedButton] = useState('all');
@@ -60,6 +61,23 @@ const ChoresPage = () => {
         )
     }
 
+    const handleAll = (e) => {
+        e.preventDefault();
+        setSelectedButton("all");
+        history.push(`/${squadId}/${zoneId}/chores/all`)
+    }
+
+    const handleComplete = (e) => {
+        e.preventDefault();
+        setSelectedButton("completed");
+        history.push(`/${squadId}/${zoneId}/chores/complete`)
+    }
+
+    const handleIncomplete = (e) => {
+        e.preventDefault();
+        setSelectedButton("incomplete");
+        history.push(`/${squadId}/${zoneId}/chores/incomplete`)
+    }
 
     // Trying to render the Choreblocks component on the CompleteChores page. Currently very broken. 
     // Look at if statement above and something about the buttons
@@ -70,9 +88,9 @@ const ChoresPage = () => {
                 <h1>{zone[0]?.location}</h1>
             </div>
             <div className="chores-header">
-                <button type="button" className="completed-chores" onClick={e => setSelectedButton("completed")}>Completed</button>
-                <button type="button" className="incomplete-chores" onClick={e => setSelectedButton("incomplete")}>Incomplete</button>
-                <button type="button" className="all-chores" onClick={e => setSelectedButton("all")}>All</button>
+                <button type="button" className="completed-chores" onClick={handleComplete}>Completed</button>
+                <button type="button" className="incomplete-chores" onClick={handleIncomplete}>Incomplete</button>
+                <button type="button" className="all-chores" onClick={handleAll}>All</button>
             </div>
             <div className="chores-container">
                 {selectedButton && selectedButton === "all" ? choreList : selectedButton && selectedButton === "completed" ? choreList : selectedButton && selectedButton === "incomplete" ? choreList : 'All'}

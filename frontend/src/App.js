@@ -50,7 +50,7 @@ function App() {
             <Navigation isLoaded={isLoaded} />
             <Zones />
           </Route>
-          <Route exact path='/:squadId/:zoneId/chores'>
+          <Route exact path='/:squadId/:zoneId/chores/all'>
             <Navigation isLoaded={isLoaded} />
             <Chores />
           </Route>
