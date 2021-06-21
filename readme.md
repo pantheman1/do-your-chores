@@ -158,7 +158,7 @@ sudo -u postgres psql
 Now create the user for your app account in the DB:
 
 ```bash
-CREATE USER <username> CREATEDB WITH ENCRYPTED PASSWORD '*****';
+CREATE USER <username> WITH ENCRYPTED PASSWORD '*****' CREATEDB;
 ```
 
 where `<username>` is the username from `.env`, and `'*****'` is the password from `.env`.
